@@ -11,7 +11,8 @@
   },
   "dependencies": {
     "react": "16.9.0",
-    "react-native": "0.61.2"
+    "react-native": "0.61.2",
+    "react-native-sound-level": "^1.1.5"
   },
   "devDependencies": {
     "@babel/core": "7.6.3",
@@ -25,5 +26,6 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "desktopExternalModules": [ "node_modules/react-native-sound-level/desktop" ]
 }

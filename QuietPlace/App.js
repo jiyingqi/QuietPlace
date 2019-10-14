@@ -6,35 +6,36 @@
  * @flow
  */
 
-import React from 'react';
+// Make sure to run react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+// To pick up changes and then you can run react-native run-android to display it
+// Run react-native log-android to view console logs, you should be able to see the sound level info after granting microphone permissions for android
+
+import React, { Component } from 'react';
+import RNSoundLevel from 'react-native-sound-level';
+import MicrophoneListener from './microphoneListener'
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
+    Button,
+    StyleSheet,
+    View,
+    Text
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
-  return (
-    <>
-
-
-    </>
-  );
-};
+export default class App extends React.Component {
+   render() {
+      return (
+         <View style = {styles.container}>
+            <Text>Hello, this comes from inside App.js</Text>
+            <MicrophoneListener />
+         </View>
+      );
+   }
+}
 
 const styles = StyleSheet.create({
-
+   container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+   },
 });
-
-export default App;
