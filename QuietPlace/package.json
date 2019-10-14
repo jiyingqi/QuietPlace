@@ -27,5 +27,7 @@
   "jest": {
     "preset": "react-native"
   },
-  "desktopExternalModules": [ "node_modules/react-native-sound-level/desktop" ]
+  "desktopExternalModules": [
+    "node_modules/react-native-sound-level/desktop"
+  ]
 }
