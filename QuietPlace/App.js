@@ -13,6 +13,8 @@
 import React, { Component } from 'react';
 import RNSoundLevel from 'react-native-sound-level';
 import MicrophoneListener from './microphoneListener'
+import {SlidingPane} from 'react-native-sliding-panes';
+
 import {
     Button,
     StyleSheet,
@@ -24,17 +26,21 @@ export default class App extends React.Component {
    render() {
       return (
          <View style = {styles.container}>
-            <Text>Hello, this comes from inside App.js</Text>
+            <Text style={{fontWeight: 'bold'}}>
+              <Text style={{color: "white"}}>
+              Hello, Welcome to The Quiet Place (App.js)
+              </Text>
+            </Text>
             <MicrophoneListener />
-         </View>
-      );
+         </View>  
+      );s
    }
 }
 
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#8740ad',
       alignItems: 'center',
       justifyContent: 'center',
    },
