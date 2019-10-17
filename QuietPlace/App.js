@@ -11,8 +11,8 @@
 // Run react-native log-android to view console logs, you should be able to see the sound level info after granting microphone permissions for android
 
 import React, { Component } from 'react';
-import MicrophoneListener from './microphoneListener';
-
+import MicrophoneListener from './microphoneListener'
+import {SlidingPane} from 'react-native-sliding-panes';
 
 import {
     Button,
@@ -25,19 +25,22 @@ export default class App extends React.Component {
    render() {
       return (
          <View style = {styles.container}>
-            <Text>Hello, this comes from inside App.js</Text>
+            <Text style={{fontWeight: 'bold'}}>
+              <Text style={{color: "white"}}>
+              Hello, Welcome to The Quiet Place (App.js)
+              </Text>
+            </Text>
             <MicrophoneListener />
-         </View>
-      );
+         </View>  
+      );s
    }
 }
 
 const styles = StyleSheet.create({
    container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#8740ad',
       alignItems: 'center',
       justifyContent: 'center',
    },
 });
-
