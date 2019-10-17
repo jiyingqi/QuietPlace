@@ -2,8 +2,29 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import { PermissionsAndroid } from 'react-native';
+import PushNotification from 'react-native-push-notification';
+import PushNotificationIOS from "@react-native-community/push-notification-ios";
+
+const configure = {
+  onNotification: function (notification) {
+    console.log("NOTIFICATION:", notification);
+    console.log(notification.foreground);
+    notification.finish(PushNotificationIOS.FetchResult.NoData);
+  },
+  permissions: {
+    alert: true,
+    badge: true,
+    sound: true
+  },
+  requestPermissions: true,
+}
 
 export default class MicrophoneListener extends Component {
+    constructor(props) {
+      super(props);
+      PushNotification.configure(configure);
+    }
+
     componentDidMount(){
         requestMicrophonePermission()
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
@@ -16,6 +37,13 @@ export default class MicrophoneListener extends Component {
         RNSoundLevel.start()
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
+            // if sound decibel is greater than 100
+            if(data.value < 0){
+              PushNotification.localNotification({
+                title: "quiet down!", 
+                message: "a housemate has alerted that you're being too loud", 
+              });
+            }
         }
     }
 
@@ -27,7 +55,7 @@ export default class MicrophoneListener extends Component {
         return (
         <View>
             <Text>
-                Hello, this comes from inside microphoneListener.js
+                Hello, this comes from inside microphoneListener.js + notifications
             </Text>
         </View>
         );
@@ -55,3 +83,4 @@ export async function requestMicrophonePermission()
     console.warn(err)
   }
 }
+
