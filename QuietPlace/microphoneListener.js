@@ -38,7 +38,7 @@ export default class MicrophoneListener extends Component {
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
             // if sound decibel is greater than 100
-            if(data.value < 0){
+            if(data.value > 100){
               PushNotification.localNotification({
                 title: "quiet down!", 
                 message: "a housemate has alerted that you're being too loud", 
