@@ -11,8 +11,9 @@
 // Run react-native log-android to view console logs, you should be able to see the sound level info after granting microphone permissions for android
 
 import React, { Component } from 'react';
-import RNSoundLevel from 'react-native-sound-level';
-import MicrophoneListener from './microphoneListener'
+import MicrophoneListener from './microphoneListener';
+
+
 import {
     Button,
     StyleSheet,
@@ -39,3 +40,4 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
    },
 });
+
