@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
+import Slider from '@react-native-community/slider';
 
 const configure = {
   onNotification: function (notification) {
@@ -24,6 +25,14 @@ export default class MicrophoneListener extends Component {
       super(props);
       PushNotification.configure(configure);
     }
+	
+	static defaultProps = {
+      value: 0,
+	};
+
+	state = {
+	  value: this.props.value,
+	};
 
     componentDidMount(){
         requestMicrophonePermission()
@@ -37,11 +46,11 @@ export default class MicrophoneListener extends Component {
         RNSoundLevel.start()
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
-            // if sound decibel is greater than 100
-            if(data.value > 100){
+            // If sound level is greater than slider value
+            if(data.value > this.state.value){
               PushNotification.localNotification({
-                title: "quiet down!", 
-                message: "a housemate has alerted that you're being too loud", 
+                title: "Quiet down!", 
+                message: "You are being too loud.", 
               });
             }
         }
@@ -50,17 +59,38 @@ export default class MicrophoneListener extends Component {
     componentWillUnmount() {
         RNSoundLevel.stop()
     }
-
+	
+	//Volume threshold slider
     render() {
         return (
         <View>
-            <Text>
-                Hello, this comes from inside microphoneListener.js + notifications
-            </Text>
+            <Text style={styles.text}>
+			  Volume Threshold{"\n\n"}
+			  {this.state.value}
+			</Text>
+            <Slider
+              {...this.props}
+              onValueChange={value => this.setState({value: value})}
+			  style={{width: 300, height: 30}}
+			  step = {1}
+			  minimumValue = {-160}
+			  maximumValue = {0}
+			  thumbTintColor = 'white'
+			  minimumTrackTintColor='pink'
+            />
         </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 30,
+	color: 'white',
+    textAlign: 'center',
+    margin: 10,
+  },
+});
 
 export async function requestMicrophonePermission()
 {
