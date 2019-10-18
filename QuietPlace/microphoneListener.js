@@ -48,7 +48,7 @@ export default class MicrophoneListener extends Component {
             console.log('Sound level info', data)
             // If sound level is greater than slider value
 			//Data is measured from -160 to 0, but only using -100 to 0 for slider values
-            if(data >= this.state.value){
+            if(data.value >= this.state.value){
               PushNotification.localNotification({
                 title: "Quiet down!", 
                 message: "You are being too loud.", 
