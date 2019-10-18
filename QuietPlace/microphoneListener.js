@@ -41,7 +41,7 @@ export default class MicrophoneListener extends Component {
           console.log( "You can use the microphone" )
         }
         else {
-          console.log( "microphone permission denied" )
+          console.log( "Microphone permission denied" )
         }
         RNSoundLevel.start()
         RNSoundLevel.onNewFrame = (data) => {
