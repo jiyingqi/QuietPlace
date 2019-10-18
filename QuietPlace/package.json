@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@react-native-community/push-notification-ios": "^1.0.2",
+    "@react-native-community/slider": "^2.0.2",
     "react": "16.9.0",
     "react-native": "0.61.2",
     "react-native-push-notification": "^3.1.9",
+    "react-native-sliding-panes": "^1.0.3",
     "react-native-sound-level": "^1.1.5"
   },
   "devDependencies": {
