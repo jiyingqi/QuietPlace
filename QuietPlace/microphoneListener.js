@@ -41,13 +41,14 @@ export default class MicrophoneListener extends Component {
           console.log( "You can use the microphone" )
         }
         else {
-          console.log( "microphone permission denied" )
+          console.log( "Microphone permission denied" )
         }
         RNSoundLevel.start()
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
             // If sound level is greater than slider value
-            if(data.value > this.state.value){
+			//Data is measured from -160 to 0, but only using -100 to 0 for slider values
+            if(data.value >= this.state.value){
               PushNotification.localNotification({
                 title: "Quiet down!", 
                 message: "You are being too loud.", 
@@ -65,18 +66,19 @@ export default class MicrophoneListener extends Component {
         return (
         <View>
             <Text style={styles.text}>
-			  Volume Threshold{"\n\n"}
-			  {this.state.value}
+			  {"\n"}Volume Threshold{"\n\n"}
+			  {this.state.value}dB
 			</Text>
             <Slider
               {...this.props}
-              onValueChange={value => this.setState({value: value})}
+              onValueChange = {value => this.setState({value: value})}
 			  style={{width: 300, height: 30}}
 			  step = {1}
-			  minimumValue = {-160}
+			  minimumValue = {-100}
 			  maximumValue = {0}
 			  thumbTintColor = 'white'
-			  minimumTrackTintColor='pink'
+			  minimumTrackTintColor = 'pink'
+			  maximumTrackTintColor = 'white'
             />
         </View>
         );
