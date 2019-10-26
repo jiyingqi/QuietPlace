@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
@@ -35,20 +35,37 @@ export default class MicrophoneListener extends Component {
 	};
 
     componentDidMount(){
-        requestMicrophonePermission()
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
         if (granted) {
           console.log( "You can use the microphone" )
         }
         else {
           console.log( "Microphone permission denied" )
+          requestMicrophonePermission()
         }
         RNSoundLevel.start()
+        var count = 0;
+        var fiveSoundFrames = new Array(5)
+        var notificationPause = 20;
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
             // If sound level is greater than slider value
 			//Data is measured from -160 to 0, but only using -100 to 0 for slider values
-            if(data.value >= this.state.value){
+            if (count == 5){
+              fiveSoundFrames.shift();
+              count--;
+            }
+            fiveSoundFrames.push(data.value);
+            count++;
+            const avg = fiveSoundFrames.reduce((p, c, _, a) => p + c/a.length, 0);
+            console.log(avg);
+            console.log(notificationPause);
+            if(notificationPause < 20){
+              notificationPause++;
+            }
+            if(count == 5 && avg >= this.state.value && notificationPause == 20){
+              fiveSoundFrames = new Array(5);
+              notificationPause = 0;
               PushNotification.localNotification({
                 title: "Quiet down!", 
                 message: "You are being too loud.", 
@@ -67,14 +84,14 @@ export default class MicrophoneListener extends Component {
         <View>
             <Text style={styles.text}>
 			  {"\n"}Volume Threshold{"\n\n"}
-			  {this.state.value}dB
+			  {((this.state.value + 160)/160) * 100}% {this.state.value} Db
 			</Text>
             <Slider
               {...this.props}
               onValueChange = {value => this.setState({value: value})}
 			  style={{width: 300, height: 30}}
 			  step = {1}
-			  minimumValue = {-100}
+			  minimumValue = {-160}
 			  maximumValue = {0}
 			  thumbTintColor = 'white'
 			  minimumTrackTintColor = 'pink'
