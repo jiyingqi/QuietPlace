@@ -27,9 +27,8 @@ export default class MicrophoneListener extends Component {
       setInterval( ()=>{
          var hour = new Date().getHours();
          var min = new Date().getMinutes();
-         var sec = new Date().getSeconds();
          this.setState({
-            time: hour+':'+min+':'+sec,
+            time: hour+':'+min,
          })
       },1000);
     }
