@@ -24,6 +24,14 @@ export default class MicrophoneListener extends Component {
     constructor(props) {
       super(props);
       PushNotification.configure(configure);
+      setInterval( ()=>{
+         var hour = new Date().getHours();
+         var min = new Date().getMinutes();
+         var sec = new Date().getSeconds();
+         this.setState({
+            time: hour+':'+min+':'+sec,
+         })
+      },1000);
     }
 	
 	static defaultProps = {
@@ -32,19 +40,12 @@ export default class MicrophoneListener extends Component {
 
 	state = {
 	  value: this.props.value,
-	  date: '',
+	  time: '',
 	};
 
     componentDidMount(){
         requestMicrophonePermission()
-        setInterval( ()=>{
-           var hour = new Date().getHours();
-           var min = new Date().getMinutes();
-           var sec = new Date().getSeconds();
-           this.setState({
-           date: hour+':'+min+':'+sec,
-           })
-        },1000);
+
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
         if (granted) {
           console.log( "You can use the microphone" )
@@ -90,7 +91,7 @@ export default class MicrophoneListener extends Component {
 			  maximumTrackTintColor = 'white'
             />
             <Text style={styles.text}>
-            Time is {this.state.date}
+            Time is {this.state.time}
             </Text>
         </View>
         );
