@@ -20,15 +20,14 @@ import {
     View,
     Text
 } from 'react-native';
+import { whileStatement } from '@babel/types';
 
 export default class App extends React.Component {
    render() {
       return (
          <View style = {styles.container}>
-            <Text style={{fontWeight: 'bold'}}>
-              <Text style={{color: "white"}}>
-              Hello, Welcome to The Quiet Place (App.js)
-              </Text>
+              <Text style={styles.homelogo}>
+              Hello, Welcome to the Quiet Place 
             </Text>
             <MicrophoneListener />
          </View>  
@@ -42,5 +41,17 @@ const styles = StyleSheet.create({
       backgroundColor: '#8740ad',
       alignItems: 'center',
       justifyContent: 'center',
+   },
+   homelogo: {
+      fontWeight: 'bold', 
+      fontStyle: 'normal',
+     // fontFamily: 'Roboto',
+      fontSize: 16,
+      lineHeight: 19,
+      textAlign: 'center',
+      color: "white", 
+      width: 300,
+      bottom: 80,
+      marginTop: 50
    },
 });

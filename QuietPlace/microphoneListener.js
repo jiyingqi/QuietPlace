@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
@@ -81,34 +81,69 @@ export default class MicrophoneListener extends Component {
 	//Volume threshold slider
     render() {
         return (
-        <View>
-            <Text style={styles.text}>
-			  {"\n"}Volume Threshold{"\n\n"}
-			  {((this.state.value + 160)/160) * 100}% {this.state.value} Db
-			</Text>
-            <Slider
-              {...this.props}
-              onValueChange = {value => this.setState({value: value})}
-			  style={{width: 300, height: 30}}
-			  step = {1}
-			  minimumValue = {-160}
-			  maximumValue = {0}
-			  thumbTintColor = 'white'
-			  minimumTrackTintColor = 'pink'
-			  maximumTrackTintColor = 'white'
-            />
-        </View>
+          <View>
+              <Text style={styles.label}>
+                Volume Threshold{"\n"}
+              </Text>
+              <Text style={styles.volume}>
+                ({((this.state.value + 160)/160) * 100}%) {this.state.value} Db
+              </Text>
+              <Slider
+                {...this.props}
+                onValueChange = {value => this.setState({value: value})}
+                style={styles.slider}
+                step = {1}
+                minimumValue = {-160}
+                maximumValue = {0}
+                thumbTintColor = '#C4C4C4'
+                minimumTrackTintColor = 'black'
+                maximumTrackTintColor = 'grey'
+              />
+          
+              <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Settings</Text>
+              </TouchableOpacity>
+          </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-	color: 'white',
+  label: {
+    fontWeight: 'bold',
+    fontSize: 16,
+	  color: 'white',
     textAlign: 'center',
     margin: 10,
   },
+  volume: {
+    fontSize: 14,
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Light'
+    },
+  slider: {
+    width: 280, 
+    height: 50,    
+    marginBottom: 100,
+    borderRadius: 0
+  },
+  button: {
+    marginTop:50,
+    paddingTop:15,
+    paddingBottom:15,
+    backgroundColor:'#97849A',
+    shadowColor: 'black',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    borderRadius: 4,
+    elevation: 10
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontWeight: 'bold'
+  }
 });
 
 export async function requestMicrophonePermission()
