@@ -86,7 +86,7 @@ export default class MicrophoneListener extends Component {
                 Volume Threshold{"\n"}
               </Text>
               <Text style={styles.volume}>
-                ({((this.state.value + 160)/160) * 100}%) {this.state.value} Db
+                ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} Db
               </Text>
               <Slider
                 {...this.props}
