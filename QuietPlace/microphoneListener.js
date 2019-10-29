@@ -99,8 +99,7 @@ export default class MicrophoneListener extends Component {
                 minimumTrackTintColor = 'black'
                 maximumTrackTintColor = 'grey'
               />
-          
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity style={styles.button}> 
                 <Text style={styles.buttonText}>Settings</Text>
               </TouchableOpacity>
           </View>
@@ -111,36 +110,37 @@ export default class MicrophoneListener extends Component {
 const styles = StyleSheet.create({
   label: {
     fontWeight: 'bold',
-    fontSize: 16,
+    fontSize: Platform.OS === "ios" ? 30 : 35,
 	  color: 'white',
     textAlign: 'center',
-    margin: 10,
+    marginTop: 125
   },
   volume: {
-    fontSize: 14,
+    fontSize: Platform.OS === "ios" ? 25 : 30,
+    marginBottom: 25,
     color: 'white',
     textAlign: 'center',
     fontFamily: 'Montserrat-Light'
     },
   slider: {
-    width: 280, 
+    width: Platform.OS === "ios" ? 300 : 350, 
     height: 50,    
-    marginBottom: 100,
     borderRadius: 0
   },
   button: {
-    marginTop:50,
+    marginTop: Platform.OS === "ios" ? 160 : 170,
     paddingTop:15,
     paddingBottom:15,
-    backgroundColor:'#97849A',
+    backgroundColor:'lightgrey',
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
+    shadowOpacity: 2,
     shadowRadius: 2,
     borderRadius: 4,
-    elevation: 10
+    elevation: Platform.OS === "ios" ? 10 : 25
   },
   buttonText: {
+    fontSize: 22,
     textAlign: 'center',
     fontWeight: 'bold'
   }

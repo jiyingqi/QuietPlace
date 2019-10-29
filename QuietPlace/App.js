@@ -26,14 +26,15 @@ export default class App extends React.Component {
    render() {
       return (
          <View style = {styles.container}>
-              <Text style={styles.homelogo}>
-              Hello, Welcome to the Quiet Place 
-            </Text>
+               <Text style={styles.homelogo}>
+                  Welcome to the Quiet Place
+               </Text>
             <MicrophoneListener />
          </View>  
       );s
    }
 }
+
 
 const styles = StyleSheet.create({
    container: {
@@ -45,13 +46,10 @@ const styles = StyleSheet.create({
    homelogo: {
       fontWeight: 'bold', 
       fontStyle: 'normal',
-     // fontFamily: 'Roboto',
-      fontSize: 16,
-      lineHeight: 19,
+      fontSize: Platform.OS === "ios" ? 27 : 30,
+      lineHeight: 30,
       textAlign: 'center',
       color: "white", 
-      width: 300,
-      bottom: 80,
-      marginTop: 50
-   },
+      width: 400,
+   }
 });
