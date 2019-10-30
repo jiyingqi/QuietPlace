@@ -25,10 +25,11 @@ export default class MicrophoneListener extends Component {
       super(props);
       PushNotification.configure(configure);
       setInterval( ()=>{
-         var hour = new Date().getHours();
-         var min = new Date().getMinutes();
+         var hr = new Date().getHours();
+         var mn = new Date().getMinutes();
          this.setState({
-            time: hour+':'+min,
+            hour: hr,
+            min: mn,
          })
       },1000);
     }
@@ -39,7 +40,8 @@ export default class MicrophoneListener extends Component {
 
 	state = {
 	  value: this.props.value,
-	  time: '',
+	  hour: '',
+	  min: '',
 	};
 
     componentDidMount(){
@@ -89,9 +91,7 @@ export default class MicrophoneListener extends Component {
 			  minimumTrackTintColor = 'pink'
 			  maximumTrackTintColor = 'white'
             />
-            <Text style={styles.text}>
-            Time is {this.state.time}
-            </Text>
+
         </View>
         );
     }
