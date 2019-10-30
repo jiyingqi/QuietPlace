@@ -24,6 +24,14 @@ export default class MicrophoneListener extends Component {
     constructor(props) {
       super(props);
       PushNotification.configure(configure);
+      setInterval( ()=>{
+         var hr = new Date().getHours();
+         var mn = new Date().getMinutes();
+         this.setState({
+            hour: hr,
+            min: mn,
+         })
+      },1000);
     }
 	
 	static defaultProps = {
@@ -32,6 +40,8 @@ export default class MicrophoneListener extends Component {
 
 	state = {
 	  value: this.props.value,
+	  hour: '',
+	  min: '',
 	};
 
     componentDidMount(){
