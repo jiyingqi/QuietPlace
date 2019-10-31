@@ -109,9 +109,6 @@ export default class MicrophoneListener extends Component {
                 minimumTrackTintColor = 'black'
                 maximumTrackTintColor = 'grey'
               />
-              <TouchableOpacity style={styles.button}> 
-                <Text style={styles.buttonText}>Settings</Text>
-              </TouchableOpacity>
           </View>
         );
     }
