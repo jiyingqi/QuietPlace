@@ -94,7 +94,7 @@ export default class MicrophoneListener extends Component {
     render() {
         return (
           <View>
-			      <Speedometer
+            <Speedometer
               style={styles.speedometer}
               size={250}
               value={Math.trunc(((this.soundLevel + 160)/160) * 100)}
@@ -109,7 +109,7 @@ export default class MicrophoneListener extends Component {
               percentStyle={{fontFamily: 'Montserrat-Light', color: 'white'}}
               percentSize={0.9}
             />
-			      <Text style={styles.volumeText}>
+            <Text style={styles.volumeText}>
               Current Volume Level{"\n"}
             </Text>
             <Text style={styles.decibels}>
@@ -139,14 +139,14 @@ export default class MicrophoneListener extends Component {
 
 const styles = StyleSheet.create({
   speedometer: {
-	  flex: 1,
-	  alignItems: 'center',
-	  justifyContent: 'center',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   decibels: {
-	  fontSize: Platform.OS === "ios" ? 25 : 30,
+    fontSize: Platform.OS === "ios" ? 25 : 30,
     color: 'white',
-  	textAlign: 'center',
+    textAlign: 'center',
     fontFamily: 'Montserrat-Light'
   },
   volumeText: {
@@ -154,8 +154,8 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: 'Montserrat-Light',
-	  marginTop: -50,
-	  marginBottom: 50
+    marginTop: -50,
+    marginBottom: 50
   },
   slider: {
     width: Platform.OS === "ios" ? 300 : 350, 
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 25,
-	  marginBottom: Platform.OS === "ios" ? 90 : 100,
+    marginBottom: Platform.OS === "ios" ? 90 : 100,
     paddingTop:15,
     paddingBottom:15,
     backgroundColor:'lightgrey',
