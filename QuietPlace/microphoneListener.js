@@ -5,6 +5,7 @@ import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import Slider from '@react-native-community/slider';
+import Speedometer from 'react-native-speedometer-chart';
 
 const configure = {
   onNotification: function (notification) {
@@ -24,6 +25,7 @@ export default class MicrophoneListener extends Component {
     constructor(props) {
       super(props);
       PushNotification.configure(configure);
+	    this.soundLevel = -160;
       setInterval( ()=>{
          var hr = new Date().getHours();
          var mn = new Date().getMinutes();
@@ -43,7 +45,7 @@ export default class MicrophoneListener extends Component {
 	  hour: '',
 	  min: '',
 	};
-
+	
     componentDidMount(){
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
         if (granted) {
@@ -59,8 +61,9 @@ export default class MicrophoneListener extends Component {
         var notificationPause = 20;
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
+						this.soundLevel = data.value;
             // If sound level is greater than slider value
-			//Data is measured from -160 to 0, but only using -100 to 0 for slider values
+						//Data is measured from -160 to 0, but only using -100 to 0 for slider values
             if (count == 5){
               fiveSoundFrames.shift();
               count--;
@@ -69,7 +72,6 @@ export default class MicrophoneListener extends Component {
             count++;
             const avg = fiveSoundFrames.reduce((p, c, _, a) => p + c/a.length, 0);
             console.log(avg);
-            console.log(notificationPause);
             if(notificationPause < 20){
               notificationPause++;
             }
@@ -87,58 +89,89 @@ export default class MicrophoneListener extends Component {
     componentWillUnmount() {
         RNSoundLevel.stop()
     }
-	
-	//Volume threshold slider
+
+	//Volume Level Display & Volume Threshold Slider
     render() {
         return (
           <View>
-              <Text style={styles.label}>
-                Volume Threshold{"\n"}
-              </Text>
-              <Text style={styles.volume}>
-                ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} Db
-              </Text>
-              <Slider
-                {...this.props}
-                onValueChange = {value => this.setState({value: value})}
-                style={styles.slider}
-                step = {1}
-                minimumValue = {-160}
-                maximumValue = {0}
-                thumbTintColor = '#C4C4C4'
-                minimumTrackTintColor = 'black'
-                maximumTrackTintColor = 'grey'
-              />
-              <TouchableOpacity style={styles.button}> 
-                <Text style={styles.buttonText}>Settings</Text>
-              </TouchableOpacity>
+			      <Speedometer
+              style={styles.speedometer}
+              size={250}
+              value={Math.trunc(((this.soundLevel + 160)/160) * 100)}
+              totalValue={100}
+              innerColor='#8740ad'
+              internalColor='white'
+              outerColor='#9c70b5'
+              showText
+              text={`${this.soundLevel} dB`}
+              textStyle={styles.decibels}
+              showPercent
+              percentStyle={{fontFamily: 'Montserrat-Light', color: 'white'}}
+              percentSize={0.9}
+            />
+			      <Text style={styles.volumeText}>
+              Current Volume Level{"\n"}
+            </Text>
+            <Text style={styles.decibels}>
+              ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} dB
+            </Text>
+            <Slider
+              {...this.props}
+              onValueChange = {value => this.setState({value: value})}
+              style={styles.slider}
+              step = {1}
+              minimumValue = {-160}
+              maximumValue = {0}
+              thumbTintColor = '#C4C4C4'
+              minimumTrackTintColor = 'black'
+              maximumTrackTintColor = 'grey'
+            />
+            <Text style={styles.thresholdText}>
+              Volume Threshold{"\n"}
+            </Text>
+            <TouchableOpacity style={styles.button}> 
+              <Text style={styles.buttonText}>Settings</Text>
+            </TouchableOpacity>
           </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-  label: {
-    fontWeight: 'bold',
-    fontSize: Platform.OS === "ios" ? 30 : 35,
-	  color: 'white',
-    textAlign: 'center',
-    marginTop: 125
+  speedometer: {
+	  flex: 1,
+	  alignItems: 'center',
+	  justifyContent: 'center',
   },
-  volume: {
+  decibels: {
+	  fontSize: Platform.OS === "ios" ? 25 : 30,
+    color: 'white',
+  	textAlign: 'center',
+    fontFamily: 'Montserrat-Light'
+  },
+  volumeText: {
     fontSize: Platform.OS === "ios" ? 25 : 30,
-    marginBottom: 25,
     color: 'white',
     textAlign: 'center',
-    fontFamily: 'Montserrat-Light'
-    },
+    fontFamily: 'Montserrat-Light',
+	  marginTop: -50,
+	  marginBottom: 50
+  },
   slider: {
     width: Platform.OS === "ios" ? 300 : 350, 
     height: 50,    
     borderRadius: 0
   },
+  thresholdText: {
+    fontSize: Platform.OS === "ios" ? 25 : 30,
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Montserrat-Light',
+    marginTop: -5
+  },
   button: {
-    marginTop: Platform.OS === "ios" ? 160 : 170,
+    marginTop: 25,
+	  marginBottom: Platform.OS === "ios" ? 90 : 100,
     paddingTop:15,
     paddingBottom:15,
     backgroundColor:'lightgrey',

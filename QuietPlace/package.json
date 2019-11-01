@@ -16,7 +16,8 @@
     "react-native": "0.61.2",
     "react-native-push-notification": "^3.1.9",
     "react-native-sliding-panes": "^1.0.3",
-    "react-native-sound-level": "^1.1.5"
+    "react-native-sound-level": "^1.1.5",
+    "react-native-speedometer-chart": "^0.7.3"
   },
   "devDependencies": {
     "@babel/core": "7.6.3",
