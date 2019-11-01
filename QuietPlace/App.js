@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       color: "white", 
       width: 400,
-	   paddingTop: 100
+      paddingTop: 100
    }
 });

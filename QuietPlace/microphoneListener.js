@@ -25,7 +25,7 @@ export default class MicrophoneListener extends Component {
     constructor(props) {
       super(props);
       PushNotification.configure(configure);
-	    this.soundLevel = -160;
+      this.soundLevel = -160;
       setInterval( ()=>{
          var hr = new Date().getHours();
          var mn = new Date().getMinutes();
@@ -61,9 +61,9 @@ export default class MicrophoneListener extends Component {
         var notificationPause = 20;
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
-						this.soundLevel = data.value;
+            this.soundLevel = data.value;
             // If sound level is greater than slider value
-						//Data is measured from -160 to 0, but only using -100 to 0 for slider values
+            //Data is measured from -160 to 0, but only using -100 to 0 for slider values
             if (count == 5){
               fiveSoundFrames.shift();
               count--;
