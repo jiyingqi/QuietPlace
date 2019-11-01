@@ -5,6 +5,7 @@ import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import Slider from '@react-native-community/slider';
+import styles from "./styles/styles";
 
 const configure = {
   onNotification: function (notification) {
@@ -113,45 +114,6 @@ export default class MicrophoneListener extends Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-  label: {
-    fontWeight: 'bold',
-    fontSize: Platform.OS === "ios" ? 30 : 35,
-	  color: 'white',
-    textAlign: 'center',
-    marginTop: 125
-  },
-  volume: {
-    fontSize: Platform.OS === "ios" ? 25 : 30,
-    marginBottom: 25,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Light'
-    },
-  slider: {
-    width: Platform.OS === "ios" ? 300 : 350, 
-    height: 50,    
-    borderRadius: 0
-  },
-  button: {
-    marginTop: Platform.OS === "ios" ? 160 : 170,
-    paddingTop:15,
-    paddingBottom:15,
-    backgroundColor:'lightgrey',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 2,
-    shadowRadius: 2,
-    borderRadius: 4,
-    elevation: Platform.OS === "ios" ? 10 : 25
-  },
-  buttonText: {
-    fontSize: 22,
-    textAlign: 'center',
-    fontWeight: 'bold'
-  }
-});
 
 export async function requestMicrophonePermission()
 {
