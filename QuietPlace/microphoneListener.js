@@ -165,24 +165,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Montserrat-Light',
     marginBottom: 100
-  },
-  button: {
-    marginTop: 25,
-    marginBottom: Platform.OS === "ios" ? 90 : 100,
-    paddingTop:15,
-    paddingBottom:15,
-    backgroundColor:'lightgrey',
-    shadowColor: 'black',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 2,
-    shadowRadius: 2,
-    borderRadius: 4,
-    elevation: Platform.OS === "ios" ? 10 : 25
-  },
-  buttonText: {
-    fontSize: 22,
-    textAlign: 'center',
-    fontWeight: 'bold'
   }
 });
 
