@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: 'Montserrat-Light',
-    marginBottom: 100
+    marginTop: -50,
+    marginBottom: 50
   },
   slider: {
     width: Platform.OS === "ios" ? 300 : 350, 
