@@ -129,9 +129,6 @@ export default class MicrophoneListener extends Component {
             <Text style={styles.thresholdText}>
               Volume Threshold{"\n"}
             </Text>
-            <TouchableOpacity style={styles.button}> 
-              <Text style={styles.buttonText}>Settings</Text>
-            </TouchableOpacity>
           </View>
         );
     }
@@ -154,8 +151,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: 'Montserrat-Light',
-    marginTop: -50,
-    marginBottom: 50
+    marginBottom: 100
   },
   slider: {
     width: Platform.OS === "ios" ? 300 : 350, 
@@ -167,7 +163,7 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontFamily: 'Montserrat-Light',
-    marginTop: -5
+    marginBottom: 100
   },
   button: {
     marginTop: 25,
