@@ -11,8 +11,10 @@
 // Run react-native log-android to view console logs, you should be able to see the sound level info after granting microphone permissions for android
 
 import React, { Component } from 'react';
-import MicrophoneListener from './microphoneListener'
+import MicrophoneListener from './microphoneListener';
 import {SlidingPane} from 'react-native-sliding-panes';
+import {createAppContainer} from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import {
     Button,
@@ -22,7 +24,11 @@ import {
 } from 'react-native';
 import { whileStatement } from '@babel/types';
 
-export default class App extends React.Component {
+//export default
+class App extends React.Component {
+  static navigationOptions = {
+    title: 'Main',
+  };
    render() {
       return (
          <View style = {styles.container}>
@@ -30,11 +36,51 @@ export default class App extends React.Component {
                   Welcome to the Quiet Place
                </Text>
             <MicrophoneListener />
-         </View>  
-      );s
+         </View>
+      );
    }
 }
 
+class SettingsScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Settings',
+  };
+  render() {
+    const {navigate} = this.props.navigation;
+    return (
+        <View style = {styles.container}>
+               <Text style={styles.homelogo}>
+                  Welcome to the Quiet Place Settings
+               </Text>
+         </View>
+    );
+  }
+}
+
+const MainNavigator = createBottomTabNavigator(
+  {
+  Home: App,
+  Settings: SettingsScreen
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: 'black',
+      inactiveTintColor: '#8740ad',
+      labelStyle: {
+        fontWeight: 'bold',
+        fontStyle: 'normal',
+        fontSize: Platform.OS === "ios" ? 27 : 30,
+        lineHeight: 30,
+      },
+      style: {
+          backgroundColor: 'white',
+      },
+    }
+    },
+  {
+  initialRouteName: 'Home'
+  },
+);
 
 const styles = StyleSheet.create({
    container: {
@@ -44,12 +90,14 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
    },
    homelogo: {
-      fontWeight: 'bold', 
+      fontWeight: 'bold',
       fontStyle: 'normal',
       fontSize: Platform.OS === "ios" ? 27 : 30,
       lineHeight: 30,
       textAlign: 'center',
-      color: "white", 
+      color: "white",
       width: 400,
    }
 });
+
+export default createAppContainer(MainNavigator);
