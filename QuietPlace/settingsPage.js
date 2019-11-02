@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import styles from "./styles/styles";
 
 export default class SettingsScreen extends Component {
@@ -23,7 +23,7 @@ export default class SettingsScreen extends Component {
                         <Text style={styles.buttonText}>Time</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>Db Level</Text>
+                        <Text style={styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                  </View>
                  <View style = {styles.row}>
@@ -33,14 +33,14 @@ export default class SettingsScreen extends Component {
                         <Text style={styles.buttonText}>Time</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>Db Level</Text>
+                        <Text style={styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                 </View>   
                 <View style = {styles.row}>
-                    <Text style={styles.labText}>Maximum Db Level
+                    <Text style={styles.labText}>Maximum dB Level
                     </Text>
                     <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>Db Level</Text>
+                        <Text style={styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                 </View>
            </View>
