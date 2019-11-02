@@ -6,6 +6,7 @@ import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
+import styles from "./styles/styles";
 
 const configure = {
   onNotification: function (notification) {
@@ -134,39 +135,6 @@ export default class MicrophoneListener extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-  speedometer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  decibels: {
-    fontSize: Platform.OS === "ios" ? 25 : 30,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Light'
-  },
-  volumeText: {
-    fontSize: Platform.OS === "ios" ? 25 : 30,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Light',
-    marginTop: -50,
-    marginBottom: 50
-  },
-  slider: {
-    width: Platform.OS === "ios" ? 300 : 350, 
-    height: 50,    
-    borderRadius: 0
-  },
-  thresholdText: {
-    fontSize: Platform.OS === "ios" ? 25 : 30,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'Montserrat-Light',
-    marginBottom: 100
-  }
-});
 
 export async function requestMicrophonePermission()
 {
@@ -189,4 +157,3 @@ export async function requestMicrophonePermission()
     console.warn(err)
   }
 }
-
