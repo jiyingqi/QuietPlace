@@ -104,7 +104,7 @@ export default class MicrophoneListener extends Component {
               internalColor='white'
               outerColor='#9c70b5'
               showText
-              text={`${this.soundLevel} dB`}
+              text={`${Math.trunc(this.soundLevel)} dB`}
               textStyle={styles.decibels}
               showPercent
               percentStyle={{fontFamily: 'Montserrat-Light', color: 'white'}}
