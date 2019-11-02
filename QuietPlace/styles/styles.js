@@ -19,15 +19,20 @@ export default StyleSheet.create({
     settingsContainer: {
         flex: 1,
         backgroundColor: '#8740ad',
-        alignItems: 'center',
     },
     settings: {
         position: 'absolute',
         color: "white",
         fontWeight: 'bold',
-        fontSize: 18,
-        lineHeight: 21,
-        marginTop: 50
+        fontSize: 27,
+        marginTop: 50,
+        alignSelf: 'center'
+    },
+    settingsLabel: {
+        color: "white",
+        marginTop: 130,
+        fontSize: 20,
+        marginLeft: 25
     },
     label: {
         fontWeight: 'bold',
@@ -48,21 +53,42 @@ export default StyleSheet.create({
         height: 50,    
         borderRadius: 0
     },
-    button: {
-        marginTop: Platform.OS === "ios" ? 160 : 170,
-        paddingTop:15,
-        paddingBottom:15,
+    timeButton: {
         backgroundColor:'lightgrey',
-        shadowColor: 'black',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 2,
-        shadowRadius: 2,
-        borderRadius: 4,
-        elevation: Platform.OS === "ios" ? 10 : 25
+        marginLeft: 40,
+        width: 100,
+        height: 30,
+        borderRadius: 5,
+        marginTop: 20
+    },
+    dbButton: {
+        backgroundColor:'lightgrey',
+        width: 100,
+        marginLeft: 40,
+        height: 30,
+        borderRadius: 5,
+        marginTop: 20
+    },
+    row: {
+        flexDirection: 'row',
+        marginTop: 30
     },
     buttonText: {
-        fontSize: 22,
+        fontWeight: 'bold',
+        fontSize: 20,
         textAlign: 'center',
-        fontWeight: 'bold'
+        textAlignVertical: 'center'
+    }, 
+    labelText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginLeft: 40,
+        marginTop: 20
+    },
+    labText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        marginLeft: Platform.OS === 'ios' ? 35 : 40,
+        marginTop: 20
     }
 });

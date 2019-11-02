@@ -18,7 +18,7 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import SettingsScreen from "./settingsPage";
 import styles from "./styles/styles";
 
-import { Button, StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { whileStatement } from '@babel/types';
 
 //export default
