@@ -35,6 +35,20 @@ export default StyleSheet.create({
         fontSize: 20,
         marginLeft: 25
     },
+  label: {
+        fontWeight: 'bold',
+        fontSize: Platform.OS === "ios" ? 30 : 35,
+        color: 'white',
+        textAlign: 'center',
+        marginTop: 125
+    },
+    volume: {
+        fontSize: Platform.OS === "ios" ? 25 : 30,
+        marginBottom: 25,
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Light'
+    },
     speedometer: {
         flex: 1,
         alignItems: 'center',
@@ -105,3 +119,5 @@ export default StyleSheet.create({
         marginTop: 20
     }
 });
+
+

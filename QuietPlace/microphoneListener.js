@@ -135,7 +135,6 @@ export default class MicrophoneListener extends Component {
     }
 }
 
-
 export async function requestMicrophonePermission()
 {
   try {

@@ -15,6 +15,7 @@ import MicrophoneListener from './microphoneListener';
 import {SlidingPane} from 'react-native-sliding-panes';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import SettingsScreen from "./settingsPage";
 import styles from "./styles/styles";
 
 import { View, Text } from 'react-native';
