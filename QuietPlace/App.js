@@ -23,44 +23,60 @@ import { whileStatement } from '@babel/types';
 
 //export default
 class App extends React.Component {
-  static navigationOptions = {
-    title: 'Main',
-  };
+   static navigationOptions = {
+     title: 'Main',
+   };
+    render() {
+       return (
+          <View style = {styles.container}>
+                <Text style={styles.homelogo}>
+                   Welcome to the Quiet Place
+                </Text>
+             <MicrophoneListener />
+          </View>
+       );
+    }
+ }
+
+class SettingsScreen extends React.Component {
+   static navigationOptions = {
+     title: 'Settings',
+   };
    render() {
-      return (
+     const {navigate} = this.props.navigation;
+     return (
          <View style = {styles.container}>
-               <Text style={styles.homelogo}>
-                  Welcome to the Quiet Place
-               </Text>
-            <MicrophoneListener />
-         </View>
-      );
+                <Text style={styles.homelogo}>
+                   Welcome to the Quiet Place Settings
+                </Text>
+          </View>
+     );
    }
 }
 
 const MainNavigator = createBottomTabNavigator(
-  {
-  Home: App,
-  Settings: SettingsScreen
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: 'black',
-      inactiveTintColor: '#8740ad',
-      labelStyle: {
-        fontWeight: 'bold',
-        fontStyle: 'normal',
-        fontSize: Platform.OS === "ios" ? 27 : 30,
-        lineHeight: 30,
-      },
-      style: {
-          backgroundColor: 'white',
-      },
-    }
-    },
-  {
-  initialRouteName: 'Home'
-  },
+   {
+   Home: App,
+   Settings: SettingsScreen
+   },
+   {
+     tabBarOptions: {
+       activeTintColor: 'black',
+       inactiveTintColor: '#8740ad',
+       labelStyle: {
+         fontWeight: 'bold',
+         fontStyle: 'normal',
+         fontSize: Platform.OS === "ios" ? 27 : 30,
+         lineHeight: 30,
+       },
+       style: {
+           backgroundColor: 'white',
+       },
+     }
+     },
+   {
+   initialRouteName: 'Home'
+   },
 );
 
 

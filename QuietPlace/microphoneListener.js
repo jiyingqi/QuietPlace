@@ -5,6 +5,7 @@ import { PermissionsAndroid } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import Slider from '@react-native-community/slider';
+import Speedometer from 'react-native-speedometer-chart';
 import styles from "./styles/styles";
 
 const configure = {
@@ -25,6 +26,7 @@ export default class MicrophoneListener extends Component {
     constructor(props) {
       super(props);
       PushNotification.configure(configure);
+      this.soundLevel = -160;
       setInterval( ()=>{
          var hr = new Date().getHours();
          var mn = new Date().getMinutes();
@@ -44,7 +46,7 @@ export default class MicrophoneListener extends Component {
 	  hour: '',
 	  min: '',
 	};
-
+	
     componentDidMount(){
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
         if (granted) {
@@ -60,8 +62,9 @@ export default class MicrophoneListener extends Component {
         var notificationPause = 20;
         RNSoundLevel.onNewFrame = (data) => {
             console.log('Sound level info', data)
+            this.soundLevel = data.value;
             // If sound level is greater than slider value
-			//Data is measured from -160 to 0, but only using -100 to 0 for slider values
+            //Data is measured from -160 to 0, but only using -100 to 0 for slider values
             if (count == 5){
               fiveSoundFrames.shift();
               count--;
@@ -70,7 +73,6 @@ export default class MicrophoneListener extends Component {
             count++;
             const avg = fiveSoundFrames.reduce((p, c, _, a) => p + c/a.length, 0);
             console.log(avg);
-            console.log(notificationPause);
             if(notificationPause < 20){
               notificationPause++;
             }
@@ -88,28 +90,46 @@ export default class MicrophoneListener extends Component {
     componentWillUnmount() {
         RNSoundLevel.stop()
     }
-	
-	//Volume threshold slider
+
+	//Volume Level Display & Volume Threshold Slider
     render() {
         return (
           <View>
-              <Text style={styles.label}>
-                Volume Threshold{"\n"}
-              </Text>
-              <Text style={styles.volume}>
-                ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} Db
-              </Text>
-              <Slider
-                {...this.props}
-                onValueChange = {value => this.setState({value: value})}
-                style={styles.slider}
-                step = {1}
-                minimumValue = {-160}
-                maximumValue = {0}
-                thumbTintColor = '#C4C4C4'
-                minimumTrackTintColor = 'black'
-                maximumTrackTintColor = 'grey'
-              />
+            <Speedometer
+              style={styles.speedometer}
+              size={250}
+              value={Math.trunc(((this.soundLevel + 160)/160) * 100)}
+              totalValue={100}
+              innerColor='#8740ad'
+              internalColor='white'
+              outerColor='#9c70b5'
+              showText
+              text={`${Math.trunc(this.soundLevel)} dB`}
+              textStyle={styles.decibels}
+              showPercent
+              percentStyle={{fontFamily: 'Montserrat-Light', color: 'white'}}
+              percentSize={0.9}
+            />
+            <Text style={styles.volumeText}>
+              Current Volume Level{"\n"}
+            </Text>
+            <Text style={styles.decibels}>
+              ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} dB
+            </Text>
+            <Slider
+              {...this.props}
+              onValueChange = {value => this.setState({value: value})}
+              style={styles.slider}
+              step = {1}
+              minimumValue = {-160}
+              maximumValue = {0}
+              thumbTintColor = '#C4C4C4'
+              minimumTrackTintColor = 'black'
+              maximumTrackTintColor = 'grey'
+            />
+            <Text style={styles.thresholdText}>
+              Volume Threshold{"\n"}
+            </Text>
           </View>
         );
     }
@@ -136,4 +156,3 @@ export async function requestMicrophonePermission()
     console.warn(err)
   }
 }
-

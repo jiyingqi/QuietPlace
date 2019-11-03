@@ -7,7 +7,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    homelogo: {
+     homelogo: {
         fontWeight: 'bold',
         fontStyle: 'normal',
         fontSize: Platform.OS === "ios" ? 27 : 30,
@@ -15,6 +15,7 @@ export default StyleSheet.create({
         textAlign: 'center',
         color: "white",
         width: 400,
+        paddingTop: 100
     },
     settingsContainer: {
         flex: 1,
@@ -34,7 +35,7 @@ export default StyleSheet.create({
         fontSize: 20,
         marginLeft: 25
     },
-    label: {
+  label: {
         fontWeight: 'bold',
         fontSize: Platform.OS === "ios" ? 30 : 35,
         color: 'white',
@@ -48,10 +49,36 @@ export default StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Montserrat-Light'
     },
+    speedometer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    decibels: {
+        fontSize: Platform.OS === "ios" ? 25 : 30,
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Light'
+    },
+    volumeText: {
+        fontSize: Platform.OS === "ios" ? 25 : 30,
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Light',
+        marginTop: -50,
+        marginBottom: 50
+    },
     slider: {
         width: Platform.OS === "ios" ? 300 : 350, 
         height: 50,    
         borderRadius: 0
+    },
+    thresholdText: {
+        fontSize: Platform.OS === "ios" ? 25 : 30,
+        color: 'white',
+        textAlign: 'center',
+        fontFamily: 'Montserrat-Light',
+        marginBottom: 100
     },
     timeButton: {
         backgroundColor:'lightgrey',
@@ -92,3 +119,5 @@ export default StyleSheet.create({
         marginTop: 20
     }
 });
+
+
