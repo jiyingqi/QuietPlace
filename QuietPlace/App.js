@@ -15,89 +15,68 @@ import MicrophoneListener from './microphoneListener';
 import {SlidingPane} from 'react-native-sliding-panes';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import styles from "./styles/styles";
 
-import {
-    Button,
-    StyleSheet,
-    View,
-    Text
-} from 'react-native';
+import { View, Text } from 'react-native';
 import { whileStatement } from '@babel/types';
 
 //export default
 class App extends React.Component {
-  static navigationOptions = {
-    title: 'Main',
-  };
-   render() {
-      return (
-         <View style = {styles.container}>
-               <Text style={styles.homelogo}>
-                  Welcome to the Quiet Place
-               </Text>
-            <MicrophoneListener />
-         </View>
-      );
-   }
-}
+   static navigationOptions = {
+     title: 'Main',
+   };
+    render() {
+       return (
+          <View style = {styles.container}>
+                <Text style={styles.homelogo}>
+                   Welcome to the Quiet Place
+                </Text>
+             <MicrophoneListener />
+          </View>
+       );
+    }
+ }
 
 class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Settings',
-  };
-  render() {
-    const {navigate} = this.props.navigation;
-    return (
-        <View style = {styles.container}>
-               <Text style={styles.homelogo}>
-                  Welcome to the Quiet Place Settings
-               </Text>
-         </View>
-    );
-  }
+   static navigationOptions = {
+     title: 'Settings',
+   };
+   render() {
+     const {navigate} = this.props.navigation;
+     return (
+         <View style = {styles.container}>
+                <Text style={styles.homelogo}>
+                   Welcome to the Quiet Place Settings
+                </Text>
+          </View>
+     );
+   }
 }
 
 const MainNavigator = createBottomTabNavigator(
-  {
-  Home: App,
-  Settings: SettingsScreen
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: 'black',
-      inactiveTintColor: '#8740ad',
-      labelStyle: {
-        fontWeight: 'bold',
-        fontStyle: 'normal',
-        fontSize: Platform.OS === "ios" ? 27 : 30,
-        lineHeight: 30,
-      },
-      style: {
-          backgroundColor: 'white',
-      },
-    }
-    },
-  {
-  initialRouteName: 'Home'
-  },
+   {
+   Home: App,
+   Settings: SettingsScreen
+   },
+   {
+     tabBarOptions: {
+       activeTintColor: 'black',
+       inactiveTintColor: '#8740ad',
+       labelStyle: {
+         fontWeight: 'bold',
+         fontStyle: 'normal',
+         fontSize: Platform.OS === "ios" ? 27 : 30,
+         lineHeight: 30,
+       },
+       style: {
+           backgroundColor: 'white',
+       },
+     }
+     },
+   {
+   initialRouteName: 'Home'
+   },
 );
 
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: '#8740ad',
-      alignItems: 'center',
-      justifyContent: 'center',
-   },
-   homelogo: {
-      fontWeight: 'bold',
-      fontStyle: 'normal',
-      fontSize: Platform.OS === "ios" ? 27 : 30,
-      lineHeight: 30,
-      textAlign: 'center',
-      color: "white",
-      width: 400,
-   }
-});
 
 export default createAppContainer(MainNavigator);
