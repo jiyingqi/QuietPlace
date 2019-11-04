@@ -38,22 +38,6 @@ class App extends React.Component {
     }
  }
 
-class SettingsScreen extends React.Component {
-   static navigationOptions = {
-     title: 'Settings',
-   };
-   render() {
-     const {navigate} = this.props.navigation;
-     return (
-         <View style = {styles.container}>
-                <Text style={styles.homelogo}>
-                   Welcome to the Quiet Place Settings
-                </Text>
-          </View>
-     );
-   }
-}
-
 const MainNavigator = createBottomTabNavigator(
    {
    Home: App,
