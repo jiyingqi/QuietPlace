@@ -94,7 +94,7 @@ export default StyleSheet.create({
         marginLeft: 40,
         height: 30,
         borderRadius: 5,
-        marginTop: 20
+        marginTop: 20,
     },
     row: {
         flexDirection: 'row',
@@ -102,7 +102,7 @@ export default StyleSheet.create({
     },
     buttonText: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 15,
         textAlign: 'center',
         textAlignVertical: 'center'
     }, 
@@ -117,7 +117,7 @@ export default StyleSheet.create({
         fontSize: 20,
         marginLeft: Platform.OS === 'ios' ? 35 : 40,
         marginTop: 20
-    }
+    },
 });
 
 

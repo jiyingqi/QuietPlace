@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
+
 import styles from "./styles/styles";
 
 export default class SettingsScreen extends Component {
@@ -16,32 +18,40 @@ export default class SettingsScreen extends Component {
                  <Text style={styles.settingsLabel}>
                      Custom Timing
                  </Text>
+
                  <View style = {styles.row}>
-                    <Text style={styles.labelText}>AM
-                    </Text>
-                    <TouchableOpacity style={styles.timeButton}> 
-                        <Text style={styles.buttonText}>Time</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.labelText}>AM</Text>
+                    <ModalDropdown 
+                        defaultValue = 'Time'
+                        style={styles.timeButton} 
+                        textStyle={styles.buttonText} 
+                        options={['6 pm', '7 pm']}/>
+                    <ModalDropdown 
+                        defaultValue = 'dB Level'
+                        style={styles.dbButton} 
+                        textStyle={styles.buttonText} 
+                        options={['10 dB', '20 dB']}/>
                  </View>
                  <View style = {styles.row}>
-                    <Text style={styles.labelText}>PM
-                    </Text>
-                    <TouchableOpacity style={styles.timeButton}> 
-                        <Text style={styles.buttonText}>Time</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.labelText}>PM</Text>
+                    <ModalDropdown 
+                        defaultValue = 'Time'
+                        style={styles.timeButton} 
+                        textStyle={styles.buttonText} 
+                        options={['6 pm', '7 pm']}/>
+                    <ModalDropdown 
+                        defaultValue = 'dB Level'
+                        style={styles.dbButton} 
+                        textStyle={styles.buttonText} 
+                        options={['10 dB', '20 dB']}/>
                 </View>   
                 <View style = {styles.row}>
-                    <Text style={styles.labText}>Maximum dB Level
-                    </Text>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.labText}>Maximum dB Level</Text>
+                    <ModalDropdown 
+                        defaultValue = 'dB Level'
+                        style={styles.dbButton} 
+                        textStyle={styles.buttonText} 
+                        options={['10 dB', '20 dB']}/>
                 </View>
            </View>
       );
