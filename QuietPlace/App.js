@@ -30,6 +30,7 @@ class App extends React.Component {
        return (
           <View style = {styles.container}>
                 <Text style={styles.homelogo}>
+                  <Text>{"\n\n"}</Text>
                    Welcome to the Quiet Place
                 </Text>
              <MicrophoneListener />

@@ -7,6 +7,7 @@ import PushNotificationIOS from "@react-native-community/push-notification-ios";
 import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
 import styles from "./styles/styles";
+import SettingsScreen from "./settingsPage";
 
 const configure = {
   onNotification: function (notification) {
@@ -36,7 +37,7 @@ export default class MicrophoneListener extends Component {
          })
       },1000);
     }
-	
+
 	static defaultProps = {
       value: 0,
 	};
@@ -46,7 +47,7 @@ export default class MicrophoneListener extends Component {
 	  hour: '',
 	  min: '',
 	};
-	
+
     componentDidMount(){
         const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.RECORD_AUDIO );
         if (granted) {
@@ -61,7 +62,7 @@ export default class MicrophoneListener extends Component {
         var fiveSoundFrames = new Array(5)
         var notificationPause = 20;
         RNSoundLevel.onNewFrame = (data) => {
-            console.log('Sound level info', data)
+            console.log('Sound level info', data);
             this.soundLevel = data.value;
             // If sound level is greater than slider value
             //Data is measured from -160 to 0, but only using -100 to 0 for slider values
@@ -76,12 +77,18 @@ export default class MicrophoneListener extends Component {
             if(notificationPause < 20){
               notificationPause++;
             }
+            if(this.state.hour>=global.timeAM && this.state.hour<=global.timePM+12){
+              this.state.value=global.decibelAM;
+            }
+            else if(this.state.hour<=global.timeAM || this.state.hour>=global.timePM+12){
+              this.state.value=global.decibelPM;
+            }
             if(count == 5 && avg >= this.state.value && notificationPause == 20){
               fiveSoundFrames = new Array(5);
               notificationPause = 0;
               PushNotification.localNotification({
-                title: "Quiet down!", 
-                message: "You are being too loud.", 
+                title: "Quiet down!",
+                message: "You are being too loud.",
               });
             }
         }
@@ -112,6 +119,7 @@ export default class MicrophoneListener extends Component {
             />
             <Text style={styles.volumeText}>
               Current Volume Level{"\n"}
+              Based on User Settings: {this.state.value} dBs
             </Text>
             <Text style={styles.decibels}>
               ({Math.trunc(((this.state.value + 160)/160) * 100)}%) {this.state.value} dB
