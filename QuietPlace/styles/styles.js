@@ -69,8 +69,8 @@ export default StyleSheet.create({
         marginBottom: 50
     },
     slider: {
-        width: Platform.OS === "ios" ? 300 : 350, 
-        height: 50,    
+        width: Platform.OS === "ios" ? 300 : 350,
+        height: 50,
         borderRadius: 0
     },
     thresholdText: {
@@ -82,15 +82,23 @@ export default StyleSheet.create({
     },
     timeButton: {
         backgroundColor:'lightgrey',
-        marginLeft: 40,
-        width: 100,
+        marginLeft: 20,
+        width: 75,
+        height: 30,
+        borderRadius: 5,
+        marginTop: 20
+    },
+    timeButtonMinute: {
+        backgroundColor:'lightgrey',
+        marginLeft: 5,
+        width: 75,
         height: 30,
         borderRadius: 5,
         marginTop: 20
     },
     dbButton: {
         backgroundColor:'lightgrey',
-        width: 100,
+        width: 80,
         marginLeft: 40,
         height: 30,
         borderRadius: 5,
@@ -105,11 +113,19 @@ export default StyleSheet.create({
         fontSize: 15,
         textAlign: 'center',
         textAlignVertical: 'center'
-    }, 
+    },
     labelText: {
         fontWeight: 'bold',
-        fontSize: 20,
-        marginLeft: 40,
+        fontSize: 18,
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 20
+    },
+    colonText: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        marginLeft: 5,
+        marginRight: 5,
         marginTop: 20
     },
     labText: {
@@ -119,5 +135,3 @@ export default StyleSheet.create({
         marginTop: 20
     },
 });
-
-

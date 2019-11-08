@@ -77,11 +77,21 @@ export default class MicrophoneListener extends Component {
             if(notificationPause < 20){
               notificationPause++;
             }
-            if(this.state.hour>=global.timeAM && this.state.hour<global.timePM+12){
+            if(this.state.hour>=global.hourAM && this.state.hour<global.hourPM+12){
               this.state.value=global.decibelAM;
+              if(this.state.hour==global.hourAM){
+                if(this.state.minute<global.minuteAM){
+                  this.state.value = global.decibelPM;
+                }
+              }
             }
-            else if(this.state.hour<global.timeAM || this.state.hour>=global.timePM+12){
+            else if(this.state.hour<global.timeAM || this.state.hour>=global.hourPM+12){
               this.state.value=global.decibelPM;
+              if(this.state.hour==global.hourPM){
+                if(this.state.minute<global.minutePM){
+                  this.state.value = global.decibelAM;
+                }
+              }
             }
             if(count == 5 && avg >= this.state.value && notificationPause == 20){
               fiveSoundFrames = new Array(5);

@@ -6,16 +6,18 @@ import styles from "./styles/styles";
 export default class SettingsScreen extends Component {
   constructor(props){
     super(props);
-    var timeAM;
-    var timePM;
+    var hourAM;
+    var hourPM;
     var decibelAM;
     var decibelPM;
     var decibelMax;
   }
 
   state = {
-    timeAM: '',
-    timePM: '',
+    hourAM: '',
+    minuteAM: '',
+    hourPM: '',
+    minutePM: '',
     decibelAM: '',
     decibelPM: '',
   };
@@ -25,8 +27,8 @@ export default class SettingsScreen extends Component {
     };
     render() {
       const {navigate} = this.props.navigation;
-      global.timeAM = this.state.timeAM;
-      global.timePM = this.state.timePM;
+      global.hourAM = this.state.hourAM;
+      global.hourPM = this.state.hourPM;
       global.decibelAM = this.state.decibelAM;
       global.decibelPM = this.state.decibelPM;
 
@@ -42,39 +44,59 @@ export default class SettingsScreen extends Component {
                  <View style = {styles.row}>
                     <Text style={styles.labelText}>AM</Text>
                     <ModalDropdown
-                        defaultValue = 'Time'
+                        defaultValue = 'Hour'
                         style={styles.timeButton}
                         textStyle={styles.buttonText}
-                        options={['Time', 1, 2,
+                        options={[1, 2,
                         3, 4, 5,
                         6, 7, 8,
                         9, 10, 11, 12]}
 
-                        onSelect={(index,value) => {this.setState({timeAM:value})}}
+                        onSelect={(index,value) => {this.setState({hourAM:value})}}
                     />
-                    <Text>{"\n"} :00
-                    </Text>
+                    <Text style={styles.colonText}>:</Text>
+                    <ModalDropdown
+                        defaultValue = 'Minute'
+                        style={styles.timeButtonMinute}
+                        textStyle={styles.buttonText}
+                        options={['Minute', 0, 1, 2,
+                        3, 4, 5,
+                        6, 7, 8,
+                        9, 10, 11,
+                        12, 13, 14,
+                        15, 16, 17,
+                        18, 19, 20,
+                        21, 22, 23,
+                        24, 25, 26,
+                        27, 28, 29,
+                        30, 31, 32,
+                        33, 34, 35,
+                        36, 37, 38,
+                        39, 40, 41,
+                        42, 43, 44,
+                        45, 46, 47,
+                        48, 49, 50,
+                        51, 52, 53,
+                        54, 55, 56,
+                        57, 58, 59]}
+                        onSelect={(index,value) => {this.setState({minuteAM:value})}}
+                    />
                     <ModalDropdown
                         defaultValue = 'dB Level'
                         style={styles.dbButton}
                         textStyle={styles.buttonText}
-                        options={['dB Level',-160, -155,
-                        -150, -145,
-                        -140, -135,
-                        -130, -125,
-                        -120, -115,
-                        -110, -105,
-                        -100, -95,
-                        -90, -85,
-                        -80, -75,
-                        -70, -65,
-                        -60, -55,
-                        -50, -45,
-                        -40, -35,
-                        -30, -25,
-                        -20, -15,
-                        -10, -5,
-                        0]}
+                        options={['dB Level',
+                        0, -5, -10,
+                        -15, -20, -25,
+                        -30, -35, -40,
+                        -45, -50, -55,
+                        -60, -65, -75,
+                        -80, -85, -90,
+                        -95, -100, -105,
+                        -110, -115, -120,
+                        -125, -130, -135,
+                        -140, -145, -150,
+                        -155, -160]}
                         onSelect={(index,value) => {this.setState({decibelAM:value})}}
                     />
                  </View>
@@ -89,39 +111,59 @@ export default class SettingsScreen extends Component {
                         6, 7, 8,
                         9, 10, 11, 12]}
 
-                        onSelect={(index,value) => {this.setState({timePM:value})}}
+                        onSelect={(index,value) => {this.setState({hourPM:value})}}
                     />
-                    <Text>{"\n"} :00
-                    </Text>
+                    <Text style={styles.colonText}>:</Text>
+                    <ModalDropdown
+                        defaultValue = 'Minute'
+                        style={styles.timeButtonMinute}
+                        textStyle={styles.buttonText}
+                        options={['Minute', 0, 1, 2,
+                        3, 4, 5,
+                        6, 7, 8,
+                        9, 10, 11,
+                        12, 13, 14,
+                        15, 16, 17,
+                        18, 19, 20,
+                        21, 22, 23,
+                        24, 25, 26,
+                        27, 28, 29,
+                        30, 31, 32,
+                        33, 34, 35,
+                        36, 37, 38,
+                        39, 40, 41,
+                        42, 43, 44,
+                        45, 46, 47,
+                        48, 49, 50,
+                        51, 52, 53,
+                        54, 55, 56,
+                        57, 58, 59]}
+                        onSelect={(index,value) => {this.setState({minutePM:value})}}
+                    />
                     <ModalDropdown
                         defaultValue = 'dB Level'
                         style={styles.dbButton}
                         textStyle={styles.buttonText}
-                        options={['dB Level',-160, -155,
-                        -150, -145,
-                        -140, -135,
-                        -130, -125,
-                        -120, -115,
-                        -110, -105,
-                        -100, -95,
-                        -90, -85,
-                        -80, -75,
-                        -70, -65,
-                        -60, -55,
-                        -50, -45,
-                        -40, -35,
-                        -30, -25,
-                        -20, -15,
-                        -10, -5,
-                        0]}
+                        options={['dB Level',
+                        0, -5, -10,
+                        -15, -20, -25,
+                        -30, -35, -40,
+                        -45, -50, -55,
+                        -60, -65, -75,
+                        -80, -85, -90,
+                        -95, -100, -105,
+                        -110, -115, -120,
+                        -125, -130, -135,
+                        -140, -145, -150,
+                        -155, -160]}
                         onSelect={(index,value) => {this.setState({decibelPM:value})}}
                     />
                 </View>
                 <Text></Text>
                 <Text>     Testing Ouput:</Text>
 
-                <Text>     {this.state.timeAM} AM, dB Level: {this.state.decibelAM}</Text>
-                <Text>     {this.state.timePM} PM, dB Level: {this.state.decibelPM}</Text>
+                <Text>     {this.state.hourAM}:{this.state.minuteAM} AM, dB Level: {this.state.decibelAM}</Text>
+                <Text>     {this.state.hourPM}:{this.state.minutePM} PM, dB Level: {this.state.decibelPM}</Text>
 
            </View>
       );

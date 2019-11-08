@@ -8,7 +8,9 @@ import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
-global.timeAM;
-global.timePM;
+global.hourAM;
+global.minuteAM;
+global.hourPM;
+global.minutePM;
 global.decibelAM;
 global.decibelPM;
