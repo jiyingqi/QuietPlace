@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
 import Styles from './styles/styles';
