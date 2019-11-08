@@ -49,10 +49,10 @@ export default class SettingsScreen extends Component {
                         defaultValue = 'Hour'
                         style={Styles.timeButton}
                         textStyle={Styles.buttonText}
-                        options={['Hour', 1, 2,
+                        options={['Hour', 12, 1, 2,
                         3, 4, 5,
                         6, 7, 8,
-                        9, 10, 11, 12]}
+                        9, 10, 11]}
                         onSelect={(index,value) => {this.setState({hourAM:value})}}
                     />
                     <Text style={Styles.colonText}>:</Text>
@@ -107,10 +107,10 @@ export default class SettingsScreen extends Component {
                         defaultValue = 'Time'
                         style={Styles.timeButton}
                         textStyle={Styles.buttonText}
-                        options={['Hour', 1, 2,
+                        options={['Hour', 12, 1, 2,
                         3, 4, 5,
                         6, 7, 8,
-                        9, 10, 11, 12]}
+                        9, 10, 11]}
 
                         onSelect={(index,value) => {this.setState({hourPM:value})}}
                     />
@@ -161,12 +161,7 @@ export default class SettingsScreen extends Component {
                     />
                 </View>
                 <Text></Text>
-                <Text>     Testing Ouput:</Text>
-
-                <Text>     {this.state.hourAM}:{this.state.minuteAM} AM, dB Level: {this.state.decibelAM}</Text>
-                <Text>     {this.state.hourPM}:{this.state.minutePM} PM, dB Level: {this.state.decibelPM}</Text>
-
-           </View>
+              </View>
       );
     }
   }
