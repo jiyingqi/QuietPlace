@@ -69,8 +69,8 @@ const Styles = StyleSheet.create({
     marginBottom: 50,
   },
   slider: {
-    width: Platform.OS === 'ios' ? 300 : 350, 
-    height: 50,    
+    width: Platform.OS === 'ios' ? 300 : 350,
+    height: 50,
     borderRadius: 0,
   },
   thresholdText: {
@@ -82,15 +82,23 @@ const Styles = StyleSheet.create({
   },
   timeButton: {
     backgroundColor:'lightgrey',
-    marginLeft: 40,
-    width: 100,
+    marginLeft: 20,
+    width: 75,
+    height: 30,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  timeButtonMinute: {
+    backgroundColor:'lightgrey',
+    marginLeft: 10,
+    width: 75,
     height: 30,
     borderRadius: 5,
     marginTop: 20,
   },
   dbButton: {
     backgroundColor:'lightgrey',
-    width: 100,
+    width: 80,
     marginLeft: 40,
     height: 30,
     borderRadius: 5,
@@ -102,14 +110,21 @@ const Styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: 15,
     textAlign: 'center',
     textAlignVertical: 'center',
-  }, 
+  },
   labelText: {
     fontWeight: 'bold',
+    fontSize: 18,
+    marginLeft: 30,
+    marginRight: 10,
+    marginTop: 20,
+  },
+  colonText: {
+    fontWeight: 'bold',
     fontSize: 20,
-    marginLeft: 40,
+    marginLeft: 5,
     marginTop: 20,
   },
   labText: {

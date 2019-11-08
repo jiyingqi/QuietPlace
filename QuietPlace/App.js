@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <View style = { Styles.container }>
         <Text style = { Styles.homelogo }>
-          Welcome to the Quiet Place
+          {"\n"}Welcome to the Quiet Place
         </Text>
         <MicrophoneListener />
       </View>
