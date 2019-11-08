@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "601533484104",
+    "firebase_url": "https://project-quiet-place.firebaseio.com",
+    "project_id": "project-quiet-place",
+    "storage_bucket": "project-quiet-place.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601533484104:android:33c5d57e187627da251c7d",
+        "android_client_info": {
+          "package_name": "com.quietplace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601533484104-42d91d9s9ufgn8ag7kvqkrdkitd8vot2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi_TG3t2GxzInUxR5wNnl3wSsDJB0sABk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601533484104-42d91d9s9ufgn8ag7kvqkrdkitd8vot2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

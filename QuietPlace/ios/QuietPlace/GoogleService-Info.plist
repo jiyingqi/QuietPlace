@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>601533484104-s03mdu2m15i7jbbmpl4rln2j2mepj2p1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.601533484104-s03mdu2m15i7jbbmpl4rln2j2mepj2p1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyACyhqVWdicXSx79hiXdklbdhOVW60NVh4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>601533484104</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.QuietPlace</string>
+	<key>PROJECT_ID</key>
+	<string>project-quiet-place</string>
+	<key>STORAGE_BUCKET</key>
+	<string>project-quiet-place.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:601533484104:ios:18e0b8ebca3316ae251c7d</string>
+	<key>DATABASE_URL</key>
+	<string>https://project-quiet-place.firebaseio.com</string>
+</dict>
+</plist>
