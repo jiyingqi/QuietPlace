@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import styles from "./styles/styles";
+import  Styles  from './styles/styles';
 
 export default class SettingsScreen extends Component {
     static navigationOptions = {
@@ -9,38 +9,38 @@ export default class SettingsScreen extends Component {
     render() {
       const {navigate} = this.props.navigation;
       return (
-          <View style = {styles.settingsContainer}>
-                 <Text style={styles.settings}>
+          <View style = {Styles.settingsContainer}>
+                 <Text style={Styles.settings}>
                     Settings
                  </Text>
-                 <Text style={styles.settingsLabel}>
+                 <Text style={Styles.settingsLabel}>
                      Custom Timing
                  </Text>
-                 <View style = {styles.row}>
-                    <Text style={styles.labelText}>AM
+                 <View style = {Styles.row}>
+                    <Text style={Styles.labelText}>AM
                     </Text>
-                    <TouchableOpacity style={styles.timeButton}> 
-                        <Text style={styles.buttonText}>Time</Text>
+                    <TouchableOpacity style={Styles.timeButton}> 
+                        <Text style={Styles.buttonText}>Time</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
+                    <TouchableOpacity style={Styles.dbButton}> 
+                        <Text style={Styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                  </View>
-                 <View style = {styles.row}>
-                    <Text style={styles.labelText}>PM
+                 <View style = {Styles.row}>
+                    <Text style={Styles.labelText}>PM
                     </Text>
-                    <TouchableOpacity style={styles.timeButton}> 
-                        <Text style={styles.buttonText}>Time</Text>
+                    <TouchableOpacity style={Styles.timeButton}> 
+                        <Text style={Styles.buttonText}>Time</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
+                    <TouchableOpacity style={Styles.dbButton}> 
+                        <Text style={Styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                 </View>   
-                <View style = {styles.row}>
-                    <Text style={styles.labText}>Maximum dB Level
+                <View style = {Styles.row}>
+                    <Text style={Styles.labText}>Maximum dB Level
                     </Text>
-                    <TouchableOpacity style={styles.dbButton}> 
-                        <Text style={styles.buttonText}>dB Level</Text>
+                    <TouchableOpacity style={Styles.dbButton}> 
+                        <Text style={Styles.buttonText}>dB Level</Text>
                     </TouchableOpacity>
                 </View>
            </View>
