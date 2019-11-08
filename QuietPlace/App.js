@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import MicrophoneListener from './microphoneListener';
 import SettingsScreen from './settingsPage';
 import Styles from './styles/styles';
+import userScreen from './userPage';
 
 class App extends Component {
   static navigationOptions = {
@@ -41,6 +42,7 @@ const MainNavigator = createBottomTabNavigator (
   {
     Home: App,
     Settings: SettingsScreen,
+    User: userScreen,
   },
   {
     tabBarOptions: tabBarOptions,

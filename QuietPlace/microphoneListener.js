@@ -58,7 +58,7 @@ export default class MicrophoneListener extends Component {
     }
 
     RNSoundLevel.start();
-    const count = 0;
+    var count = 0;
     const fiveSoundFrames = [5];
     const notificationPause = 20;
     
@@ -107,7 +107,7 @@ export default class MicrophoneListener extends Component {
           outerColor = '#9c70b5'
           showText
           text = { `${ Math.trunc(this.soundLevel) } dB` }
-          textStyle = { styles.decibels }
+          textStyle = { Styles.decibels }
           showPercent
           percentStyle = {
             { 

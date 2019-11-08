@@ -123,6 +123,12 @@ const Styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: Platform.OS === 'ios' ? 27 : 30,
     lineHeight: 30,
+  },
+  userScreenTitle: {
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    color: 'white',
+    fontSize: 50
   }
 });
 
