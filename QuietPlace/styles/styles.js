@@ -124,11 +124,24 @@ const Styles = StyleSheet.create({
     fontSize: Platform.OS === 'ios' ? 27 : 30,
     lineHeight: 30,
   },
+  userScreenContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   userScreenTitle: {
     fontWeight: 'bold',
     fontStyle: 'normal',
     color: 'white',
-    fontSize: 50
+    textAlign: 'center',
+    fontSize: 40,
+    padding: 20
+  },
+  userScreenTextInput: {
+    fontSize: 20,
+    backgroundColor: 'lightgrey',
+    height: 40,
+    textAlign: 'center'
   }
 });
 
