@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import MicrophoneListener from './microphoneListener';
 import SettingsScreen from './settingsPage';
 import Styles from './styles/styles';
 import userScreen from './userPage';
+
+//import login-related pages
+import Loading from './loading';
+import userLoginPage from './userLoginPage';
+import userSignUp from './userSignUp'
 
 class App extends Component {
   static navigationOptions = {
@@ -52,4 +57,16 @@ const MainNavigator = createBottomTabNavigator (
   },
 );
 
-export default createAppContainer(MainNavigator);
+const MainApp = createSwitchNavigator(
+  {
+    Loading,
+    userSignUp,
+    userLoginPage,
+    MainNavigator
+  },
+  {
+    initialRouteName: 'Loading'
+  }
+);
+
+export default createAppContainer(MainApp);
