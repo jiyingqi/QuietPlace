@@ -12,11 +12,15 @@ export default class userLoginPage extends Component {
     super(props);
     this.state = {email: "",
                   password: "",
-                  displaytext: ""};
+                  errorMessage: ""};
   }
 
   submitButtonPressed = () => {
-
+    const {email,password} = this.state
+    firebase.auth()
+      .signInWithEmailAndPassword(email,password)
+      .then(()=>this.props.navigation.navigate('MainNavigator'))
+      .catch(error=>this.setState({errorMessage: error.message}))
   }
 
   render () {
