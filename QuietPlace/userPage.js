@@ -7,6 +7,11 @@ export default class userScreen extends Component {
 
   state = {currentUser: null}
 
+  signOutButtonPressed = () => {
+    firebase.auth().signOut()
+    this.props.navigation.navigate('userLoginPage')
+  }
+
   componentDidMount() {
     const {currentUser} = firebase.auth()
     this.setState({currentUser})
@@ -22,7 +27,12 @@ export default class userScreen extends Component {
         <Text style={Styles.userScreenText}>
           {currentUser && currentUser.email}
         </Text>
-        
+        <TouchableOpacity style={Styles.userScreenButton}
+                          onPress = {this.signOutButtonPressed}>
+          <Text style={Styles.userScreenButtonText}>
+            Sign out
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
