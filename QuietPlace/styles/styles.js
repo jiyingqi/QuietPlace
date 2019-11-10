@@ -140,8 +140,21 @@ const Styles = StyleSheet.create({
   userScreenTextInput: {
     fontSize: 20,
     backgroundColor: 'lightgrey',
-    height: 40,
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 15,
+    marginBottom: 15,
     textAlign: 'center'
+  },
+  userScreenButton: {
+    backgroundColor: 'lightgrey',
+    marginLeft: 55,
+    marginRight: 55,
+    marginTop: 20,
+  },
+  userScreenButtonText: {
+    fontSize: 25,
+    textAlign: 'center',
   }
 });
 

@@ -9,7 +9,15 @@ export default class userScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {username: "", password: ""};
+    this.state = {username: "",
+                  password: "",
+                  displaytext: ""};
+  }
+
+  submitButtonPressed = () => {
+    this.setState({
+      displaytext: this.state.username
+    })
   }
 
   render () {
@@ -28,9 +36,19 @@ export default class userScreen extends Component {
         <TextInput
           style = {Styles.userScreenTextInput}
           placeholder = "Password"
+          secureTextEntry = {true}
           onChangeText = {text => this.setState({
             password: text})}
         />
+        <TouchableOpacity style = {Styles.userScreenButton}
+                          onPress = {this.submitButtonPressed}>
+          <Text style={Styles.userScreenButtonText}>
+            Submit
+          </Text>
+        </TouchableOpacity>
+        <Text style={Styles.userScreenTitle}>
+          {this.state.displaytext}
+        </Text>
       </View>
     );
   }
