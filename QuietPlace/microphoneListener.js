@@ -59,8 +59,8 @@ export default class MicrophoneListener extends Component {
 
     RNSoundLevel.start();
     var count = 0;
-    const fiveSoundFrames = [5];
-    const notificationPause = 20;
+    var fiveSoundFrames = [5];
+    var notificationPause = 20;
     
     RNSoundLevel.onNewFrame = (data) => {
       console.log('Sound level info', data);
