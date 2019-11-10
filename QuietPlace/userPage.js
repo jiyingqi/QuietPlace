@@ -5,15 +5,24 @@ import firebase from 'react-native-firebase'
 
 export default class userScreen extends Component {
 
+  state = {currentUser: null}
+
   componentDidMount() {
-    
+    const {currentUser} = firebase.auth()
+    this.setState({currentUser})
   }
 
   render () {
-    const {navigate} = this.props.navigation;
+    const {currentUser} = this.state
     return (
       <View style={Styles.settingsContainer}>
-
+        <Text style={Styles.userScreenTitle}>
+          Welcome
+        </Text>
+        <Text style={Styles.userScreenText}>
+          {currentUser && currentUser.email}
+        </Text>
+        
       </View>
     );
   }

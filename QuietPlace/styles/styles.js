@@ -156,6 +156,11 @@ const Styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
+  userScreenText: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center'
+  },
   signUpAndLogin: {
     backgroundColor: '#8740ad',
     marginLeft: 50,
