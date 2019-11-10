@@ -25,6 +25,12 @@ export default class userSignUp extends Component {
         <Text style = {Styles.userScreenTitle}>
           Sign Up
         </Text>
+        <TouchableOpacity style={Styles.signUpAndLogin}
+                          onPress = {()=>this.props.navigation.navigate('userLoginPage')}>
+          <Text style={Styles.signUpAndLoginText}>
+            Already have an account? Login
+          </Text>
+        </TouchableOpacity>
         <TextInput
           style = {Styles.userScreenTextInput}
           placeholder = "Email"

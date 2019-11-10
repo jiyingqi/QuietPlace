@@ -155,6 +155,16 @@ const Styles = StyleSheet.create({
   userScreenButtonText: {
     fontSize: 25,
     textAlign: 'center',
+  },
+  signUpAndLogin: {
+    backgroundColor: '#8740ad',
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  signUpAndLoginText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
   }
 });
 
