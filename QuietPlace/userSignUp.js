@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
+import firebase from 'react-native-firebase'
 
 export default class userSignUp extends Component {
   static navigationOptions = {
@@ -11,11 +12,16 @@ export default class userSignUp extends Component {
     super(props);
     this.state = {email: "",
                   password: "",
-                  displaytext: ""};
+                  errorMessage: ""};
   }
 
   submitButtonPressed = () => {
-
+    const { email, password } = this.state
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(user => this.props.navigation.navigate('MainNavigator'))
+      .catch(error => this.setState({ errorMessage: error.message }))
   }
 
   render () {
@@ -33,12 +39,14 @@ export default class userSignUp extends Component {
         </TouchableOpacity>
         <TextInput
           style = {Styles.userScreenTextInput}
+          autoCapitalize="none"
           placeholder = "Email"
           onChangeText = {text => this.setState({
             email: text})}
         />
         <TextInput
           style = {Styles.userScreenTextInput}
+          autoCapitalize="none"
           placeholder = "Password"
           secureTextEntry = {true}
           onChangeText = {text => this.setState({

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
+import firebase from 'react-native-firebase'
 
 export default class userLoginPage extends Component {
   static navigationOptions = {
@@ -33,12 +34,14 @@ export default class userLoginPage extends Component {
         </TouchableOpacity>
         <TextInput
           style = {Styles.userScreenTextInput}
+          autoCapitalize="none"
           placeholder = "Email"
           onChangeText = {text => this.setState({
             email: text})}
         />
         <TextInput
           style = {Styles.userScreenTextInput}
+          autoCapitalize="none"
           placeholder = "Password"
           secureTextEntry = {true}
           onChangeText = {text => this.setState({
