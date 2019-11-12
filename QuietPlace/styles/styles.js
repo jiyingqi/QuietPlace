@@ -170,6 +170,12 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
+  },
+  loginErrorMessage: {
+    color: 'red',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    padding: 5
   }
 });
 
