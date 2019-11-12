@@ -223,7 +223,7 @@ PODS:
     - React
   - RNGestureHandler (1.5.0):
     - React
-  - RNReanimated (1.3.2):
+  - RNReanimated (1.4.0):
     - React
   - RNSoundLevel (1.1.5):
     - React
@@ -359,10 +359,10 @@ SPEC CHECKSUMS:
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
   RNCPushNotificationIOS: 7bcc4071d6f25c4d441cbef42a097462f4e30208
   RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
-  RNReanimated: 5d148a7f55ebf47055ea55f51f5dc7a827dc9547
+  RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSoundLevel: a02f3bfbb81aeec256de4e41d7fc967b32e3faf1
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
 PODFILE CHECKSUM: 7cbd75a0f113cdbdfa4f156400185203157ca58e
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

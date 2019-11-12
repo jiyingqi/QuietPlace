@@ -37,7 +37,7 @@ export default class MicrophoneListener extends Component {
       })
     }, 1000);
   }
-	
+
 	static defaultProps = {
     value: 0,
 	};
@@ -47,7 +47,7 @@ export default class MicrophoneListener extends Component {
 	  hour: '',
 	  min: '',
 	};
-	
+
   componentDidMount(){
     const granted = PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO);
     if (granted) {
@@ -58,13 +58,13 @@ export default class MicrophoneListener extends Component {
     }
 
     RNSoundLevel.start();
-    const count = 0;
-    const fiveSoundFrames = [5];
-    const notificationPause = 20;
-    
+    let count = 0;
+    let fiveSoundFrames = [5];
+    let notificationPause = 20;
+
     RNSoundLevel.onNewFrame = (data) => {
       console.log('Sound level info', data);
-      this.soundLevel = data.value; 
+      this.soundLevel = data.value;
       if (count == 5) {
         fiveSoundFrames.shift();
         count--;
@@ -77,13 +77,28 @@ export default class MicrophoneListener extends Component {
       if (notificationPause < 20) {
         notificationPause++;
       }
-
+      if(this.state.hour>=global.hourAM && this.state.hour<global.hourPM+12){
+        this.state.value=global.decibelAM;
+        if(this.state.hour==global.hourAM){
+          if(this.state.minute<global.minuteAM){
+            this.state.value = global.decibelPM;
+          }
+        }
+      }
+      else if(this.state.hour<global.timeAM || this.state.hour>=global.hourPM+12){
+        this.state.value=global.decibelPM;
+        if(this.state.hour==global.hourPM){
+          if(this.state.minute<global.minutePM){
+            this.state.value = global.decibelAM;
+          }
+        }
+      }
       if (count == 5 && avg >= this.state.value && notificationPause == 20) {
         fiveSoundFrames = [5];
         notificationPause = 0;
         PushNotification.localNotification({
-          title: 'Quiet down!', 
-          message: 'You are being too loud.', 
+          title: 'Quiet down!',
+          message: 'You are being too loud.',
         });
       }
     }
@@ -107,11 +122,11 @@ export default class MicrophoneListener extends Component {
           outerColor = '#9c70b5'
           showText
           text = { `${ Math.trunc(this.soundLevel) } dB` }
-          textStyle = { styles.decibels }
+          textStyle = { Styles.decibels }
           showPercent
           percentStyle = {
-            { 
-              fontFamily: 'Montserrat-Light', 
+            {
+              fontFamily: 'Montserrat-Light',
               color: 'white'
             }
           }
@@ -119,6 +134,7 @@ export default class MicrophoneListener extends Component {
         />
         <Text style = { Styles.volumeText }>
           Current Volume Level{ '\n' }
+          Based on User Settings: {this.state.value} dBs
         </Text>
         <Text style = { Styles.decibels }>
           ({ Math.trunc(((this.state.value + 160)/160) * 100) }%) { this.state.value } dB
