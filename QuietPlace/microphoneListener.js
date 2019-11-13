@@ -33,7 +33,7 @@ export default class MicrophoneListener extends Component {
       const mn = new Date().getMinutes();
       this.setState({
         hour: hr,
-        min: mn,
+        minute: mn,
       })
     }, 1000);
   }
@@ -44,8 +44,9 @@ export default class MicrophoneListener extends Component {
 
 	state = {
 	  value: this.props.value,
+    lastSetSlider: '',
 	  hour: '',
-	  min: '',
+	  minute: '',
 	};
 
   componentDidMount(){
@@ -77,19 +78,22 @@ export default class MicrophoneListener extends Component {
       if (notificationPause < 20) {
         notificationPause++;
       }
-      if(this.state.hour>=global.hourAM && this.state.hour<global.hourPM+12){
-        this.state.value=global.decibelAM;
-        if(this.state.hour==global.hourAM){
-          if(this.state.minute<global.minuteAM){
-            this.state.value = global.decibelPM;
+      if(global.hourAM!=-1 && global.minuteAM!=-1 && global.hourPM!=-1 &&
+        global.minutePM!=-1 && global.decibelAM!=1 && global.decibelPM!=1){
+        if(this.state.hour>=global.hourAM && this.state.hour<global.hourPM+12){
+          this.state.value=global.decibelAM;
+          if(this.state.hour==global.hourAM){
+            if(this.state.minute<global.minuteAM){
+              this.state.value = global.decibelPM;
+            }
           }
         }
-      }
-      else if(this.state.hour<global.timeAM || this.state.hour>=global.hourPM+12){
-        this.state.value=global.decibelPM;
-        if(this.state.hour==global.hourPM){
-          if(this.state.minute<global.minutePM){
-            this.state.value = global.decibelAM;
+        else if(this.state.hour<global.timeAM || this.state.hour>=global.hourPM+12){
+          this.state.value=global.decibelPM;
+          if(this.state.hour==global.hourPM+12){
+            if(this.state.minute<global.minutePM){
+              this.state.value = global.decibelAM;
+            }
           }
         }
       }
