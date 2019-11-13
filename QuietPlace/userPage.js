@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
-import firebase from 'react-native-firebase'
+import firebase from 'react-native-firebase';
 
 export default class userScreen extends Component {
 
@@ -20,6 +20,10 @@ export default class userScreen extends Component {
     this.props.navigation.navigate('userSignUp')
   }
 
+  groupButtonPressed = () => {
+    this.props.navigation.navigate('groupFind')
+  }
+
   componentDidMount() {
     const {currentUser} = firebase.auth()
     this.setState({currentUser})
@@ -28,21 +32,27 @@ export default class userScreen extends Component {
   render () {
     const {currentUser} = this.state
     const loginbutton = <TouchableOpacity style={Styles.userScreenButton}
-                                                onPress = {this.loginButtonPressed}>
-                                <Text style={Styles.userScreenButtonText}>
-                                  Login
-                                </Text>
+                                                  onPress = {this.loginButtonPressed}>
+                                  <Text style={Styles.userScreenButtonText}>
+                                    Login
+                                  </Text>
                               </TouchableOpacity>
     const signupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                  onPress = {this.signUpButtonPressed}>
-                                 <Text style={Styles.userScreenButtonText}>
-                                   Sign Up
-                                 </Text>
+                                  <Text style={Styles.userScreenButtonText}>
+                                    Sign Up
+                                  </Text>
                                </TouchableOpacity>
     const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.signOutButtonPressed}>
                                   <Text style={Styles.userScreenButtonText}>
                                     Sign out
+                                  </Text>
+                                </TouchableOpacity>
+    const groupbutton = <TouchableOpacity style={Styles.userScreenButton}
+                                                  onPress = {this.groupButtonPressed}>
+                                  <Text style={Styles.userScreenButtonText}>
+                                    Group
                                   </Text>
                                 </TouchableOpacity>
 
@@ -55,6 +65,7 @@ export default class userScreen extends Component {
         <Text style={Styles.userScreenText}>
           {currentUser && currentUser.email}
         </Text>
+        {currentUser? groupbutton : loginbutton}
         {currentUser? signoutbutton : loginbutton}
       </View>
     );
