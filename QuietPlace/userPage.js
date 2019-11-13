@@ -9,7 +9,15 @@ export default class userScreen extends Component {
 
   signOutButtonPressed = () => {
     firebase.auth().signOut()
+    this.props.navigation.navigate('Loading')
+  }
+
+  loginButtonPressed = () => {
     this.props.navigation.navigate('userLoginPage')
+  }
+
+  signUpButtonPressed = () => {
+    this.props.navigation.navigate('userSignUp')
   }
 
   componentDidMount() {
@@ -19,6 +27,26 @@ export default class userScreen extends Component {
 
   render () {
     const {currentUser} = this.state
+    const loginbutton = <TouchableOpacity style={Styles.userScreenButton}
+                                                onPress = {this.loginButtonPressed}>
+                                <Text style={Styles.userScreenButtonText}>
+                                  Login
+                                </Text>
+                              </TouchableOpacity>
+    const signupbutton = <TouchableOpacity style={Styles.userScreenButton}
+                                                 onPress = {this.signUpButtonPressed}>
+                                 <Text style={Styles.userScreenButtonText}>
+                                   Sign Up
+                                 </Text>
+                               </TouchableOpacity>
+    const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
+                                                  onPress = {this.signOutButtonPressed}>
+                                  <Text style={Styles.userScreenButtonText}>
+                                    Sign out
+                                  </Text>
+                                </TouchableOpacity>
+
+
     return (
       <View style={Styles.settingsContainer}>
         <Text style={Styles.userScreenTitle}>
@@ -27,12 +55,7 @@ export default class userScreen extends Component {
         <Text style={Styles.userScreenText}>
           {currentUser && currentUser.email}
         </Text>
-        <TouchableOpacity style={Styles.userScreenButton}
-                          onPress = {this.signOutButtonPressed}>
-          <Text style={Styles.userScreenButtonText}>
-            Sign out
-          </Text>
-        </TouchableOpacity>
+        {currentUser? signoutbutton : loginbutton}
       </View>
     );
   }

@@ -19,6 +19,10 @@ export default class userSignUp extends Component {
 
   submitButtonPressed = () => {
     const { email, password } = this.state
+    if (email==="" || password===""){
+      this.setState({errorMessage: "Error: empty input(s)"})
+      return;
+    }
     this.setState({indicator : true})
     firebase
       .auth()
@@ -44,6 +48,12 @@ export default class userSignUp extends Component {
                           onPress = {()=>this.props.navigation.navigate('userLoginPage')}>
           <Text style={Styles.signUpAndLoginText}>
             Already have an account? Login
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={Styles.signUpAndLogin}
+                            onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+          <Text style={Styles.signUpAndLoginText}>
+            Return to home
           </Text>
         </TouchableOpacity>
         <TextInput
