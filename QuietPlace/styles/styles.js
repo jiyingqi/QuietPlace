@@ -138,6 +138,59 @@ const Styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: Platform.OS === 'ios' ? 27 : 30,
     lineHeight: 30,
+  },
+  userScreenContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  userScreenTitle: {
+    fontWeight: 'bold',
+    fontStyle: 'normal',
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 40,
+    padding: 20
+  },
+  userScreenTextInput: {
+    fontSize: 20,
+    backgroundColor: 'lightgrey',
+    marginLeft: 25,
+    marginRight: 25,
+    marginTop: 15,
+    marginBottom: 15,
+    textAlign: 'center'
+  },
+  userScreenButton: {
+    backgroundColor: 'lightgrey',
+    marginLeft: 55,
+    marginRight: 55,
+    marginTop: 20,
+  },
+  userScreenButtonText: {
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  userScreenText: {
+    fontSize: 20,
+    color: 'white',
+    textAlign: 'center'
+  },
+  signUpAndLogin: {
+    backgroundColor: '#8740ad',
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  signUpAndLoginText: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+  },
+  loginErrorMessage: {
+    color: 'red',
+    textAlign: 'center',
+    fontWeight: 'bold',
+    padding: 5
   }
 });
 
