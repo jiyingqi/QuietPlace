@@ -7,6 +7,7 @@ import SettingsScreen from './settingsPage';
 import Styles from './styles/styles';
 import userScreen from './userPage';
 import {createStackNavigator} from 'react-navigation-stack';
+import firebase from 'react-native-firebase';
 
 //import login-related pages
 import Loading from './loading';

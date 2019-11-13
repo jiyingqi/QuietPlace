@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
 import  Styles  from './styles/styles';
-import firebase from 'react-native-firebase';
+import Firebase from './Config/FirebaseConfig';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class groupFind extends Component {
@@ -21,8 +21,14 @@ export default class groupFind extends Component {
       const { groupID } = this.state
       if (groupID == '')
         Alert.alert('No Group ID was entered')
-      else
+      else {
+				var db = Firebase.database();
+				db.ref('group/' + this.state.groupID).set({
+					groupID: this.state.groupID
+				});
+
         Alert.alert('Created a group: ' + this.state.groupID)
+      }
     }
 
     joinGroupButtonPressed = () => {
