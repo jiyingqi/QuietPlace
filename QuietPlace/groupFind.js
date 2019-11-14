@@ -18,8 +18,7 @@ export default class groupFind extends Component {
 		}
 
 		addUserToGroup(user, group) {
-			const db = Firebase.database()
-			db.ref('Group/' + group + '/Members/' + user.uid).update({
+			Firebase.database().ref('Group/' + group + '/Members/' + user.uid).update({
 				name: user.displayName,
 				email: user.email
 			});
@@ -27,11 +26,18 @@ export default class groupFind extends Component {
 
 		createGroup(group) {
 			const { currentUser } = Firebase.auth()
-			const db = Firebase.database()
-			db.ref('Group/' + group).set({
-				thresholdVolume: 0,
-			});
-			this.addUserToGroup(currentUser, group)
+			const groupRef = Firebase.database().ref('Group/' + group);
+			if (groupRef) {
+				Alert.alert('A group with that name already exists.')
+			}
+			else {
+				groupRef.set({
+					thresholdVolume: 0,
+				});
+				this.addUserToGroup(currentUser, group)
+				Alert.alert('Created a group: ' + groupID)
+			}
+			
 		}
 		
 		createGroupButtonPressed = () => {
@@ -40,7 +46,6 @@ export default class groupFind extends Component {
         Alert.alert('No Group ID was entered')
       else {
 				this.createGroup(groupID)
-        Alert.alert('Created a group: ' + groupID)
       }
 		}
 
