@@ -17,27 +17,52 @@ export default class groupFind extends Component {
       }
 		}
 
-		addUserToGroup(user, group) {
-			Firebase.database().ref('Group/' + group + '/Members/' + user.uid).update({
-				name: user.displayName,
-				email: user.email
+		//updates the groupID paramter for the user
+		updateUserWithGroup = (user, group) => {
+			const userRef = Firebase.database().ref('User/' + user.uid);
+			userRef.update({
+				groupID: group,
 			});
 		}
 
-		createGroup(group) {
+		//adds a user to the list of members under a groupID
+		//returns true if the groupID exists and false otherwise
+		addUserToGroup = (user, group) => {
+			const groupRef = Firebase.database().ref('Group/' + group);
+			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
+				if (snapshot.exists()) {
+					const userRef = groupRef.child('/Members/' + user.uid);
+					userRef.set({
+						name: user.displayName,
+						email: user.email,
+					});
+					Alert.alert('Joined a group: ' + group)
+					//return true;
+				}
+				else {
+					Alert.alert('Group not found.')
+				}
+				//return false;
+			})
+		}
+
+		createGroup = (group) => {
 			const { currentUser } = Firebase.auth()
 			const groupRef = Firebase.database().ref('Group/' + group);
-			if (groupRef) {
-				Alert.alert('A group with that name already exists.')
-			}
-			else {
-				groupRef.set({
-					thresholdVolume: 0,
-				});
-				this.addUserToGroup(currentUser, group)
-				Alert.alert('Created a group: ' + groupID)
-			}
-			
+			//only allows the creation of a group with a name that doesn't already exist in the database
+			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
+				if (snapshot.exists()) {
+					Alert.alert('A group with that name already exists.')
+				}
+				else {
+					groupRef.set({
+						thresholdVolume: 0,
+					});
+					this.addUserToGroup(currentUser, group)
+					this.updateUserWithGroup(currentUser, group)
+					Alert.alert('Created a group: ' + group)
+				}
+			})
 		}
 		
 		createGroupButtonPressed = () => {
@@ -56,7 +81,12 @@ export default class groupFind extends Component {
         Alert.alert('No Group ID was entered')
       else {
 				this.addUserToGroup(currentUser, groupID)
-				Alert.alert('Joined a group: ' + groupID)
+				// if (this.addUserToGroup(currentUser, groupID)) {
+				// 	Alert.alert('Joined a group: ' + group)
+				// }
+				// else {
+				// 	Alert.alert('Group not found.')
+				// }
 			}
     }
   
