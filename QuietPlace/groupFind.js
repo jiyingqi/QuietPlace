@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
 import  Styles  from './styles/styles';
 import Firebase from './Config/FirebaseConfig';
-import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class groupFind extends Component {
     static navigationOptions = {
@@ -14,7 +13,9 @@ export default class groupFind extends Component {
   
       this.state = {
         groupID: '',
-      }
+			}
+			
+			YellowBox.ignoreWarnings(['Setting a timer']);
 		}
 
 		//updates the groupID paramter for the user
