@@ -15,28 +15,44 @@ export default class groupFind extends Component {
       this.state = {
         groupID: '',
       }
-    }
+		}
 
-    createGroupButtonPressed = () => {
-      const { groupID } = this.state
+		addUserToGroup(user, group) {
+			const db = Firebase.database()
+			db.ref('Group/' + group + '/Members/' + user.uid).update({
+				name: user.displayName,
+				email: user.email
+			});
+		}
+
+		createGroup(group) {
+			const { currentUser } = Firebase.auth()
+			const db = Firebase.database()
+			db.ref('Group/' + group).set({
+				thresholdVolume: 0,
+			});
+			this.addUserToGroup(currentUser, group)
+		}
+		
+		createGroupButtonPressed = () => {
+			const { groupID } = this.state
       if (groupID == '')
         Alert.alert('No Group ID was entered')
       else {
-				var db = Firebase.database();
-				db.ref('group/' + this.state.groupID).set({
-					groupID: this.state.groupID
-				});
-
-        Alert.alert('Created a group: ' + this.state.groupID)
+				this.createGroup(groupID)
+        Alert.alert('Created a group: ' + groupID)
       }
-    }
+		}
 
     joinGroupButtonPressed = () => {
-      const { groupID } = this.state
+			const { groupID } = this.state
+			const { currentUser } = Firebase.auth()
       if (groupID == '')
         Alert.alert('No Group ID was entered')
-      else
-        Alert.alert('Joined a group: ' + this.state.groupID)
+      else {
+				this.addUserToGroup(currentUser, groupID)
+				Alert.alert('Joined a group: ' + groupID)
+			}
     }
   
     render() {

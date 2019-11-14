@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import  Styles  from './styles/styles';
-import firebase from 'react-native-firebase';
+import Firebase from './Config/FirebaseConfig';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class userLoginPage extends Component {
@@ -14,11 +14,11 @@ export default class userLoginPage extends Component {
     this.state = {email: "",
                   password: "",
                   errorMessage: "",
-                  indicator : false};
+                  indicator: false};
   }
 
   submitButtonPressed = () => {
-    const {email,password} = this.state
+    const { email, password } = this.state
 
     if (email==="" || password===""){
       this.setState({errorMessage: "Error: empty input(s)"})
@@ -26,7 +26,7 @@ export default class userLoginPage extends Component {
     }
 
     this.setState({indicator : true})
-    firebase.auth()
+    Firebase.auth()
       .signInWithEmailAndPassword(email,password)
       .then(()=> {
             this.props.navigation.navigate('MainNavigator')

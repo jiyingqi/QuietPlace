@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
-import firebase from 'react-native-firebase';
+import Firebase from './Config/FirebaseConfig';
 
 export default class userScreen extends Component {
 
   state = {currentUser: null}
 
   signOutButtonPressed = () => {
-    firebase.auth().signOut()
+    Firebase.auth().signOut()
     this.props.navigation.navigate('Loading')
   }
 
@@ -25,7 +25,7 @@ export default class userScreen extends Component {
   }
 
   componentDidMount() {
-    const {currentUser} = firebase.auth()
+    const {currentUser} = Firebase.auth()
     this.setState({currentUser})
   }
 
