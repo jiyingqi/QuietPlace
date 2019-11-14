@@ -46,13 +46,13 @@ export default class userScreen extends Component {
     const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.signOutButtonPressed}>
                                   <Text style={Styles.userScreenButtonText}>
-                                    Sign out
+                                    Sign Out
                                   </Text>
                                 </TouchableOpacity>
     const groupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.groupButtonPressed}>
                                   <Text style={Styles.userScreenButtonText}>
-                                    Group
+                                    Create or Join a Group
                                   </Text>
                                 </TouchableOpacity>
 
