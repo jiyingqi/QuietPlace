@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import  Styles  from './styles/styles';
-import Firebase from './Config/FirebaseConfig';
+import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class userLoginPage extends Component {
@@ -26,7 +26,7 @@ export default class userLoginPage extends Component {
     }
 
     this.setState({indicator : true})
-    Firebase.auth()
+    firebase.auth()
       .signInWithEmailAndPassword(email,password)
       .then(()=> {
             this.props.navigation.navigate('MainNavigator')

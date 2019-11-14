@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
 import  Styles  from './styles/styles';
-import Firebase from './Config/FirebaseConfig';
+import firebase from 'react-native-firebase';
 
 export default class groupFind extends Component {
     static navigationOptions = {
@@ -20,7 +20,7 @@ export default class groupFind extends Component {
 
 		//updates the groupID paramter for the user
 		updateUserWithGroup = (user, group) => {
-			const userRef = Firebase.database().ref('User/' + user.uid);
+			const userRef = firebase.database().ref('User/' + user.uid);
 			userRef.update({
 				groupID: group,
 			});
@@ -29,7 +29,7 @@ export default class groupFind extends Component {
 		//adds a user to the list of members under a groupID
 		//returns true if the groupID exists and false otherwise
 		addUserToGroup = (user, group) => {
-			const groupRef = Firebase.database().ref('Group/' + group);
+			const groupRef = firebase.database().ref('Group/' + group);
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
 					const userRef = groupRef.child('/Members/' + user.uid);
@@ -48,8 +48,8 @@ export default class groupFind extends Component {
 		}
 
 		createGroup = (group) => {
-			const { currentUser } = Firebase.auth()
-			const groupRef = Firebase.database().ref('Group/' + group);
+			const { currentUser } = firebase.auth()
+			const groupRef = firebase.database().ref('Group/' + group);
 			//only allows the creation of a group with a name that doesn't already exist in the database
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
@@ -77,7 +77,7 @@ export default class groupFind extends Component {
 
     joinGroupButtonPressed = () => {
 			const { groupID } = this.state
-			const { currentUser } = Firebase.auth()
+			const { currentUser } = firebase.auth()
       if (groupID == '')
         Alert.alert('No Group ID was entered')
       else {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
-import Firebase from './Config/FirebaseConfig';
+import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class userSignUp extends Component {
@@ -24,7 +24,7 @@ export default class userSignUp extends Component {
       return;
     }
     this.setState({indicator : true})
-    Firebase
+    firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {this.props.navigation.navigate('MainNavigator')

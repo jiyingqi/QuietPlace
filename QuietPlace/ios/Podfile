@@ -39,6 +39,8 @@ target 'QuietPlace' do
 
   pod 'RNCPushNotificationIOS', :path => '../node_modules/@react-native-community/push-notification-ios'
 
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase'
+
   target 'QuietPlaceTests' do
     inherit! :search_paths
     # Pods for testing
