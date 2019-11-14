@@ -18,7 +18,7 @@ export default class groupFind extends Component {
 			YellowBox.ignoreWarnings(['Setting a timer']);
 		}
 
-		//updates the groupID paramter for the user
+		//updates the groupID parameter for the user
 		updateUserInfoWithGroupID = (user, group) => {
 			const userRef = firebase.database().ref('User/' + user.uid);
 			userRef.update({
@@ -26,6 +26,7 @@ export default class groupFind extends Component {
 			});
 		}
 
+		//adds a user to the list of members under a groupID 
 		addUserToGroup = (user, groupRef) => {
 			const userRef = groupRef.child('/Members/' + user.uid);
 			userRef.set({
@@ -34,8 +35,7 @@ export default class groupFind extends Component {
 			});
 		}
 
-		//adds a user to the list of members under a groupID if the group name exists
-		//returns true if the groupID exists and false otherwise
+		//user joins the group if the groupID exists in the database
 		joinGroup = (user, group) => {
 			const groupRef = firebase.database().ref('Group/' + group);
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
@@ -50,7 +50,7 @@ export default class groupFind extends Component {
 			})
 		}
 
-		//creates a group and adds the creator to the group if the group name isn't taken
+		//creates a group and adds the creator to the group if the groupID isn't taken in the database
 		createGroup = (user, group) => {
 			const groupRef = firebase.database().ref('Group/' + group);
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
