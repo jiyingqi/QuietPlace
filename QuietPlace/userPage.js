@@ -65,7 +65,7 @@ export default class userScreen extends Component {
         <Text style={Styles.userScreenText}>
           {currentUser && currentUser.email}
         </Text>
-        {currentUser? groupbutton : loginbutton}
+        {currentUser? groupbutton : null}
         {currentUser? signoutbutton : loginbutton}
       </View>
     );
