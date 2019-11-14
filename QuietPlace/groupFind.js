@@ -81,6 +81,7 @@ export default class groupFind extends Component {
         Alert.alert('No Group ID was entered')
       else {
 				this.addUserToGroup(currentUser, groupID)
+				this.updateUserWithGroup(currentUser, groupID)
 				// if (this.addUserToGroup(currentUser, groupID)) {
 				// 	Alert.alert('Joined a group: ' + group)
 				// }
