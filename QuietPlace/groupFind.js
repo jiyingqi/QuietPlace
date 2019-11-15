@@ -79,7 +79,7 @@ export default class groupFind extends Component {
 			const { currentUser } = firebase.auth()
 			this.setState({indicator : true})
       if (groupID == '') {
-				Alert.alert('No Group ID was entered')
+				Alert.alert('No Group ID was entered.')
 				this.setState({indicator : false})
 			}
       else {
@@ -92,7 +92,7 @@ export default class groupFind extends Component {
 			const { currentUser } = firebase.auth()
 			this.setState({indicator : true})
       if (groupID == '') {
-				Alert.alert('No Group ID was entered')
+				Alert.alert('No Group ID was entered.')
 				this.setState({indicator : false})
 			}
       else {
