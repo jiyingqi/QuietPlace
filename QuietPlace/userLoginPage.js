@@ -11,14 +11,17 @@ export default class userLoginPage extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {email: "",
-                  password: "",
-                  errorMessage: "",
-                  indicator : false};
+    
+    this.state = {
+      email: "",
+      password: "",
+      errorMessage: "",
+      indicator: false,
+    };
   }
 
   submitButtonPressed = () => {
-    const {email,password} = this.state
+    const { email, password } = this.state
 
     if (email==="" || password===""){
       this.setState({errorMessage: "Error: empty input(s)"})

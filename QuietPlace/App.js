@@ -6,12 +6,12 @@ import MicrophoneListener from './microphoneListener';
 import SettingsScreen from './settingsPage';
 import Styles from './styles/styles';
 import userScreen from './userPage';
-import {createStackNavigator} from 'react-navigation-stack';
 
 //import login-related pages
 import Loading from './loading';
 import userLoginPage from './userLoginPage';
-import userSignUp from './userSignUp'
+import userSignUp from './userSignUp';
+import groupFind from './groupFind';
 
 class App extends Component {
   static navigationOptions = {
@@ -62,6 +62,7 @@ const MainApp = createSwitchNavigator(
   {
     userSignUp,
     userLoginPage,
+    groupFind,
     MainNavigator,
     Loading
   },

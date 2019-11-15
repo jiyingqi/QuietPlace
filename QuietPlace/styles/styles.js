@@ -16,7 +16,7 @@ const Styles = StyleSheet.create({
     color: 'white',
     width: 400,
     paddingTop: 100,
-    },
+  },
   settingsContainer: {
     flex: 1,
     backgroundColor: '#8740ad',
@@ -69,8 +69,8 @@ const Styles = StyleSheet.create({
     marginBottom: 50,
   },
   slider: {
-    width: Platform.OS === 'ios' ? 300 : 350,
-    height: 50,
+    width: Platform.OS === 'ios' ? 300 : 350, 
+    height: 50,    
     borderRadius: 0,
   },
   thresholdText: {
@@ -110,10 +110,10 @@ const Styles = StyleSheet.create({
   },
   buttonText: {
     fontWeight: 'bold',
-    fontSize: 15,
+    fontSize: 20,
     textAlign: 'center',
     textAlignVertical: 'center',
-  },
+  }, 
   labelText: {
     fontWeight: 'bold',
     fontSize: 18,
@@ -124,7 +124,7 @@ const Styles = StyleSheet.create({
   colonText: {
     fontWeight: 'bold',
     fontSize: 20,
-    marginLeft: 5,
+    marginLeft: 40,
     marginTop: 20,
   },
   labText: {
@@ -150,7 +150,7 @@ const Styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     fontSize: 40,
-    padding: 20
+    padding: 20,
   },
   userScreenTextInput: {
     fontSize: 20,
@@ -159,7 +159,7 @@ const Styles = StyleSheet.create({
     marginRight: 25,
     marginTop: 15,
     marginBottom: 15,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   userScreenButton: {
     backgroundColor: 'lightgrey',
@@ -174,7 +174,7 @@ const Styles = StyleSheet.create({
   userScreenText: {
     fontSize: 20,
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   signUpAndLogin: {
     backgroundColor: '#8740ad',
@@ -190,7 +190,38 @@ const Styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     fontWeight: 'bold',
-    padding: 5
+    padding: 5,
+  },
+  fixToText: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  groupTextBox: {
+    height: 50,
+    borderWidth: 3,
+    borderColor: '#9c70b5',
+    backgroundColor: 'white',
+    textAlign: 'center',
+    marginTop: 50,
+    marginLeft: 50,
+    marginRight: 50,
+  },
+  groupButtons: {
+    borderWidth: 3,
+    borderColor: '#9c70b5',
+    backgroundColor: 'white',
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 50,
+    width: 160,
+    height: 40,
+  },
+  groupButtonsText: {
+    color: '#9c70b5',
+    fontWeight: 'bold',
+    fontFamily: 'Montserrat-Light',
+    fontSize: 25,
+    textAlign: 'center',
   }
 });
 
