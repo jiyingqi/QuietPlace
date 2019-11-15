@@ -82,7 +82,7 @@ const Styles = StyleSheet.create({
   },
   timeButton: {
     backgroundColor:'lightgrey',
-    marginLeft: 20,
+    marginLeft: 10,
     width: 75,
     height: 30,
     borderRadius: 5,
@@ -90,7 +90,7 @@ const Styles = StyleSheet.create({
   },
   timeButtonMinute: {
     backgroundColor:'lightgrey',
-    marginLeft: 10,
+    marginLeft: 5,
     width: 75,
     height: 30,
     borderRadius: 5,
@@ -99,7 +99,7 @@ const Styles = StyleSheet.create({
   dbButton: {
     backgroundColor:'lightgrey',
     width: 80,
-    marginLeft: 40,
+    marginLeft: 150,
     height: 30,
     borderRadius: 5,
     marginTop: 20,
@@ -117,7 +117,7 @@ const Styles = StyleSheet.create({
   labelText: {
     fontWeight: 'bold',
     fontSize: 18,
-    marginLeft: 30,
+    marginLeft: 20,
     marginRight: 10,
     marginTop: 20,
   },
