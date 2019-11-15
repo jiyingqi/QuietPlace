@@ -69,8 +69,8 @@ const Styles = StyleSheet.create({
     marginBottom: 50,
   },
   slider: {
-    width: Platform.OS === 'ios' ? 300 : 350, 
-    height: 50,    
+    width: Platform.OS === 'ios' ? 300 : 350,
+    height: 50,
     borderRadius: 0,
   },
   thresholdText: {
@@ -90,7 +90,7 @@ const Styles = StyleSheet.create({
   },
   timeButtonMinute: {
     backgroundColor:'lightgrey',
-    marginLeft: 5,
+    marginLeft: 7,
     width: 75,
     height: 30,
     borderRadius: 5,
@@ -113,7 +113,7 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     textAlignVertical: 'center',
-  }, 
+  },
   labelText: {
     fontWeight: 'bold',
     fontSize: 18,
@@ -124,7 +124,7 @@ const Styles = StyleSheet.create({
   colonText: {
     fontWeight: 'bold',
     fontSize: 20,
-    marginLeft: 40,
+    marginLeft: 7,
     marginTop: 20,
   },
   labText: {
