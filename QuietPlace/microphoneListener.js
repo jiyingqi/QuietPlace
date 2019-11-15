@@ -78,21 +78,117 @@ export default class MicrophoneListener extends Component {
       if (notificationPause < 20) {
         notificationPause++;
       }
-      if(global.hourAM!=-1 && global.minuteAM!=-1 && global.hourPM!=-1 &&
-        global.minutePM!=-1 && global.decibelAM!=1 && global.decibelPM!=1){
-        if(this.state.hour>=global.hourAM && this.state.hour<global.hourPM+12){
-          this.state.value=global.decibelAM;
-          if(this.state.hour==global.hourAM){
-            if(this.state.minute<global.minuteAM){
-              this.state.value = global.decibelPM;
+      if(global.hour1!=-1 && global.minute1!=-1 && global.hour2!=-1 &&
+          global.minute2!=-1 && global.decibel1!=1 && global.decibel2!=1 &&
+          global.time1!=-1 && global.time2!=-1){
+
+        if(global.hour1==12 && global.time1==1){
+          global.hour1 = 0;
+        }
+        else if(global.hour2==12 && global.time2==1){
+          global.hour2 = 0;
+        }
+        if(global.hour1==12&&global.time1==2){
+          global.hour1 = global.hour1-12;
+        }
+        else if(global.hour2==12 && global.time2==2){
+          global.hour2 = global.hour2-12;
+        }
+
+        if(global.time1==1 && global.time2==2){
+          if(this.state.hour>=global.hour1 && this.state.hour<global.hour2+12){
+            this.state.value=global.decibel1;
+            if(this.state.hour==global.hour1){
+              if(this.state.minute<global.minute1){
+                this.state.value = global.decibel2;
+              }
+            }
+          }
+          else if(this.state.hour<global.hour1 || this.state.hour>=global.hour2+12){
+            this.state.value=global.decibel2;
+            if(this.state.hour==global.hour2+12){
+              if(this.state.minute<global.minute2){
+                this.state.value = global.decibel1;
+              }
             }
           }
         }
-        else if(this.state.hour<global.timeAM || this.state.hour>=global.hourPM+12){
-          this.state.value=global.decibelPM;
-          if(this.state.hour==global.hourPM+12){
-            if(this.state.minute<global.minutePM){
-              this.state.value = global.decibelAM;
+
+        else if(global.time1==2 && global.time2==2){
+          if(global.hour1>global.hour2){
+            let tempHour = global.hour1;
+            global.hour1 = global.hour2;
+            global.hour2 = tempHour;
+            let tempDec = global.decibel1;
+            global.decibel1 = global.decibel2;
+            global.decibel2 = tempDec;
+            let tempMin = global.minute1;
+            global.minute1 = global.minute2;
+            global.minute2 = tempMin;
+          }
+          if(this.state.hour>=global.hour1+12 && this.state.hour<global.hour2+12){
+            this.state.value=global.decibel1;
+            if(this.state.hour==global.hour1+12){
+              if(this.state.minute<global.minute1){
+                this.state.value = global.decibel2;
+              }
+            }
+          }
+          else{
+            this.state.value=global.decibel2;
+            if(this.state.hour==global.hour2+12){
+              if(this.state.minute<global.minute2){
+                this.state.value = global.decibel1;
+              }
+            }
+          }
+        }
+
+        else if(global.time1==2 && global.time2==1){
+          if(this.state.hour>=global.hour1+12 || this.state.hour<global.hour2){
+            this.state.value=global.decibel1;
+            if(this.state.hour==global.hour1+12){
+              if(this.state.minute<global.minute1){
+                this.state.value = global.decibel2;
+              }
+            }
+          }
+          else if(this.state.hour<global.hour1+12 && this.state.hour>=global.hour2){
+            this.state.value=global.decibel2;
+            if(this.state.hour==global.hour2){
+              if(this.state.minute<global.minute2){
+                this.state.value = global.decibel1;
+              }
+            }
+          }
+        }
+
+        else if(global.time1==1 && global.time2==1){
+          if(global.hour1>global.hour2){
+            let tempHour = global.hour1;
+            global.hour1 = global.hour2;
+            global.hour2 = tempHour;
+            let tempDec = global.decibel1;
+            global.decibel1 = global.decibel2;
+            global.decibel2 = tempDec;
+            let tempMin = global.minute1;
+            global.minute1 = global.minute2;
+            global.minute2 = tempMin;
+          }
+          if(this.state.hour>=global.hour1 && this.state.hour<global.hour2){
+            this.state.value=global.decibel1;
+            if(this.state.hour==global.hour1){
+              if(this.state.minute<global.minute1){
+                this.state.value = global.decibel2;
+              }
+            }
+          }
+          else{
+            this.state.value=global.decibel2;
+            if(this.state.hour==global.hour2){
+              if(this.state.minute<global.minute2){
+                this.state.value = global.decibel1;
+              }
             }
           }
         }
@@ -138,7 +234,7 @@ export default class MicrophoneListener extends Component {
         />
         <Text style = { Styles.volumeText }>
           Current Volume Level{ '\n' }
-          Based on User Settings: {this.state.value} dBs
+          Based on User Settings: {"\n"}{this.state.value} dBs
         </Text>
         <Text style = { Styles.decibels }>
           ({ Math.trunc(((this.state.value + 160)/160) * 100) }%) { this.state.value } dB
