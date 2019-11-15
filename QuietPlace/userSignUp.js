@@ -11,10 +11,13 @@ export default class userSignUp extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {email: "",
-                  password: "",
-                  errorMessage: "",
-                  indicator: false};
+    
+    this.state = {
+      email: "",
+      password: "",
+      errorMessage: "",
+      indicator: false,
+    };
   }
 
   submitButtonPressed = () => {

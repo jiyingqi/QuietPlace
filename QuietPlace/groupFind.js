@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class groupFind extends Component {
     static navigationOptions = {
@@ -12,8 +13,9 @@ export default class groupFind extends Component {
       super(props)
   
       this.state = {
-        groupID: '',
-			}
+				groupID: '',
+				indicator: false,
+			};
 			
 			YellowBox.ignoreWarnings(['Setting a timer']);
 		}
@@ -43,9 +45,11 @@ export default class groupFind extends Component {
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
 					Alert.alert('Joined a group: ' + group)
+					this.setState({indicator : false})
 				}
 				else {
 					Alert.alert('Group not found.')
+					this.setState({indicator : false})
 				}
 			})
 		}
@@ -56,6 +60,7 @@ export default class groupFind extends Component {
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
 					Alert.alert('A group with that name already exists.')
+					this.setState({indicator : false})
 				}
 				else {
 					groupRef.set({
@@ -64,6 +69,7 @@ export default class groupFind extends Component {
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
 					Alert.alert('Created a group: ' + group)
+					this.setState({indicator : false})
 				}
 			})
 		}
@@ -71,8 +77,11 @@ export default class groupFind extends Component {
 		createGroupButtonPressed = () => {
 			const { groupID } = this.state
 			const { currentUser } = firebase.auth()
-      if (groupID == '')
-        Alert.alert('No Group ID was entered')
+			this.setState({indicator : true})
+      if (groupID == '') {
+				Alert.alert('No Group ID was entered')
+				this.setState({indicator : false})
+			}
       else {
 				this.createGroup(currentUser, groupID)
       }
@@ -81,8 +90,11 @@ export default class groupFind extends Component {
     joinGroupButtonPressed = () => {
 			const { groupID } = this.state
 			const { currentUser } = firebase.auth()
-      if (groupID == '')
-        Alert.alert('No Group ID was entered')
+			this.setState({indicator : true})
+      if (groupID == '') {
+				Alert.alert('No Group ID was entered')
+				this.setState({indicator : false})
+			}
       else {
 				this.joinGroup(currentUser, groupID)
 			}
@@ -91,6 +103,11 @@ export default class groupFind extends Component {
     render() {
       return (
           <View style = { Styles.settingsContainer }>
+						<Spinner
+							visible={this.state.indicator}
+							textContent={"Loading..."}
+							textStyle={{color: 'white'}}
+						/>
             <Text style = { Styles.userScreenTitle }>
               Create or Join a Quiet Group
             </Text>
