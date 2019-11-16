@@ -19,6 +19,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* QuietPlaceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* QuietPlaceTests.m */; };
 		39FC1F1E10EF9769356E41BB /* libPods-QuietPlace.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C324E630AEE77F793E471F4A /* libPods-QuietPlace.a */; };
+		8ECDF2EE237D1D3300B9FA74 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ECDF2ED237D1D3300B9FA74 /* GoogleService-Info.plist */; };
 		A02F0927669CD8701D20B44D /* libPods-QuietPlace-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCF32FAFBF8BDB89C0368C1A /* libPods-QuietPlace-tvOS.a */; };
 		E871D7A8F16F9EB3FB448BA7 /* libPods-QuietPlace-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 008A90A7EDFBFFD0464DC585 /* libPods-QuietPlace-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		7EDC44C42ADDD7AA771BE71D /* Pods-QuietPlace-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuietPlace-tvOS.release.xcconfig"; path = "Target Support Files/Pods-QuietPlace-tvOS/Pods-QuietPlace-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		8B42870A5249423287747946 /* Montserrat-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.otf"; path = "../assets/fonts/Montserrat-Black.otf"; sourceTree = "<group>"; };
 		8CE5250A8E0A480F81D3F4BA /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-ExtraBold.ttf"; path = "../assets/fonts/Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8ECDF2ED237D1D3300B9FA74 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		93B573863F0148D6B038FA13 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Black.ttf"; path = "../assets/fonts/Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		952F1F92078424E2B7DD31FA /* Pods-QuietPlaceTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuietPlaceTests.release.xcconfig"; path = "Target Support Files/Pods-QuietPlaceTests/Pods-QuietPlaceTests.release.xcconfig"; sourceTree = "<group>"; };
 		9848FD208F064E31BCB0EE9E /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		13B07FAE1A68108700A75B9A /* QuietPlace */ = {
 			isa = PBXGroup;
 			children = (
+				8ECDF2ED237D1D3300B9FA74 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -276,6 +279,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				9557D5ABBA1093EE647F001F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -384,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8ECDF2EE237D1D3300B9FA74 /* GoogleService-Info.plist in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				1A73E8E7C0554775903FB180 /* Montserrat-Light.ttf in Resources */,
 			);
@@ -499,6 +504,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9557D5ABBA1093EE647F001F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuietPlace/Pods-QuietPlace-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/gRPC-C++/gRPCCertificates-Cpp.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/gRPCCertificates-Cpp.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuietPlace/Pods-QuietPlace-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
