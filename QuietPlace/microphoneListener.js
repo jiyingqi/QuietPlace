@@ -78,10 +78,11 @@ export default class MicrophoneListener extends Component {
       if (notificationPause < 20) {
         notificationPause++;
       }
+      //check if any of the values are default value
       if(global.hour1!=-1 && global.minute1!=-1 && global.hour2!=-1 &&
           global.minute2!=-1 && global.decibel1!=1 && global.decibel2!=1 &&
           global.time1!=-1 && global.time2!=-1){
-
+        //conditions for changing times to work on 24 hour scale
         if(global.hour1==12 && global.time1==1){
           global.hour1 = 0;
         }
@@ -94,7 +95,7 @@ export default class MicrophoneListener extends Component {
         else if(global.hour2==12 && global.time2==2){
           global.hour2 = global.hour2-12;
         }
-
+        //if time1 is  AM, and time2 is PM
         if(global.time1==1 && global.time2==2){
           if(this.state.hour>=global.hour1 && this.state.hour<global.hour2+12){
             this.state.value=global.decibel1;
@@ -113,6 +114,7 @@ export default class MicrophoneListener extends Component {
             }
           }
         }
+        //if time1 is  PM, and time2 is PM
 
         else if(global.time1==2 && global.time2==2){
           if(global.hour1>global.hour2){
@@ -144,6 +146,7 @@ export default class MicrophoneListener extends Component {
           }
         }
 
+        //if time1 is  AM, and time2 is AM
         else if(global.time1==2 && global.time2==1){
           if(this.state.hour>=global.hour1+12 || this.state.hour<global.hour2){
             this.state.value=global.decibel1;
@@ -163,6 +166,7 @@ export default class MicrophoneListener extends Component {
           }
         }
 
+        //if time1 is  AM, and time2 is AM
         else if(global.time1==1 && global.time2==1){
           if(global.hour1>global.hour2){
             let tempHour = global.hour1;

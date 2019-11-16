@@ -186,6 +186,12 @@ const Styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
+  groupPageLabelsText: {
+    textAlign: 'left',
+    marginLeft: 30,
+    color: 'white',
+    fontSize: 20,
+  },
   loginErrorMessage: {
     color: 'red',
     textAlign: 'center',

@@ -11,26 +11,26 @@ export default class groupFind extends Component {
 
     constructor(props){
       super(props)
-  
+
       this.state = {
 				groupID: '',
 				indicator: false,
 			};
-			
+
 			YellowBox.ignoreWarnings(['Setting a timer']);
 		}
 
 		//updates the groupID parameter for the user
 		updateUserInfoWithGroupID = (user, group) => {
-			const userRef = firebase.database().ref('User/' + user.uid);
+			const userRef = firebase.database().ref('User').child(user.uid)
 			userRef.update({
 				groupID: group,
 			});
 		}
 
-		//adds a user to the list of members under a groupID 
+		//adds a user to the list of members under a groupID
 		addUserToGroup = (user, groupRef) => {
-			const userRef = groupRef.child('/Members/' + user.uid);
+			const userRef = groupRef.child('Members').child(user.uid)
 			userRef.set({
 				name: user.displayName,
 				email: user.email,
@@ -39,13 +39,14 @@ export default class groupFind extends Component {
 
 		//user joins the group if the groupID exists in the database
 		joinGroup = (user, group) => {
-			const groupRef = firebase.database().ref('Group/' + group);
+			const groupRef = firebase.database().ref('Group').child(group)
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
-					Alert.alert('Joined a group: ' + group)
+					//Alert.alert('Joined a group: ' + group)
 					this.setState({indicator : false})
+          this.props.navigation.navigate('DisplayGroup')
 				}
 				else {
 					Alert.alert('Group not found.')
@@ -56,7 +57,7 @@ export default class groupFind extends Component {
 
 		//creates a group and adds the creator to the group if the groupID isn't taken in the database
 		createGroup = (user, group) => {
-			const groupRef = firebase.database().ref('Group/' + group);
+			const groupRef = firebase.database().ref('Group').child(group)
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
 					Alert.alert('A group with that name already exists.')
@@ -68,12 +69,13 @@ export default class groupFind extends Component {
 					});
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
-					Alert.alert('Created a group: ' + group)
+					//Alert.alert('Created a group: ' + group)
 					this.setState({indicator : false})
+          this.props.navigation.navigate('DisplayGroup')
 				}
 			})
 		}
-		
+
 		createGroupButtonPressed = () => {
 			const { groupID } = this.state
 			const { currentUser } = firebase.auth()
@@ -99,7 +101,7 @@ export default class groupFind extends Component {
 				this.joinGroup(currentUser, groupID)
 			}
     }
-  
+
     render() {
       return (
           <View style = { Styles.settingsContainer }>

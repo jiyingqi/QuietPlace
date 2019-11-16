@@ -11,7 +11,7 @@ export default class userLoginPage extends Component {
 
   constructor(props) {
     super(props);
-    
+
     this.state = {
       email: "",
       password: "",
@@ -54,7 +54,7 @@ export default class userLoginPage extends Component {
           Login
         </Text>
         <TouchableOpacity style={Styles.signUpAndLogin}
-                          onPress = {()=>this.props.navigation.navigate('userSignUp')}>
+                          onPress = {()=>this.props.navigation.navigate('UserSignUp')}>
           <Text style={Styles.signUpAndLoginText}>
             New user? Create an account
           </Text>

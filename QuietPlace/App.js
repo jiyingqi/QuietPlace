@@ -5,13 +5,14 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import MicrophoneListener from './microphoneListener';
 import SettingsScreen from './settingsPage';
 import Styles from './styles/styles';
-import userScreen from './userPage';
+import UserScreen from './userPage';
 
 //import login-related pages
 import Loading from './loading';
-import userLoginPage from './userLoginPage';
-import userSignUp from './userSignUp';
-import groupFind from './groupFind';
+import UserLoginPage from './userLoginPage';
+import UserSignUp from './userSignUp';
+import GroupFind from './groupFind';
+import DisplayGroup from './displayGroup';
 
 class App extends Component {
   static navigationOptions = {
@@ -48,7 +49,7 @@ const MainNavigator = createBottomTabNavigator (
   {
     Home: App,
     Settings: SettingsScreen,
-    User: userScreen,
+    User: UserScreen,
   },
   {
     tabBarOptions: tabBarOptions,
@@ -60,11 +61,12 @@ const MainNavigator = createBottomTabNavigator (
 
 const MainApp = createSwitchNavigator(
   {
-    userSignUp,
-    userLoginPage,
-    groupFind,
+    UserSignUp,
+    UserLoginPage,
+    GroupFind,
     MainNavigator,
-    Loading
+    Loading,
+    DisplayGroup,
   },
   {
     initialRouteName: 'MainNavigator'
