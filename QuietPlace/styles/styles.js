@@ -7,6 +7,10 @@ const Styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  hiddenContainer: {
+    top: window.height,
+    bottom: -window.height
+  },
   homelogo: {
     fontWeight: 'bold',
     fontStyle: 'normal',

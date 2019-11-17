@@ -7,6 +7,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
 import Styles from './styles/styles';
+import DisplayGroup from './displayGroup.js';
 
 const configure = {
   onNotification: function (notification) {
@@ -43,8 +44,9 @@ export default class MicrophoneListener extends Component {
 	};
 
 	state = {
+	  groupThresholdVolume: 0,
 	  value: this.props.value,
-    lastSetSlider: '',
+      lastSetSlider: '',
 	  hour: '',
 	  minute: '',
 	};
@@ -64,7 +66,7 @@ export default class MicrophoneListener extends Component {
     let notificationPause = 20;
 
     RNSoundLevel.onNewFrame = (data) => {
-      console.log('Sound level info', data);
+      //console.log('Sound level info', data);
       this.soundLevel = data.value;
       if (count == 5) {
         fiveSoundFrames.shift();
@@ -74,7 +76,7 @@ export default class MicrophoneListener extends Component {
       fiveSoundFrames.push(data.value);
       count++;
       const avg = fiveSoundFrames.reduce((p, c, _, a) => p + c/a.length, 0);
-      console.log(avg);
+      //console.log(avg);
       if (notificationPause < 20) {
         notificationPause++;
       }
@@ -197,7 +199,8 @@ export default class MicrophoneListener extends Component {
           }
         }
       }
-      if (count == 5 && avg >= this.state.value && notificationPause == 20) {
+      console.log(this.state.groupThresholdVolume);
+      if (count == 5 && (avg >= this.state.value || avg >= this.state.groupThresholdVolume) && notificationPause == 20) {
         fiveSoundFrames = [5];
         notificationPause = 0;
         PushNotification.localNotification({
