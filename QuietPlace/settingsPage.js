@@ -44,6 +44,8 @@ export default class SettingsScreen extends Component {
     };
     render() {
       const {navigate} = this.props.navigation;
+
+      //checks if any of the dropdowns were set back to default value
       if(this.state.hour1!=0){
         global.hour1 = arrayHour[this.state.hour1-1];
       }
