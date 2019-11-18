@@ -77,12 +77,11 @@ export default class DisplayGroup extends Component {
           this.setState({indicator : false})
         }
       })
-      var groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup)
+      var groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
       groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
-        console.log("outside of snapshot exists " + 'Group/' + this.state.currentGroup + '/thresholdVolume')
         if (snapshot.exists()) {
-            console.log("inside of snapshot exists" + snapshot.val().test.thresholdVolume)
-            this.setState({value: snapshot.val().test.thresholdVolume})
+            global.groupThresholdVolume = snapshot.val().test.thresholdVolume;
+            this.setState({value: snapshot.val().test.thresholdVolume});
         }
       })
     }

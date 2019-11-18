@@ -39,13 +39,8 @@ export default class MicrophoneListener extends Component {
     }, 1000);
   }
 
-	static defaultProps = {
-    value: 0,
-	};
-
 	state = {
-	  groupThresholdVolume: 0,
-	  value: this.props.value,
+	  value: global.userThresholdVolume,
       lastSetSlider: '',
 	  hour: '',
 	  minute: '',
@@ -199,13 +194,21 @@ export default class MicrophoneListener extends Component {
           }
         }
       }
-      console.log(this.state.groupThresholdVolume);
-      if (count == 5 && (avg >= this.state.value || avg >= this.state.groupThresholdVolume) && notificationPause == 20) {
+      if (count == 5 && avg >= this.state.value && notificationPause == 20) {
+        console.log('your threshold: ' + this.state.value + ' avg: ' + avg)
         fiveSoundFrames = [5];
         notificationPause = 0;
         PushNotification.localNotification({
           title: 'Quiet down!',
-          message: 'You are being too loud.',
+          message: 'You are being too loud. Set by you.',
+        });
+      } else if (count == 5 && avg >= global.groupThresholdVolume && notificationPause == 20) {
+        console.log('group threshold: ' + groupThresholdVolume + ' avg: ' + avg)
+        fiveSoundFrames = [5];
+        notificationPause = 0;
+        PushNotification.localNotification({
+          title: 'Quiet down!',
+          message: 'You are being too loud. Set by your group.',
         });
       }
     }
@@ -248,7 +251,10 @@ export default class MicrophoneListener extends Component {
         </Text>
         <Slider
           { ...this.props }
-          onValueChange = { value => this.setState({ value: value }) }
+          onValueChange = { value => {
+            this.setState({ value: value });
+            global.userThresholdVolume = value;
+          }}
           style = { Styles.slider }
           step = { 1 }
           minimumValue = { -160 }
