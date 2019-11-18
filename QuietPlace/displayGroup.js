@@ -6,7 +6,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class displayGroup extends Component {
     static navigationOptions = {
-      title: 'displayGroup',
+      title: 'DisplayGroup',
     };
     constructor(props){
       super(props)
@@ -19,7 +19,7 @@ export default class displayGroup extends Component {
 
     leaveGroupButtonPressed = () => {
       const { currentGroup } = this.state
-			const { currentUser } = firebase.auth()
+      const { currentUser } = firebase.auth()
       this.setState({indicator : true})
       this.leaveGroup(currentUser, currentGroup)
     }
@@ -28,9 +28,9 @@ export default class displayGroup extends Component {
       const groupRef = firebase.database().ref('Group').child(group)
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
-					this.removeUserFromGroup(user, groupRef)
+          this.removeUserFromGroup(user, groupRef)
           this.updateUserInfoWithGroupID(user, groupRef)
-					this.setState({indicator : false})
+          this.setState({indicator : false})
           this.props.navigation.navigate('MainNavigator')
 				}
 				else {
@@ -41,8 +41,8 @@ export default class displayGroup extends Component {
     }
 
     removeUserFromGroup = (user, groupRef) => {
-			const userRef = groupRef.child('Members').child(user.uid)
-			userRef.remove();
+      const userRef = groupRef.child('Members').child(user.uid)
+      userRef.remove();
       const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
         if(snapshot.exists()){
           return;
@@ -76,7 +76,6 @@ export default class displayGroup extends Component {
       })
     }
 
-
     render(){
       return(
         <View style={Styles.settingsContainer}>
@@ -86,7 +85,7 @@ export default class displayGroup extends Component {
           <TouchableOpacity style={Styles.signUpAndLogin}
                               onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
             <Text style={Styles.signUpAndLoginText}>
-              Return to home
+              Return to HOME
             </Text>
           </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
