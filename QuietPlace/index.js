@@ -16,3 +16,5 @@ global.decibel1 = 1;
 global.decibel2 = 1;
 global.time1 = -1;
 global.time2 = -1;
+global.groupThresholdVolume = 0;
+global.userThresholdVolume = 0;
