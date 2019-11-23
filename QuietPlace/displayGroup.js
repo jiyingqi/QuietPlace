@@ -45,9 +45,9 @@ export default class DisplayGroup extends Component {
     }
 
     removeUserFromGroup = (user, groupRef) => {
-			const userRef = groupRef.child('Members').child(user.uid)
-			userRef.remove();
-      const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
+        const userRef = groupRef.child('Members').child(user.uid)
+        userRef.remove();
+        const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
         if(snapshot.exists()){
           return;
         }
