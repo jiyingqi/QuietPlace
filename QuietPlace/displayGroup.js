@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
 import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -18,8 +17,7 @@ export default class DisplayGroup extends Component {
         currentGroup: '',
         indicator: false,
         value: 0,
-        volumeRef: null,
-        membersList: [],
+        volumeRef: null
       };
     }
 
@@ -47,9 +45,9 @@ export default class DisplayGroup extends Component {
     }
 
     removeUserFromGroup = (user, groupRef) => {
-			const userRef = groupRef.child('Members').child(user.uid)
-			userRef.remove();
-      const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
+        const userRef = groupRef.child('Members').child(user.uid)
+        userRef.remove();
+        const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
         if(snapshot.exists()){
           return;
         }
@@ -79,20 +77,13 @@ export default class DisplayGroup extends Component {
           this.setState({indicator : false})
         }
       })
-      var groupVolumeRef = firebase.database().ref('Group').child(currentGroup);
+      var groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
       groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
         if (snapshot.exists()) {
             global.groupThresholdVolume = snapshot.val().test.thresholdVolume;
             this.setState({value: snapshot.val().test.thresholdVolume});
         }
       })
-
-      const groupRef = firebase.database().ref('Group/test/Members');
-      groupRef.on('value', snapshot => {
-        snapshot.forEach(child => {
-          this.setState({membersList: [...this.state.membersList, child.val().email]})
-        });
-      });
     }
 
     render(){
@@ -127,7 +118,6 @@ export default class DisplayGroup extends Component {
           </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
-                {this.state.membersList.map((msg) => (<Text>{"\n\n  "}{msg}</Text>))}
           </Text>
           <TouchableOpacity style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
