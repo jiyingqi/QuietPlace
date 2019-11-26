@@ -120,12 +120,6 @@ export default class DisplayGroup extends Component {
             minimumTrackTintColor = 'black'
             maximumTrackTintColor = 'grey'
           />
-          <TouchableOpacity style={Styles.signUpAndLogin}
-                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-            <Text style={Styles.signUpAndLoginText}>
-              Return to home
-            </Text>
-          </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
           </Text>
@@ -136,6 +130,12 @@ export default class DisplayGroup extends Component {
               onPress = {this.leaveGroupButtonPressed}>
               <Text style = { Styles.groupButtonsText }>
                 Leave Group
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={Styles.signUpAndLogin}
+                                onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+              <Text style={Styles.returnHomeText}>
+                Return to Home
               </Text>
             </TouchableOpacity>
         </ScrollView>

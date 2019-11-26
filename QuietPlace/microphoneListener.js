@@ -244,7 +244,6 @@ export default class MicrophoneListener extends Component {
         />
         <Text style = { Styles.volumeText }>
           Current Volume Level{ '\n' }
-          Based on User Settings: {"\n"}{this.state.value} dBs
         </Text>
         <Text style = { Styles.decibels }>
           ({ Math.trunc(((this.state.value + 160)/160) * 100) }%) { this.state.value } dB
