@@ -105,7 +105,7 @@ export default class SettingsScreen extends Component {
                  </Text>
 
                  <View style = {Styles.row}>
-                    <Text style={Styles.labelText}>
+                    <Text style={Styles.settingsTimeLabel}>
                         Time 1
                     </Text>
                     <ModalDropdown
@@ -176,7 +176,7 @@ export default class SettingsScreen extends Component {
                      onSelect={(index,value) => {this.setState({decibel1:index})}}
                  />
                  <View style = {Styles.row}>
-                    <Text style={Styles.labelText}>
+                    <Text style={Styles.settingsTimeLabel}>
                         Time 2
                     </Text>
                     <ModalDropdown
