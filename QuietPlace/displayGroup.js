@@ -73,7 +73,7 @@ export default class DisplayGroup extends Component {
       if (snapshot.exists()) {
           this.setState({indicator: false})
           this.setState({currentGroup: snapshot.val().groupID})
-         
+
           const groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
           groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
             if (snapshot.exists()) {
@@ -81,7 +81,7 @@ export default class DisplayGroup extends Component {
                 this.setState({value: snapshot.val().thresholdVolume});
             }
           })
-    
+
           const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members');
             groupRef.on('value', snapshot => {
               snapshot.forEach(child => {
@@ -120,6 +120,12 @@ export default class DisplayGroup extends Component {
             minimumTrackTintColor = 'black'
             maximumTrackTintColor = 'grey'
           />
+          <TouchableOpacity style={Styles.signUpAndLogin}
+                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+            <Text style={Styles.returnHomeText}>
+              Return to Home
+            </Text>
+          </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
           </Text>
@@ -132,12 +138,8 @@ export default class DisplayGroup extends Component {
                 Leave Group
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={Styles.signUpAndLogin}
-                                onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-              <Text style={Styles.returnHomeText}>
-                Return to Home
-              </Text>
-            </TouchableOpacity>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
         </ScrollView>
       );
     }
