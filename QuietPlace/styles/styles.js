@@ -246,14 +246,6 @@ const Styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
-  timePicker: {
-    flex: 1,
-    backgroundColor: '#8740ad',
-    marginLeft: 50,
-    marginRight: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 });
 
 export default Styles;
