@@ -5,7 +5,6 @@ import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-
 export default class DisplayGroup extends Component {
     static navigationOptions = {
       title: 'DisplayGroup',
@@ -25,7 +24,7 @@ export default class DisplayGroup extends Component {
 
     leaveGroupButtonPressed = () => {
       const { currentGroup } = this.state
-    const { currentUser } = firebase.auth()
+      const { currentUser } = firebase.auth()
       this.setState({indicator : true})
       this.leaveGroup(currentUser, currentGroup)
     }
@@ -67,32 +66,34 @@ export default class DisplayGroup extends Component {
     }
 
     componentDidMount(){
-      const { currentGroup } = this.state
+      const { currentGroup } = this.state;
       const { currentUser } = firebase.auth()
       const userRef = firebase.database().ref('User').child(currentUser.uid)
       userRef.orderByChild('groupID').once('value', snapshot => {
-    if (snapshot.exists()) {
+      if (snapshot.exists()) {
           this.setState({indicator: false})
           this.setState({currentGroup: snapshot.val().groupID})
+         
+          const groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
+          groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
+            if (snapshot.exists()) {
+                global.groupThresholdVolume = snapshot.val().thresholdVolume;
+                this.setState({value: snapshot.val().thresholdVolume});
+            }
+          })
+    
+          const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members');
+            groupRef.on('value', snapshot => {
+              snapshot.forEach(child => {
+                this.setState({membersList: [...this.state.membersList, child.val().email]})
+              });
+            });
+
         }
         else {
           this.setState({indicator : false})
         }
       })
-      var groupVolumeRef = firebase.database().ref('Group').child(currentGroup);
-      groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
-        if (snapshot.exists()) {
-            global.groupThresholdVolume = snapshot.val().test.thresholdVolume;
-            this.setState({value: snapshot.val().test.thresholdVolume});
-        }
-      })
-
-      const groupRef = firebase.database().ref('Group/test/Members');
-      groupRef.on('value', snapshot => {
-        snapshot.forEach(child => {
-          this.setState({membersList: [...this.state.membersList, child.val().email]})
-        });
-      });
     }
 
     render(){
