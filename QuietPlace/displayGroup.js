@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
@@ -98,7 +98,7 @@ export default class DisplayGroup extends Component {
 
     render(){
       return(
-        <View style={Styles.settingsContainer}>
+        <ScrollView style={Styles.settingsContainer}>
           <Text style={Styles.userScreenTitle}>
             {this.state.currentGroup} Group
           </Text>
@@ -128,7 +128,9 @@ export default class DisplayGroup extends Component {
           </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
-                {this.state.membersList.map((msg) => (<Text>{"\n\n  "}{msg}</Text>))}
+          </Text>
+          <Text style={Styles.groupPageLabelsMember}>
+            {this.state.membersList.map((msg) => (<Text>{"\n  "}{msg}{"\n"}</Text>))}
           </Text>
           <TouchableOpacity style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
@@ -136,7 +138,7 @@ export default class DisplayGroup extends Component {
                 Leave Group
               </Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
       );
     }
   }

@@ -189,8 +189,16 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
   },
   groupPageLabelsText: {
+    textAlign: 'left',
+    marginLeft: 30,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  groupPageLabelsMember: {
     textAlign: 'left',
     marginLeft: 30,
     color: 'white',
