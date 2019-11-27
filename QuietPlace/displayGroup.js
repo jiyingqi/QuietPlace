@@ -45,6 +45,10 @@ export default class DisplayGroup extends Component {
       })
     }
 
+    namePressed = (msg) => {
+      Alert.alert(msg)
+    }
+
     removeUserFromGroup = (user, groupRef) => {
       const userRef = groupRef.child('Members').child(user.uid)
       userRef.remove();
@@ -130,7 +134,9 @@ export default class DisplayGroup extends Component {
                 {"\n"}Members:
           </Text>
           <Text style={Styles.groupPageLabelsMember}>
-            {this.state.membersList.map((msg) => (<Text>{"\n  "}{msg}{"\n"}</Text>))}
+            {this.state.membersList.map((msg) =>
+            (<Text onPress={this.namePressed.bind(this,msg)}>{"\n  "}{msg}{"\n"}</Text>)
+            )}
           </Text>
           <TouchableOpacity style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
