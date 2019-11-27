@@ -54,14 +54,8 @@ export default class UserLoginPage extends Component {
           Login
         </Text>
         <TouchableOpacity style={Styles.signUpAndLogin}
-                          onPress = {()=>this.props.navigation.navigate('UserSignUp')}>
-          <Text style={Styles.signUpAndLoginText}>
-            New user? Create an account
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={Styles.signUpAndLogin}
                           onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-          <Text style={Styles.signUpAndLoginText}>
+          <Text style={Styles.returnHomeText}>
             Return to home
           </Text>
         </TouchableOpacity>
@@ -86,8 +80,14 @@ export default class UserLoginPage extends Component {
         <TouchableOpacity id = {'loginButton'}
                           style = {Styles.userScreenButton}
                           onPress = {this.submitButtonPressed}>
-          <Text style={Styles.userScreenButtonText}>
-            Submit
+          <Text style={Styles.groupButtonsText}>
+            Login
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={Styles.userScreenButton}
+                          onPress = {()=>this.props.navigation.navigate('UserSignUp')}>
+          <Text style={Styles.groupButtonsText}>
+            New user? Create an account
           </Text>
         </TouchableOpacity>
         <Text style={Styles.loginErrorMessage}> {this.state.errorMessage} </Text>

@@ -102,6 +102,13 @@ export default class DisplayGroup extends Component {
           <Text style={Styles.userScreenTitle}>
             {this.state.currentGroup} Group
           </Text>
+          <TouchableOpacity style={Styles.signUpAndLogin}
+                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+            <Text style={Styles.returnHomeText}>
+              Return to home
+              {'\n'}
+            </Text>
+          </TouchableOpacity>
           <Text style = { Styles.decibels }>
             ({ Math.trunc(((this.state.value + 160)/160) * 100) }%) { this.state.value } dB
           </Text>
@@ -117,15 +124,9 @@ export default class DisplayGroup extends Component {
             minimumValue = { -160 }
             maximumValue = { 0 }
             thumbTintColor = '#C4C4C4'
-            minimumTrackTintColor = 'black'
-            maximumTrackTintColor = 'grey'
+            minimumTrackTintColor = 'white'
+            maximumTrackTintColor = 'silver'
           />
-          <TouchableOpacity style={Styles.signUpAndLogin}
-                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-            <Text style={Styles.returnHomeText}>
-              Return to Home
-            </Text>
-          </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
           </Text>

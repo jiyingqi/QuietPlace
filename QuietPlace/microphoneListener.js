@@ -259,8 +259,8 @@ export default class MicrophoneListener extends Component {
           minimumValue = { -160 }
           maximumValue = { 0 }
           thumbTintColor = '#C4C4C4'
-          minimumTrackTintColor = 'black'
-          maximumTrackTintColor = 'grey'
+          minimumTrackTintColor = 'white'
+          maximumTrackTintColor = 'silver'
         />
         <Text style = { Styles.thresholdText }>
           Volume Threshold{ '\n' }

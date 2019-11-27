@@ -97,16 +97,16 @@ export default class SettingsScreen extends Component {
 
       return (
           <View style = {Styles.settingsContainer}>
-                 <Text style={Styles.settings}>
+                 <Text style={Styles.userScreenTitle}>
                     Settings
                  </Text>
-                 <Text style={Styles.settingsLabel}>
+                 <Text style={Styles.userScreenText}>
                      Custom Timing
                  </Text>
 
                  <View style = {Styles.row}>
                     <Text style={Styles.settingsTimeLabel}>
-                        Time 1
+                        At:
                     </Text>
                     <ModalDropdown
                         defaultValue = 'Hour'
@@ -177,10 +177,10 @@ export default class SettingsScreen extends Component {
                  />
                  <View style = {Styles.row}>
                     <Text style={Styles.settingsTimeLabel}>
-                        Time 2
+                        At:
                     </Text>
                     <ModalDropdown
-                        defaultValue = 'Time'
+                        defaultValue = 'Hour'
                         style={Styles.timeButton}
                         textStyle={Styles.buttonText}
                         options={['Hour', '12', '1', '2',
