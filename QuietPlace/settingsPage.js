@@ -180,7 +180,7 @@ export default class SettingsScreen extends Component {
                         At:
                     </Text>
                     <ModalDropdown
-                        defaultValue = 'Time'
+                        defaultValue = 'Hour'
                         style={Styles.timeButton}
                         textStyle={Styles.buttonText}
                         options={['Hour', '12', '1', '2',
