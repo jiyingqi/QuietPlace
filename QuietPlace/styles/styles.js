@@ -39,6 +39,13 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 25,
   },
+  settingsTimeLabel: {
+    color: 'white',
+    marginTop: 20,
+    fontSize: 20,
+    marginLeft: 20,
+    marginRight: 5,
+  },
   label: {
     fontWeight: 'bold',
     fontSize: Platform.OS === 'ios' ? 30 : 35,
@@ -189,8 +196,22 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
+    fontWeight: 'bold',
+  },
+  returnHomeText: {
+    textAlign: 'center',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 24,
   },
   groupPageLabelsText: {
+    textAlign: 'left',
+    marginLeft: 30,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  groupPageLabelsMember: {
     textAlign: 'left',
     marginLeft: 30,
     color: 'white',
@@ -232,7 +253,7 @@ const Styles = StyleSheet.create({
     fontFamily: 'Montserrat-Light',
     fontSize: 25,
     textAlign: 'center',
-  }
+  },
 });
 
 export default Styles;

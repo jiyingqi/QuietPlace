@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
@@ -17,37 +17,38 @@ export default class DisplayGroup extends Component {
         currentGroup: '',
         indicator: false,
         value: 0,
-        volumeRef: null
+        volumeRef: null,
+        membersList: [],
       };
     }
 
     leaveGroupButtonPressed = () => {
       const { currentGroup } = this.state
-	  const { currentUser } = firebase.auth()
+      const { currentUser } = firebase.auth()
       this.setState({indicator : true})
       this.leaveGroup(currentUser, currentGroup)
     }
 
     leaveGroup = (user, group) =>{
       const groupRef = firebase.database().ref('Group').child(group)
-			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
-				if (snapshot.exists()) {
-					this.removeUserFromGroup(user, groupRef)
+      groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
+        if (snapshot.exists()) {
+          this.removeUserFromGroup(user, groupRef)
                     this.updateUserInfoWithGroupID(user, groupRef)
-					this.setState({indicator : false})
+          this.setState({indicator : false})
                     this.props.navigation.navigate('MainNavigator')
-				}
-				else {
-					Alert.alert('Group not found.')
-					this.setState({indicator : false})
-				}
-			})
+        }
+        else {
+          Alert.alert('Group not found.')
+          this.setState({indicator : false})
+        }
+      })
     }
 
     removeUserFromGroup = (user, groupRef) => {
-        const userRef = groupRef.child('Members').child(user.uid)
-        userRef.remove();
-        const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
+      const userRef = groupRef.child('Members').child(user.uid)
+      userRef.remove();
+      const inGroup = groupRef.child('Members').orderByChild(user.uid).once('value', snapshot => {
         if(snapshot.exists()){
           return;
         }
@@ -55,40 +56,49 @@ export default class DisplayGroup extends Component {
           groupRef.remove();
         }
       })
-	}
+  }
 
     updateUserInfoWithGroupID = (user, groupRef) => {
-			const userRef = firebase.database().ref('User').child(user.uid)
-			userRef.update({
-				groupID: '',
-			});
-		}
+      const userRef = firebase.database().ref('User').child(user.uid)
+      userRef.update({
+        groupID: '',
+      });
+    }
 
     componentDidMount(){
-      const { currentGroup } = this.state
+      const { currentGroup } = this.state;
       const { currentUser } = firebase.auth()
       const userRef = firebase.database().ref('User').child(currentUser.uid)
       userRef.orderByChild('groupID').once('value', snapshot => {
-	  if (snapshot.exists()) {
+      if (snapshot.exists()) {
           this.setState({indicator: false})
           this.setState({currentGroup: snapshot.val().groupID})
+
+          const groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
+          groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
+            if (snapshot.exists()) {
+                global.groupThresholdVolume = snapshot.val().thresholdVolume;
+                this.setState({value: snapshot.val().thresholdVolume});
+            }
+          })
+
+          const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members');
+            groupRef.on('value', snapshot => {
+              snapshot.forEach(child => {
+                this.setState({membersList: [...this.state.membersList, child.val().email]})
+              });
+            });
+
         }
         else {
           this.setState({indicator : false})
-        }
-      })
-      var groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
-      groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
-        if (snapshot.exists()) {
-            global.groupThresholdVolume = snapshot.val().test.thresholdVolume;
-            this.setState({value: snapshot.val().test.thresholdVolume});
         }
       })
     }
 
     render(){
       return(
-        <View style={Styles.settingsContainer}>
+        <ScrollView style={Styles.settingsContainer}>
           <Text style={Styles.userScreenTitle}>
             {this.state.currentGroup} Group
           </Text>
@@ -112,12 +122,15 @@ export default class DisplayGroup extends Component {
           />
           <TouchableOpacity style={Styles.signUpAndLogin}
                               onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-            <Text style={Styles.signUpAndLoginText}>
-              Return to home
+            <Text style={Styles.returnHomeText}>
+              Return to Home
             </Text>
           </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
+          </Text>
+          <Text style={Styles.groupPageLabelsMember}>
+            {this.state.membersList.map((msg) => (<Text>{"\n  "}{msg}{"\n"}</Text>))}
           </Text>
           <TouchableOpacity style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
@@ -125,7 +138,9 @@ export default class DisplayGroup extends Component {
                 Leave Group
               </Text>
             </TouchableOpacity>
-        </View>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+        </ScrollView>
       );
     }
   }
