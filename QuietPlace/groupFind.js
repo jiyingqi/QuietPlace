@@ -115,8 +115,8 @@ export default class groupFind extends Component {
             </Text>
             <TouchableOpacity style={Styles.signUpAndLogin}
                 onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-                <Text style={Styles.signUpAndLoginText}>
-                    Home
+                <Text style={Styles.returnHomeText}>
+                    Return to home
                 </Text>
             </TouchableOpacity>
             <TextInput

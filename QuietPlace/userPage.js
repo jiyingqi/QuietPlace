@@ -63,31 +63,31 @@ export default class userScreen extends Component {
     const {currentGroup} = this.state
     const loginbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.loginButtonPressed}>
-                                  <Text style={Styles.userScreenButtonText}>
+                                  <Text style={Styles.groupButtonsText}>
                                     Login
                                   </Text>
                               </TouchableOpacity>
     const signupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                  onPress = {this.signUpButtonPressed}>
-                                  <Text style={Styles.userScreenButtonText}>
+                                  <Text style={Styles.groupButtonsText}>
                                     Sign Up
                                   </Text>
                                </TouchableOpacity>
     const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.signOutButtonPressed}>
-                                  <Text style={Styles.userScreenButtonText}>
+                                  <Text style={Styles.groupButtonsText}>
                                     Sign Out
                                   </Text>
                                 </TouchableOpacity>
     const groupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.groupButtonPressed}>
-                                  <Text style={Styles.userScreenButtonText}>
+                                  <Text style={Styles.groupButtonsText}>
                                     Create or Join a Group
                                   </Text>
                                 </TouchableOpacity>
     const groupPage = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.groupPageButtonPressed}>
-                                  <Text style={Styles.userScreenButtonText}>
+                                  <Text style={Styles.groupButtonsText}>
                                     View Group
                                   </Text>
                           </TouchableOpacity>

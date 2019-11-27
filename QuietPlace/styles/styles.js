@@ -92,7 +92,7 @@ const Styles = StyleSheet.create({
     marginBottom: 100,
   },
   timeButton: {
-    backgroundColor:'lightgrey',
+    backgroundColor:'white',
     marginLeft: 10,
     width: 75,
     height: 30,
@@ -100,7 +100,7 @@ const Styles = StyleSheet.create({
     marginTop: 20,
   },
   timeButtonMinute: {
-    backgroundColor:'lightgrey',
+    backgroundColor:'white',
     marginLeft: 7,
     width: 75,
     height: 30,
@@ -108,7 +108,7 @@ const Styles = StyleSheet.create({
     marginTop: 20,
   },
   dbButton: {
-    backgroundColor:'lightgrey',
+    backgroundColor:'white',
     width: 80,
     marginLeft: 150,
     height: 30,
@@ -120,6 +120,7 @@ const Styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonText: {
+    color: '#9c70b5',
     fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
@@ -133,6 +134,7 @@ const Styles = StyleSheet.create({
     marginTop: 20,
   },
   colonText: {
+    color: 'white',
     fontWeight: 'bold',
     fontSize: 20,
     marginLeft: 7,
@@ -173,14 +175,12 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
   },
   userScreenButton: {
-    backgroundColor: 'lightgrey',
+    borderWidth: 3,
+    borderColor: '#9c70b5',
+    backgroundColor: 'white',
     marginLeft: 55,
     marginRight: 55,
     marginTop: 20,
-  },
-  userScreenButtonText: {
-    fontSize: 25,
-    textAlign: 'center',
   },
   userScreenText: {
     fontSize: 20,
@@ -192,17 +192,11 @@ const Styles = StyleSheet.create({
     marginLeft: 50,
     marginRight: 50,
   },
-  signUpAndLoginText: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
   returnHomeText: {
     textAlign: 'center',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
   },
   groupPageLabelsText: {
     textAlign: 'left',
