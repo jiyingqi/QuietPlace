@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -25,7 +24,7 @@ export default class DisplayGroup extends Component {
 
     leaveGroupButtonPressed = () => {
       const { currentGroup } = this.state
-    const { currentUser } = firebase.auth()
+      const { currentUser } = firebase.auth()
       this.setState({indicator : true})
       this.leaveGroup(currentUser, currentGroup)
     }
@@ -67,37 +66,39 @@ export default class DisplayGroup extends Component {
     }
 
     componentDidMount(){
-      const { currentGroup } = this.state
+      const { currentGroup } = this.state;
       const { currentUser } = firebase.auth()
       const userRef = firebase.database().ref('User').child(currentUser.uid)
       userRef.orderByChild('groupID').once('value', snapshot => {
-    if (snapshot.exists()) {
+      if (snapshot.exists()) {
           this.setState({indicator: false})
           this.setState({currentGroup: snapshot.val().groupID})
+
+          const groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
+          groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
+            if (snapshot.exists()) {
+                global.groupThresholdVolume = snapshot.val().thresholdVolume;
+                this.setState({value: snapshot.val().thresholdVolume});
+            }
+          })
+
+          const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members');
+            groupRef.on('value', snapshot => {
+              snapshot.forEach(child => {
+                this.setState({membersList: [...this.state.membersList, child.val().email]})
+              });
+            });
+
         }
         else {
           this.setState({indicator : false})
         }
       })
-      var groupVolumeRef = firebase.database().ref('Group').child(currentGroup);
-      groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
-        if (snapshot.exists()) {
-            global.groupThresholdVolume = snapshot.val().test.thresholdVolume;
-            this.setState({value: snapshot.val().test.thresholdVolume});
-        }
-      })
-
-      const groupRef = firebase.database().ref('Group/test/Members');
-      groupRef.on('value', snapshot => {
-        snapshot.forEach(child => {
-          this.setState({membersList: [...this.state.membersList, child.val().email]})
-        });
-      });
     }
 
     render(){
       return(
-        <View style={Styles.settingsContainer}>
+        <ScrollView style={Styles.settingsContainer}>
           <Text style={Styles.userScreenTitle}>
             {this.state.currentGroup} Group
           </Text>
@@ -119,9 +120,17 @@ export default class DisplayGroup extends Component {
             minimumTrackTintColor = 'black'
             maximumTrackTintColor = 'grey'
           />
+          <TouchableOpacity style={Styles.signUpAndLogin}
+                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+            <Text style={Styles.returnHomeText}>
+              Return to Home
+            </Text>
+          </TouchableOpacity>
           <Text style={Styles.groupPageLabelsText}>
                 {"\n"}Members:
-                {this.state.membersList.map((msg) => (<Text>{"\n\n  "}{msg}</Text>))}
+          </Text>
+          <Text style={Styles.groupPageLabelsMember}>
+            {this.state.membersList.map((msg) => (<Text>{"\n  "}{msg}{"\n"}</Text>))}
           </Text>
           <TouchableOpacity style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
@@ -129,16 +138,9 @@ export default class DisplayGroup extends Component {
                 Leave Group
               </Text>
             </TouchableOpacity>
-            <Text>   </Text>
-            <Text>   </Text>
-            <Text>   </Text>
-            <TouchableOpacity style={Styles.signUpAndLogin}
-                                onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-              <Text style={Styles.returnHomeText}>
-                Return to Home
-              </Text>
-            </TouchableOpacity>
-        </View>
+            <Text>{"\n"}</Text>
+            <Text>{"\n"}</Text>
+        </ScrollView>
       );
     }
   }
