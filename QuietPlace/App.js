@@ -73,4 +73,5 @@ const MainApp = createSwitchNavigator(
   }
 );
 
+console.disableYellowBox = true;
 export default createAppContainer(MainApp);
