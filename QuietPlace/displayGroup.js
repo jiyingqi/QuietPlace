@@ -18,6 +18,7 @@ export default class DisplayGroup extends Component {
         indicator: false,
         value: 0,
         volumeRef: null,
+        exit: 0,
         membersList: [],
       };
     }
@@ -45,9 +46,6 @@ export default class DisplayGroup extends Component {
       })
     }
 
-    namePressed = (msg) => {
-      Alert.alert(msg)
-    }
 
     removeUserFromGroup = (user, groupRef) => {
       const userRef = groupRef.child('Members').child(user.uid)
@@ -66,7 +64,42 @@ export default class DisplayGroup extends Component {
       const userRef = firebase.database().ref('User').child(user.uid)
       userRef.update({
         groupID: '',
+        ping: 0,
       });
+    }
+
+    namePressed = (memberName) => {
+      const {currentGroup} = this.state.currentGroup
+      const {currentUser} = firebase.auth()
+      const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members')
+
+      groupRef.child(currentUser.uid).on('value',snapshot => {
+        const userEmail = snapshot.val().email
+        if (userEmail==memberName){
+          Alert.alert("you pinged yourself")
+          this.setState({exit: 1})
+        }
+      })
+
+      if (this.state.exit==1){
+        this.setState({exit: 0})
+        return
+      }
+      else {
+        groupRef.orderByChild('email').equalTo(memberName).on('value', snapshot => {
+          snapshot.forEach(child => {
+            this.setPingAttribute(child.val().uid,child.val().email)
+          })
+        })
+      }
+    }
+
+    setPingAttribute = (targetUid,targetEmail) => {
+      const targetRef = firebase.database().ref('User').child(targetUid)
+      targetRef.update({
+        ping: 1
+      })
+      Alert.alert(targetEmail + " has been pinged.")
     }
 
     componentDidMount(){
@@ -90,6 +123,7 @@ export default class DisplayGroup extends Component {
             groupRef.on('value', snapshot => {
               snapshot.forEach(child => {
                 this.setState({membersList: [...this.state.membersList, child.val().email]})
+                //console.log(child.auth())
               });
             });
 

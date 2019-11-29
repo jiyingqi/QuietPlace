@@ -8,6 +8,7 @@ import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
 import Styles from './styles/styles';
 import DisplayGroup from './displayGroup.js';
+import firebase from 'react-native-firebase';
 
 const configure = {
   onNotification: function (notification) {
@@ -194,6 +195,14 @@ export default class MicrophoneListener extends Component {
           }
         }
       }
+
+      const {currentUser} = firebase.auth()
+      const userRef = firebase.database().ref('User').child(currentUser.uid)
+      var pingVar = 0
+      userRef.on('value', snapshot => {
+        pingVar = snapshot.val().ping
+      })
+
       if (count == 5 && avg >= this.state.value && notificationPause == 20) {
         console.log('your threshold: ' + this.state.value + ' avg: ' + avg)
         fiveSoundFrames = [5];
@@ -210,6 +219,13 @@ export default class MicrophoneListener extends Component {
           title: 'Quiet down!',
           message: 'You are being too loud. Set by your group.',
         });
+      } else if (count == 5 && pingVar == 1) {
+        fiveSoundFrames = [5];
+        notificationPause = 0;
+        Alert.alert("you have been pinged")
+        userRef.update({
+          ping: 0
+        })
       }
     }
   }
