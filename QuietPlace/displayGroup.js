@@ -4,6 +4,7 @@ import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
+import confirmAlert from 'react-confirm-alert'
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -18,7 +19,6 @@ export default class DisplayGroup extends Component {
         indicator: false,
         value: 0,
         volumeRef: null,
-        exit: 0,
         membersList: [],
       };
     }
@@ -68,30 +68,49 @@ export default class DisplayGroup extends Component {
       });
     }
 
-    namePressed = (memberName) => {
+    namePressed = async (memberName) => {
       const {currentGroup} = this.state.currentGroup
       const {currentUser} = firebase.auth()
       const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members')
 
-      groupRef.child(currentUser.uid).on('value',snapshot => {
-        const userEmail = snapshot.val().email
-        if (userEmail==memberName){
-          Alert.alert("you pinged yourself")
-          this.setState({exit: 1})
-        }
-      })
+      const userEmail = await this.getUserEmail(currentUser, groupRef)
 
-      if (this.state.exit==1){
-        this.setState({exit: 0})
+      if (userEmail==memberName){
+        Alert.alert("You can't ping yourself!")
         return
       }
       else {
-        groupRef.orderByChild('email').equalTo(memberName).on('value', snapshot => {
-          snapshot.forEach(child => {
-            this.setPingAttribute(child.val().uid,child.val().email)
-          })
-        })
+        Alert.alert(
+          'Ping user?',
+          'Would you like to ping ' + memberName + '?',
+          [
+            {
+              text: "Yes",
+              onPress: () => {
+                groupRef.orderByChild('email').equalTo(memberName).on('value', snapshot => {
+                  snapshot.forEach(child => {
+                    this.setPingAttribute(child.val().uid,child.val().email)
+                  })
+                })
+                Alert.alert(memberName + " has been pinged.")
+              }
+            },
+            {
+              text: "No",
+              onPress: () => {}
+            }
+          ]
+        )
       }
+    }
+
+    getUserEmail = (currentUser, groupRef) => {
+      return new Promise(function(resolve) {
+        groupRef.child(currentUser.uid).on('value',snapshot => {
+          const userEmail = snapshot.val().email
+          resolve(userEmail)
+        })
+      })
     }
 
     setPingAttribute = (targetUid,targetEmail) => {

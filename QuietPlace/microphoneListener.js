@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import PushNotification from 'react-native-push-notification';
@@ -47,6 +47,15 @@ export default class MicrophoneListener extends Component {
 	  minute: '',
 	};
 
+    getPing = (userRef) => {
+      return new Promise(function(resolve) {
+        userRef.on('value',snapshot => {
+          const pingVar = snapshot.val().ping
+          resolve(pingVar)
+        })
+      })
+    }
+
   componentDidMount(){
     const granted = PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO);
     if (granted) {
@@ -61,7 +70,7 @@ export default class MicrophoneListener extends Component {
     let fiveSoundFrames = [5];
     let notificationPause = 20;
 
-    RNSoundLevel.onNewFrame = (data) => {
+    RNSoundLevel.onNewFrame = async (data) => {
       //console.log('Sound level info', data);
       this.soundLevel = data.value;
       if (count == 5) {
@@ -198,10 +207,7 @@ export default class MicrophoneListener extends Component {
 
       const {currentUser} = firebase.auth()
       const userRef = firebase.database().ref('User').child(currentUser.uid)
-      var pingVar = 0
-      userRef.on('value', snapshot => {
-        pingVar = snapshot.val().ping
-      })
+      const pingVar = await this.getPing(userRef)
 
       if (count == 5 && avg >= this.state.value && notificationPause == 20) {
         console.log('your threshold: ' + this.state.value + ' avg: ' + avg)
@@ -219,10 +225,13 @@ export default class MicrophoneListener extends Component {
           title: 'Quiet down!',
           message: 'You are being too loud. Set by your group.',
         });
-      } else if (count == 5 && pingVar == 1) {
-        fiveSoundFrames = [5];
+      } else if (count==5 && pingVar == 1) {
+        fiveSoundFrames = [5]
         notificationPause = 0;
-        Alert.alert("you have been pinged")
+        PushNotification.localNotification({
+          title: 'Quiet down!',
+          message: 'A fellow group member wants you to quiet down.'
+        })
         userRef.update({
           ping: 0
         })
