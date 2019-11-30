@@ -92,7 +92,7 @@ export default class DisplayGroup extends Component {
                     this.setPingAttribute(child.val().uid,child.val().email)
                   })
                 })
-                Alert.alert(memberName + " has been pinged.")
+                //Alert.alert(memberName + " has been pinged.")
               }
             },
             {
@@ -107,8 +107,13 @@ export default class DisplayGroup extends Component {
     getUserEmail = (currentUser, groupRef) => {
       return new Promise(function(resolve) {
         groupRef.child(currentUser.uid).on('value',snapshot => {
-          const userEmail = snapshot.val().email
-          resolve(userEmail)
+          if (snapshot.val()==null) {
+            return;
+          }
+          else {
+            const userEmail = snapshot.val().email
+            resolve(userEmail)
+          }
         })
       })
     }
@@ -118,7 +123,12 @@ export default class DisplayGroup extends Component {
       targetRef.update({
         ping: 1
       })
-      Alert.alert(targetEmail + " has been pinged.")
+      if (targetRef == null){
+        return
+      }
+      else {
+        Alert.alert(targetEmail + " has been pinged.")
+      }
     }
 
     componentDidMount(){
