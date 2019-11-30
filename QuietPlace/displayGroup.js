@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
-import confirmAlert from 'react-confirm-alert'
+import onfirmAlert from 'react-confirm-alert'
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -188,7 +188,9 @@ export default class DisplayGroup extends Component {
           </Text>
           <Text style={Styles.groupPageLabelsMember}>
             {this.state.membersList.map((msg) =>
-            (<Text onPress={this.namePressed.bind(this,msg)}>{"\n  "}{msg}{"\n"}</Text>)
+            (<Text onPress={this.namePressed.bind(this,msg)}>{"\n   "}
+              <Text style={Styles.pingText}>PING    </Text>
+              {msg}{"\n"}</Text>)
             )}
           </Text>
           <TouchableOpacity id = {'leaveButton'} style = { Styles.userScreenButton }
