@@ -211,14 +211,8 @@ export default class MicrophoneListener extends Component {
       }
 
       const {currentUser} = firebase.auth()
-      var pingVar;
-      if (currentUser == null){
-        pingVar = 0;
-      }
-      else {
-        const userRef = firebase.database().ref('User').child(currentUser.uid)
-        pingVar = await this.getPing(userRef)
-      }
+      const userRef = firebase.database().ref('User').child(currentUser.uid)
+      pingVar = await this.getPing(userRef)
 
       console.log(pingVar)
 
