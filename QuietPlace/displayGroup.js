@@ -191,7 +191,7 @@ export default class DisplayGroup extends Component {
             (<Text onPress={this.namePressed.bind(this,msg)}>{"\n  "}{msg}{"\n"}</Text>)
             )}
           </Text>
-          <TouchableOpacity style = { Styles.userScreenButton }
+          <TouchableOpacity id = {'leaveButton'} style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
               <Text style = { Styles.groupButtonsText }>
                 Leave Group
