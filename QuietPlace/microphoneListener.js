@@ -50,8 +50,13 @@ export default class MicrophoneListener extends Component {
     getPing = (userRef) => {
       return new Promise(function(resolve) {
         userRef.on('value',snapshot => {
-          const pingVar = snapshot.val().ping
-          resolve(pingVar)
+          if (!snapshot.val()) {
+            resolve(0)
+          }
+          else {
+            const pingVar = snapshot.val().ping
+            resolve(pingVar)
+          }
         })
       })
     }
@@ -206,8 +211,16 @@ export default class MicrophoneListener extends Component {
       }
 
       const {currentUser} = firebase.auth()
-      const userRef = firebase.database().ref('User').child(currentUser.uid)
-      const pingVar = await this.getPing(userRef)
+      var pingVar;
+      if (currentUser == null){
+        pingVar = 0;
+      }
+      else {
+        const userRef = firebase.database().ref('User').child(currentUser.uid)
+        pingVar = await this.getPing(userRef)
+      }
+
+      console.log(pingVar)
 
       if (count == 5 && avg >= this.state.value && notificationPause == 20) {
         console.log('your threshold: ' + this.state.value + ' avg: ' + avg)
