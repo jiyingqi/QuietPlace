@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
-import onfirmAlert from 'react-confirm-alert'
+import confirmAlert from 'react-confirm-alert'
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
