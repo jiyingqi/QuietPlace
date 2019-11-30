@@ -16,7 +16,7 @@ describe('userSignUp component testing', () => {
     props = createTestProps({});
     const wrapper = mount(<UserSignUp {...props}/>);
     expect(wrapper.exists()).toBe(true);
-    
+
     wrapper.find('#signupButton').simulate('click');
     expect(wrapper.state('errorMessage')).toBe("Error: empty input(s)");
   });
