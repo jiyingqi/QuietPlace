@@ -4,7 +4,7 @@ import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-export default class userSignUp extends Component {
+export default class UserSignUp extends Component {
   static navigationOptions = {
     title: 'User',
   };
@@ -71,7 +71,8 @@ export default class userSignUp extends Component {
           onChangeText = {text => this.setState({
             password: text})}
         />
-        <TouchableOpacity style = {Styles.userScreenButton}
+        <TouchableOpacity id = {'submitButton'}
+                          style = {Styles.userScreenButton}
                           onPress = {this.submitButtonPressed}>
           <Text style={Styles.groupButtonsText}>
             Signup
