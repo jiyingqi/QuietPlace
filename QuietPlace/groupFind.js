@@ -25,6 +25,8 @@ export default class GroupFind extends Component {
 			const userRef = firebase.database().ref('User').child(user.uid)
 			userRef.update({
 				groupID: group,
+				ping: 0,
+				uid: user.uid
 			});
 		}
 
@@ -34,6 +36,7 @@ export default class GroupFind extends Component {
 			userRef.set({
 				name: user.displayName,
 				email: user.email,
+				uid: user.uid
 			});
 		}
 
