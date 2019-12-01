@@ -251,7 +251,7 @@ const Styles = StyleSheet.create({
   pingText: {
     textAlign: 'left',
     marginLeft: 30,
-    color: 'lightgrey',
+    color: '#dedede',
     fontWeight: 'bold',
     fontSize: 20,
   },
