@@ -71,7 +71,7 @@ export default class UserSignUp extends Component {
           onChangeText = {text => this.setState({
             password: text})}
         />
-        <TouchableOpacity id = {'submitButton'}
+        <TouchableOpacity id = {'signupButton'}
                           style = {Styles.userScreenButton}
                           onPress = {this.submitButtonPressed}>
           <Text style={Styles.groupButtonsText}>

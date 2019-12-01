@@ -4,7 +4,7 @@ import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-export default class groupFind extends Component {
+export default class GroupFind extends Component {
     static navigationOptions = {
       title: 'Group',
     };
@@ -79,6 +79,30 @@ export default class groupFind extends Component {
 			})
 		}
 
+		createGroupButton = () => {
+			return (
+				<TouchableOpacity style = { Styles.groupButtons }
+					id = {'createButton'}
+					onPress = {this.createGroupButtonPressed}>
+					<Text style = { Styles.groupButtonsText }>
+						Create Group
+					</Text>
+				</TouchableOpacity>
+			)
+		}
+
+		joinGroupButton = () => {
+			return (
+				<TouchableOpacity style = { Styles.groupButtons }
+				id = {'joinButton'}
+					onPress = {this.joinGroupButtonPressed}>
+					<Text style = { Styles.groupButtonsText }>
+						Join Group
+					</Text>
+				</TouchableOpacity>
+			)
+		};
+
 		createGroupButtonPressed = () => {
 			const { groupID } = this.state
 			const { currentUser } = firebase.auth()
@@ -129,18 +153,8 @@ export default class groupFind extends Component {
               onChangeText={(text) => this.setState({groupID: text})}
             />
             <View style={ Styles.fixToText }>
-              <TouchableOpacity style = { Styles.groupButtons }
-                onPress = {this.createGroupButtonPressed}>
-                <Text style = { Styles.groupButtonsText }>
-                  Create Group
-                </Text>
-              </TouchableOpacity>
-            <TouchableOpacity style = { Styles.groupButtons }
-                onPress = {this.joinGroupButtonPressed}>
-                <Text style = { Styles.groupButtonsText }>
-                  Join Group
-                </Text>
-              </TouchableOpacity>
+              {this.createGroupButton()}
+							{this.joinGroupButton()}
             </View>
 					</View>
       );
