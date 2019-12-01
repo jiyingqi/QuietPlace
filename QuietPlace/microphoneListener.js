@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import PushNotification from 'react-native-push-notification';
@@ -8,6 +8,7 @@ import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
 import Styles from './styles/styles';
 import DisplayGroup from './displayGroup.js';
+import firebase from 'react-native-firebase';
 
 const configure = {
   onNotification: function (notification) {
@@ -46,6 +47,20 @@ export default class MicrophoneListener extends Component {
 	  minute: '',
 	};
 
+    getPing = (userRef) => {
+      return new Promise(function(resolve) {
+        userRef.on('value',snapshot => {
+          if (!snapshot.val()) {
+            resolve(0)
+          }
+          else {
+            const pingVar = snapshot.val().ping
+            resolve(pingVar)
+          }
+        })
+      })
+    }
+
   componentDidMount(){
     const granted = PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO);
     if (granted) {
@@ -60,7 +75,7 @@ export default class MicrophoneListener extends Component {
     let fiveSoundFrames = [5];
     let notificationPause = 20;
 
-    RNSoundLevel.onNewFrame = (data) => {
+    RNSoundLevel.onNewFrame = async (data) => {
       //console.log('Sound level info', data);
       this.soundLevel = data.value;
       if (count == 5) {
@@ -194,6 +209,13 @@ export default class MicrophoneListener extends Component {
           }
         }
       }
+
+      const {currentUser} = firebase.auth()
+      const userRef = firebase.database().ref('User').child(currentUser.uid)
+      pingVar = await this.getPing(userRef)
+
+      console.log(pingVar)
+
       if (count == 5 && avg >= this.state.value && notificationPause == 20) {
         console.log('your threshold: ' + this.state.value + ' avg: ' + avg)
         fiveSoundFrames = [5];
@@ -210,6 +232,16 @@ export default class MicrophoneListener extends Component {
           title: 'Quiet down!',
           message: 'You are being too loud. Set by your group.',
         });
+      } else if (count==5 && pingVar == 1) {
+        fiveSoundFrames = [5]
+        notificationPause = 0;
+        PushNotification.localNotification({
+          title: 'Quiet down!',
+          message: 'A fellow group member wants you to quiet down.'
+        })
+        userRef.update({
+          ping: 0
+        })
       }
     }
   }

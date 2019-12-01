@@ -4,6 +4,7 @@ import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
+import confirmAlert from 'react-confirm-alert'
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -45,6 +46,7 @@ export default class DisplayGroup extends Component {
       })
     }
 
+
     removeUserFromGroup = (user, groupRef) => {
       const userRef = groupRef.child('Members').child(user.uid)
       userRef.remove();
@@ -62,7 +64,71 @@ export default class DisplayGroup extends Component {
       const userRef = firebase.database().ref('User').child(user.uid)
       userRef.update({
         groupID: '',
+        ping: 0,
       });
+    }
+
+    namePressed = async (memberName) => {
+      const {currentGroup} = this.state.currentGroup
+      const {currentUser} = firebase.auth()
+      const groupRef = firebase.database().ref('Group').child(this.state.currentGroup).child('Members')
+
+      const userEmail = await this.getUserEmail(currentUser, groupRef)
+
+      if (userEmail==memberName){
+        Alert.alert("You can't ping yourself!")
+        return
+      }
+      else {
+        Alert.alert(
+          'Ping user?',
+          'Would you like to ping ' + memberName + '?',
+          [
+            {
+              text: "Yes",
+              onPress: () => {
+                groupRef.orderByChild('email').equalTo(memberName).on('value', snapshot => {
+                  snapshot.forEach(child => {
+                    this.setPingAttribute(child.val().uid,child.val().email)
+                  })
+                })
+                //Alert.alert(memberName + " has been pinged.")
+              }
+            },
+            {
+              text: "No",
+              onPress: () => {}
+            }
+          ]
+        )
+      }
+    }
+
+    getUserEmail = (currentUser, groupRef) => {
+      return new Promise(function(resolve) {
+        groupRef.child(currentUser.uid).on('value',snapshot => {
+          if (snapshot.val()==null) {
+            return;
+          }
+          else {
+            const userEmail = snapshot.val().email
+            resolve(userEmail)
+          }
+        })
+      })
+    }
+
+    setPingAttribute = (targetUid,targetEmail) => {
+      const targetRef = firebase.database().ref('User').child(targetUid)
+      targetRef.update({
+        ping: 1
+      })
+      if (targetRef == null){
+        return
+      }
+      else {
+        Alert.alert(targetEmail + " has been pinged.")
+      }
     }
 
     componentDidMount(){
@@ -86,6 +152,7 @@ export default class DisplayGroup extends Component {
             groupRef.on('value', snapshot => {
               snapshot.forEach(child => {
                 this.setState({membersList: [...this.state.membersList, child.val().email]})
+                //console.log(child.auth())
               });
             });
 
@@ -131,9 +198,13 @@ export default class DisplayGroup extends Component {
                 {"\n"}Members:
           </Text>
           <Text style={Styles.groupPageLabelsMember}>
-            {this.state.membersList.map((msg) => (<Text>{"\n  "}{msg}{"\n"}</Text>))}
+            {this.state.membersList.map((msg) =>
+            (<Text onPress={this.namePressed.bind(this,msg)}>{"\n   "}
+              <Text style={Styles.pingText}>PING    </Text>
+              {msg}{"\n"}</Text>)
+            )}
           </Text>
-          <TouchableOpacity style = { Styles.userScreenButton }
+          <TouchableOpacity id = {'leaveButton'} style = { Styles.userScreenButton }
               onPress = {this.leaveGroupButtonPressed}>
               <Text style = { Styles.groupButtonsText }>
                 Leave Group

@@ -248,6 +248,14 @@ const Styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
+  pingText: {
+    textAlign: 'left',
+    marginLeft: 30,
+    color: 'lightgrey',
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+
 });
 
 export default Styles;
