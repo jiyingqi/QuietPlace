@@ -21,7 +21,7 @@ describe('User sign up page', () => {
   it('should return an error if there is no user input', () => {
     expect(wrapper.state('email')).toBe('');
     expect(wrapper.state('password')).toBe('');
-    wrapper.find('#submitButton').simulate('click');
+    wrapper.find('#signupButton').simulate('click');
     expect(wrapper.state('errorMessage')).toBe('Error: empty input(s)');
   });
 
