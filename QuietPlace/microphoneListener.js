@@ -259,9 +259,9 @@ export default class MicrophoneListener extends Component {
           size = { 250 }
           value = { Math.trunc(((this.soundLevel + 160)/160) * 100) }
           totalValue = { 100 }
-          innerColor = '#8740ad'
+          innerColor = '#816fde'
           internalColor = 'white'
-          outerColor = '#9c70b5'
+          outerColor = '#5a4ba6'
           showText
           text = { `${ Math.trunc(this.soundLevel) } dB` }
           textStyle = { Styles.decibels }

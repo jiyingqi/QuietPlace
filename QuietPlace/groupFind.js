@@ -15,6 +15,7 @@ export default class GroupFind extends Component {
       this.state = {
 				groupID: '',
 				indicator: false,
+        errorMessage: "",
 			};
 
 			YellowBox.ignoreWarnings(['Setting a timer']);
@@ -52,8 +53,9 @@ export default class GroupFind extends Component {
           this.props.navigation.navigate('DisplayGroup')
 				}
 				else {
-					Alert.alert('Group not found.')
+          this.setState({errorMessage: "Group not found."})
 					this.setState({indicator : false})
+          return
 				}
 			})
 		}
@@ -63,8 +65,9 @@ export default class GroupFind extends Component {
 			const groupRef = firebase.database().ref('Group').child(group)
 			groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
 				if (snapshot.exists()) {
-					Alert.alert('A group with that name already exists.')
+          this.setState({errorMessage: "A group with that name already exists."})
 					this.setState({indicator : false})
+          return
 				}
 				else {
 					groupRef.set({
@@ -104,29 +107,25 @@ export default class GroupFind extends Component {
 		};
 
 		createGroupButtonPressed = () => {
-			const { groupID } = this.state
+      const { groupID } = this.state
+      if (groupID == '') {
+        this.setState({errorMessage: "Error: No Group ID Entered"})
+        return
+			}
 			const { currentUser } = firebase.auth()
 			this.setState({indicator : true})
-      if (groupID == '') {
-				Alert.alert('No Group ID was entered.')
-				this.setState({indicator : false})
-			}
-      else {
-				this.createGroup(currentUser, groupID)
-      }
+			this.createGroup(currentUser, groupID)
 		}
 
     joinGroupButtonPressed = () => {
-			const { groupID } = this.state
+      const { groupID } = this.state
+      if (groupID == '') {
+        this.setState({errorMessage: "Error: No Group ID Entered"})
+        return
+			}
 			const { currentUser } = firebase.auth()
 			this.setState({indicator : true})
-      if (groupID == '') {
-				Alert.alert('No Group ID was entered.')
-				this.setState({indicator : false})
-			}
-      else {
-				this.joinGroup(currentUser, groupID)
-			}
+			this.joinGroup(currentUser, groupID)
     }
 
     render() {
@@ -156,6 +155,7 @@ export default class GroupFind extends Component {
               {this.createGroupButton()}
 							{this.joinGroupButton()}
             </View>
+            <Text style={Styles.loginErrorMessage}> {this.state.errorMessage} </Text>
 					</View>
       );
     }

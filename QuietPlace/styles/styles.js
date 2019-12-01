@@ -3,7 +3,7 @@ import { StyleSheet, Platform } from 'react-native';
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#8740ad',
+    backgroundColor: '#816fde',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -23,7 +23,7 @@ const Styles = StyleSheet.create({
   },
   settingsContainer: {
     flex: 1,
-    backgroundColor: '#8740ad',
+    backgroundColor: '#816fde',
   },
   settings: {
     position: 'absolute',
@@ -120,7 +120,7 @@ const Styles = StyleSheet.create({
     marginTop: 30,
   },
   buttonText: {
-    color: '#9c70b5',
+    color: '#6554b8',
     fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
@@ -176,7 +176,7 @@ const Styles = StyleSheet.create({
   },
   userScreenButton: {
     borderWidth: 3,
-    borderColor: '#9c70b5',
+    borderColor: '#6554b8',
     backgroundColor: 'white',
     marginLeft: 55,
     marginRight: 55,
@@ -188,7 +188,7 @@ const Styles = StyleSheet.create({
     textAlign: 'center',
   },
   signUpAndLogin: {
-    backgroundColor: '#8740ad',
+    backgroundColor: '#816fde',
     marginLeft: 50,
     marginRight: 50,
   },
@@ -224,7 +224,7 @@ const Styles = StyleSheet.create({
   groupTextBox: {
     height: 50,
     borderWidth: 3,
-    borderColor: '#9c70b5',
+    borderColor: '#6554b8',
     backgroundColor: 'white',
     textAlign: 'center',
     marginTop: 50,
@@ -233,7 +233,7 @@ const Styles = StyleSheet.create({
   },
   groupButtons: {
     borderWidth: 3,
-    borderColor: '#9c70b5',
+    borderColor: '#6554b8',
     backgroundColor: 'white',
     marginLeft: 20,
     marginRight: 20,
@@ -242,7 +242,7 @@ const Styles = StyleSheet.create({
     height: 40,
   },
   groupButtonsText: {
-    color: '#9c70b5',
+    color: '#6554b8',
     fontWeight: 'bold',
     fontFamily: 'Montserrat-Light',
     fontSize: 25,

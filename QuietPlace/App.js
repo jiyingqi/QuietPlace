@@ -33,7 +33,7 @@ class App extends Component {
 
 const tabBarOptions = {
   activeTintColor: 'black',
-  inactiveTintColor: '#8740ad',
+  inactiveTintColor: '#816fde',
   labelStyle: {
     fontWeight: 'bold',
     fontStyle: 'normal',
