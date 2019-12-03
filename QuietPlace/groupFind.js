@@ -159,7 +159,9 @@ export default class GroupFind extends Component {
               {this.createGroupButton()}
 							{this.joinGroupButton()}
             </View>
-            <Text style={Styles.loginErrorMessage}> {this.state.errorMessage} </Text>
+            <Text style={Styles.loginErrorMessage}>
+              {this.state.errorMessage}
+            </Text>
 					</View>
       );
     }
