@@ -4,7 +4,7 @@
 // Displays sliders and sound data
 
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
 import RNSoundLevel from 'react-native-sound-level';
 import PushNotification from 'react-native-push-notification';
@@ -12,7 +12,6 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import Slider from '@react-native-community/slider';
 import Speedometer from 'react-native-speedometer-chart';
 import Styles from './styles/styles';
-import DisplayGroup from './displayGroup.js';
 import firebase from 'react-native-firebase';
 
 const configure = {

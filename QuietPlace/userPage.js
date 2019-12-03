@@ -2,7 +2,7 @@
 // Responsible for UI elements on User page
 
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -70,35 +70,35 @@ export default class userScreen extends Component {
     const {currentUser} = this.state
     const {currentGroup} = this.state
     const loginbutton = <TouchableOpacity style={Styles.userScreenButton}
-                                                  onPress = {this.loginButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Login
-                                  </Text>
-                              </TouchableOpacity>
+        onPress = {this.loginButtonPressed}>
+        <Text style={Styles.groupButtonsText}>
+          Login
+        </Text>
+      </TouchableOpacity>
     const signupbutton = <TouchableOpacity style={Styles.userScreenButton}
-                                                 onPress = {this.signUpButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Sign Up
-                                  </Text>
-                               </TouchableOpacity>
+        onPress = {this.signUpButtonPressed}>
+        <Text style={Styles.groupButtonsText}>
+          Sign Up
+        </Text>
+      </TouchableOpacity>
     const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
-                                                  onPress = {this.signOutButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Sign Out
-                                  </Text>
-                                </TouchableOpacity>
+        onPress = {this.signOutButtonPressed}>
+        <Text style={Styles.groupButtonsText}>
+          Sign Out
+        </Text>
+      </TouchableOpacity>
     const groupbutton = <TouchableOpacity style={Styles.userScreenButton}
-                                                  onPress = {this.groupButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Create or Join a Group
-                                  </Text>
-                                </TouchableOpacity>
+        onPress = {this.groupButtonPressed}>
+        <Text style={Styles.groupButtonsText}>
+          Create or Join a Group
+        </Text>
+      </TouchableOpacity>
     const groupPage = <TouchableOpacity style={Styles.userScreenButton}
-                                                  onPress = {this.groupPageButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    View Group
-                                  </Text>
-                          </TouchableOpacity>
+        onPress = {this.groupPageButtonPressed}>
+        <Text style={Styles.groupButtonsText}>
+          View Group
+        </Text>
+      </TouchableOpacity>
 
     return (
       <View style={Styles.settingsContainer}>

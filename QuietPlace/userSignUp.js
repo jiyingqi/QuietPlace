@@ -51,7 +51,7 @@ export default class UserSignUp extends Component {
           Sign Up
         </Text>
         <TouchableOpacity style={Styles.signUpAndLogin}
-                            onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+          onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
           <Text style={Styles.returnHomeText}>
             Return to home
           </Text>
@@ -74,15 +74,16 @@ export default class UserSignUp extends Component {
           onChangeText = {text => this.setState({
             password: text})}
         />
-        <TouchableOpacity id = {'signupButton'}
-                          style = {Styles.userScreenButton}
-                          onPress = {this.submitButtonPressed}>
+        <TouchableOpacity style = {Styles.userScreenButton}
+          id = {'signupButton'}
+          onPress = {this.submitButtonPressed}>
           <Text style={Styles.groupButtonsText}>
             Signup
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={Styles.userScreenButton}
-                          onPress = {()=>this.props.navigation.navigate('UserLoginPage')}>
+          id = {'signupButton'}
+          onPress = {()=>this.props.navigation.navigate('UserLoginPage')}>
           <Text style={Styles.groupButtonsText}>
             Already have an account? Login
           </Text>

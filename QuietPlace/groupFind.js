@@ -3,7 +3,7 @@
 // This component can join a group, create a group, or logout
 
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, YellowBox } from 'react-native';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
 import Spinner from 'react-native-loading-spinner-overlay';
@@ -52,7 +52,6 @@ export default class GroupFind extends Component {
 				if (snapshot.exists()) {
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
-					//Alert.alert('Joined a group: ' + group)
 					this.setState({indicator : false})
           this.props.navigation.navigate('DisplayGroup')
 				}
@@ -79,7 +78,6 @@ export default class GroupFind extends Component {
 					});
 					this.addUserToGroup(user, groupRef)
 					this.updateUserInfoWithGroupID(user, group)
-					//Alert.alert('Created a group: ' + group)
 					this.setState({indicator : false})
           this.props.navigation.navigate('DisplayGroup')
 				}
@@ -101,7 +99,7 @@ export default class GroupFind extends Component {
 		joinGroupButton = () => {
 			return (
 				<TouchableOpacity style = { Styles.groupButtons }
-				id = {'joinButton'}
+				  id = {'joinButton'}
 					onPress = {this.joinGroupButtonPressed}>
 					<Text style = { Styles.groupButtonsText }>
 						Join Group
@@ -144,10 +142,10 @@ export default class GroupFind extends Component {
               Create or Join a Quiet Group
             </Text>
             <TouchableOpacity style={Styles.signUpAndLogin}
-                onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
-                <Text style={Styles.returnHomeText}>
-                    Return to home
-                </Text>
+              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+              <Text style={Styles.returnHomeText}>
+                  Return to home
+              </Text>
             </TouchableOpacity>
             <TextInput
               style = { Styles.groupTextBox }

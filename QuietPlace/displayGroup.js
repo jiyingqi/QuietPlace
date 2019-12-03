@@ -7,8 +7,6 @@ import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
 import  Styles  from './styles/styles';
 import firebase from 'react-native-firebase';
-import Spinner from 'react-native-loading-spinner-overlay';
-import confirmAlert from 'react-confirm-alert'
 
 export default class DisplayGroup extends Component {
     static navigationOptions = {
@@ -39,7 +37,7 @@ export default class DisplayGroup extends Component {
       groupRef.orderByChild('thresholdVolume').once('value', snapshot => {
         if (snapshot.exists()) {
           this.removeUserFromGroup(user, groupRef)
-                    this.updateUserInfoWithGroupID(user, groupRef)
+          this.updateUserInfoWithGroupID(user, groupRef)
           this.setState({indicator : false})
                     this.props.navigation.navigate('MainNavigator')
         }
@@ -96,7 +94,6 @@ export default class DisplayGroup extends Component {
                     this.setPingAttribute(child.val().uid,child.val().email)
                   })
                 })
-                //Alert.alert(memberName + " has been pinged.")
               }
             },
             {
@@ -147,8 +144,8 @@ export default class DisplayGroup extends Component {
           const groupVolumeRef = firebase.database().ref('Group').child(this.state.currentGroup);
           groupVolumeRef.orderByChild('thresholdVolume').on('value', snapshot => {
             if (snapshot.exists()) {
-                global.groupThresholdVolume = snapshot.val().thresholdVolume;
-                this.setState({value: snapshot.val().thresholdVolume});
+              global.groupThresholdVolume = snapshot.val().thresholdVolume;
+              this.setState({value: snapshot.val().thresholdVolume});
             }
           })
 
@@ -174,7 +171,7 @@ export default class DisplayGroup extends Component {
             {this.state.currentGroup} Group
           </Text>
           <TouchableOpacity style={Styles.signUpAndLogin}
-                              onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
+            onPress = {()=>this.props.navigation.navigate('MainNavigator')}>
             <Text style={Styles.returnHomeText}>
               Return to home
               {'\n'}
@@ -199,7 +196,7 @@ export default class DisplayGroup extends Component {
             maximumTrackTintColor = 'silver'
           />
           <Text style={Styles.groupPageLabelsText}>
-                {"\n"}Members:
+            {"\n"}Members:
           </Text>
           <Text style={Styles.groupPageLabelsMember}>
             {this.state.membersList.map((msg) =>
@@ -208,14 +205,16 @@ export default class DisplayGroup extends Component {
               {msg}{"\n"}</Text>)
             )}
           </Text>
-          <TouchableOpacity id = {'leaveButton'} style = { Styles.userScreenButton }
-              onPress = {this.leaveGroupButtonPressed}>
-              <Text style = { Styles.groupButtonsText }>
-                Leave Group
-              </Text>
-            </TouchableOpacity>
-            <Text>{"\n"}</Text>
-            <Text>{"\n"}</Text>
+          <TouchableOpacity style = { Styles.userScreenButton }
+            id = {'leaveButton'} 
+            onPress = {this.leaveGroupButtonPressed}>
+            <Text style = { Styles.groupButtonsText }>
+              Leave Group
+            </Text>
+          </TouchableOpacity>
+          <Text>
+            {"\n\n"}
+          </Text>
         </ScrollView>
       );
     }
