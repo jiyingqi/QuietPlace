@@ -82,13 +82,15 @@ export default class UserSignUp extends Component {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={Styles.userScreenButton}
-          id = {'signupButton'}
+          id = {'swapToLoginButton'}
           onPress = {()=>this.props.navigation.navigate('UserLoginPage')}>
           <Text style={Styles.groupButtonsText}>
             Already have an account? Login
           </Text>
         </TouchableOpacity>
-        <Text style={Styles.loginErrorMessage}> {this.state.errorMessage} </Text>
+        <Text style={Styles.loginErrorMessage}>
+          {this.state.errorMessage}
+        </Text>
       </View>
     );
   }

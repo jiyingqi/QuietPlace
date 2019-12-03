@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import GroupFind from '../groupFind.js';
 import UserSignUp from '../userSignUp.js';
@@ -17,8 +17,8 @@ describe('userSignUp component testing', () => {
     const wrapper = mount(<UserSignUp {...props}/>);
     expect(wrapper.exists()).toBe(true);
 
-    wrapper.find('#signupButton').simulate('click');
-    expect(wrapper.state('errorMessage')).toBe("Error: empty input(s)");
+    expect(wrapper.find('#signupButton').text()).toEqual('Signup');
+    expect(wrapper.find('#swapToLoginButton').text()).toEqual('Already have an account? Login');
   });
 });
 
