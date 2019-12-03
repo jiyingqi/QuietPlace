@@ -1,3 +1,6 @@
+// Loading component
+// Buffer from group page to main navigator
+
 import React from 'react';
 import { View, Text, ActivityIndicator, StyleSheet } from 'react-native';
 import firebase from 'react-native-firebase';

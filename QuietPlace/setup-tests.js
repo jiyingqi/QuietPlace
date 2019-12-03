@@ -1,4 +1,5 @@
 // setup-tests.js
+// Run to setup unit testing
 
 import 'react-native';
 import 'jest-enzyme';

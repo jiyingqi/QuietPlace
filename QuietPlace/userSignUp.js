@@ -1,3 +1,6 @@
+// User Sign Up page
+// For displaying user sign up ui elements
+
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';

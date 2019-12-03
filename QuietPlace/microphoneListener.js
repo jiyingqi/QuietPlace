@@ -1,3 +1,8 @@
+// Microphone Listener Component
+// This component is displayed on the main page
+// Responsible for notifications from groups threshold volume, sound level, and pinging
+// Displays sliders and sound data
+
 import React, { Component } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
@@ -75,8 +80,9 @@ export default class MicrophoneListener extends Component {
     let fiveSoundFrames = [5];
     let notificationPause = 20;
 
+    // RNSoundLevel grabs microphone data and outputs a data array which contains decibel values
+
     RNSoundLevel.onNewFrame = async (data) => {
-      //console.log('Sound level info', data);
       this.soundLevel = data.value;
       if (count == 5) {
         fiveSoundFrames.shift();
@@ -86,7 +92,6 @@ export default class MicrophoneListener extends Component {
       fiveSoundFrames.push(data.value);
       count++;
       const avg = fiveSoundFrames.reduce((p, c, _, a) => p + c/a.length, 0);
-      //console.log(avg);
       if (notificationPause < 20) {
         notificationPause++;
       }

@@ -1,3 +1,7 @@
+// Display Group component
+// This is responsible for the group page after a user joined a group
+// Has ping, shared volume threshold, and leave group functionality
+
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import Slider from '@react-native-community/slider';
@@ -58,7 +62,7 @@ export default class DisplayGroup extends Component {
           groupRef.remove();
         }
       })
-  }
+    }
 
     updateUserInfoWithGroupID = (user, groupRef) => {
       const userRef = firebase.database().ref('User').child(user.uid)

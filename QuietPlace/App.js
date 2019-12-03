@@ -1,3 +1,6 @@
+// Quiet Place starting screen
+// Here the app mounts the MicrophoneListener component and initializes the navigation between pages
+
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { createAppContainer, createSwitchNavigator} from 'react-navigation';

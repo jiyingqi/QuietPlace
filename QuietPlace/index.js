@@ -1,5 +1,5 @@
 /**
- * @format
+ * index.js file responsible for holding global variables used by the Quiet Place app.
  */
 
 import {AppRegistry} from 'react-native';

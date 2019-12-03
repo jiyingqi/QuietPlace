@@ -1,3 +1,6 @@
+// User Page
+// Responsible for UI elements on User page
+
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import  Styles  from './styles/styles';
@@ -63,34 +66,34 @@ export default class userScreen extends Component {
     const {currentGroup} = this.state
     const loginbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.loginButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Login
-                                  </Text>
-                              </TouchableOpacity>
+      <Text style={Styles.groupButtonsText}>
+        Login
+      </Text>
+    </TouchableOpacity>
     const signupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                  onPress = {this.signUpButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Sign Up
-                                  </Text>
-                               </TouchableOpacity>
+      <Text style={Styles.groupButtonsText}>
+        Sign Up
+      </Text>
+     </TouchableOpacity>
     const signoutbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.signOutButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Sign Out
-                                  </Text>
-                                </TouchableOpacity>
+        <Text style={Styles.groupButtonsText}>
+          Sign Out
+        </Text>
+      </TouchableOpacity>
     const groupbutton = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.groupButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    Create or Join a Group
-                                  </Text>
-                                </TouchableOpacity>
+        <Text style={Styles.groupButtonsText}>
+          Create or Join a Group
+        </Text>
+      </TouchableOpacity>
     const groupPage = <TouchableOpacity style={Styles.userScreenButton}
                                                   onPress = {this.groupPageButtonPressed}>
-                                  <Text style={Styles.groupButtonsText}>
-                                    View Group
-                                  </Text>
-                          </TouchableOpacity>
+        <Text style={Styles.groupButtonsText}>
+          View Group
+        </Text>
+      </TouchableOpacity>
     return (
       <View style={Styles.settingsContainer}>
         <Spinner

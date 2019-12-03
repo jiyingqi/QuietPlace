@@ -1,3 +1,7 @@
+// Settings page component
+// Responsible for settings page where user can put input two time ranges for certain thresholds
+// Can set threshold volume from time A to B and from time B to A
+
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';

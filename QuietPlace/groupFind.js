@@ -1,3 +1,7 @@
+// Group find component
+// This is the group page after a user has logged in and before they have joined or created a group
+// This component can join a group, create a group, or logout
+
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert, YellowBox } from 'react-native';
 import  Styles  from './styles/styles';

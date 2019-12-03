@@ -1,3 +1,6 @@
+// User Login Component
+// Page where user can sign up or sign in to access group functionality
+
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import  Styles  from './styles/styles';

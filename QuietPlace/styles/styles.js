@@ -1,3 +1,5 @@
+// Styles sheet used by Quiet Place app
+
 import { StyleSheet, Platform } from 'react-native';
 
 const Styles = StyleSheet.create({
