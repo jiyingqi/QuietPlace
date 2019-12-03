@@ -10,7 +10,6 @@ const createTestProps = (props: Object) => ({
   ...props
 });
 
-
 describe('GroupFind component testing', () => {
   test('Should find GroupFind buttons on the page', () => {
     props = createTestProps({});
