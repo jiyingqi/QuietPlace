@@ -3,7 +3,7 @@ Project Quiet Place for CSE115A
 
 ### Running Instructions
 
-To install the app:  
+To install the app for android phones or emulators:  
 1. Clone the git repository to a desired location.
 2. Navigate into the directory and into the QuietPlace folder
 3. In terminal run `npm install`
