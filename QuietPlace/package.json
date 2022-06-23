@@ -18,7 +18,7 @@
     "firebase": "^7.3.0",
     "firebase-admin": "^8.7.0",
     "jest-enzyme": "^7.1.2",
-    "jsdom": "^15.2.1",
+    "jsdom": "^16.5.0",
     "react": "16.9.0",
     "react-confirm-alert": "^2.4.1",
     "react-dom": "^16.12.0",
