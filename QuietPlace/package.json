@@ -16,7 +16,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "enzyme-react-16-adapter-setup": "^0.1.0",
     "firebase": "^7.3.0",
-    "firebase-admin": "^8.7.0",
+    "firebase-admin": "^11.4.1",
     "jest-enzyme": "^7.1.2",
     "jsdom": "^15.2.1",
     "react": "16.9.0",
